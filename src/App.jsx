@@ -2398,7 +2398,10 @@ function submitNetlifyForm(formName, payload) {
   const body = new URLSearchParams({ 'form-name': formName, ...payload })
   return fetch('/', {
     method: 'POST',
-    headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
+    headers: {
+      'Content-Type': 'application/x-www-form-urlencoded',
+      Accept: 'application/json',
+    },
     body: body.toString(),
   })
 }
@@ -2415,21 +2418,14 @@ function NetlifyReplyForm({ summary, visitInfo, activityLog }) {
     setStatus('sending')
     setError('')
 
-    const body = new URLSearchParams({
-      'form-name': 'ranran-reply',
-      mood,
-      message,
-      interactionSummary: summary,
-      visitInfo,
-      activityLog,
-      submittedAt: new Date().toLocaleString('zh-CN'),
-    })
-
     try {
-      const response = await fetch('/', {
-        method: 'POST',
-        headers: { 'Content-Type': 'application/x-www-form-urlencoded' },
-        body: body.toString(),
+      const response = await submitNetlifyForm('ranran-reply', {
+        mood,
+        message,
+        interactionSummary: summary,
+        visitInfo,
+        activityLog,
+        submittedAt: new Date().toLocaleString('zh-CN'),
       })
 
       if (!response.ok) throw new Error('submit failed')
@@ -2448,11 +2444,19 @@ function NetlifyReplyForm({ summary, visitInfo, activityLog }) {
         <h3 className="section-title">给小羊宝宝的悄悄回信</h3>
         <p className="netlify-reply-subtitle">如果这一页让你有一点点想说的话，就把它悄悄寄给我。</p>
 
-        <form name="ranran-reply" className="netlify-reply-form" onSubmit={handleSubmit}>
+        <form
+          name="ranran-reply"
+          method="POST"
+          data-netlify="true"
+          netlify-honeypot="bot-field"
+          className="netlify-reply-form"
+          onSubmit={handleSubmit}
+        >
           <input type="hidden" name="form-name" value="ranran-reply" />
           <input type="hidden" name="interactionSummary" value={summary} />
           <input type="hidden" name="visitInfo" value={visitInfo} />
           <input type="hidden" name="activityLog" value={activityLog} />
+          <input type="hidden" name="submittedAt" value={new Date().toLocaleString('zh-CN')} />
           <p className="hidden">
             <label>
               不要填写这个字段
