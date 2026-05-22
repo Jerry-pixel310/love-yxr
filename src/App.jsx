@@ -2524,6 +2524,63 @@ function NetlifyReplyForm({ summary, visitInfo, activityLog }) {
 }
 
 /* ── Main App ── */
+const CHAPTER_ENTRY_EFFECTS = {
+  letter: { type: 'letter', icon: '💌', title: '这封信正在为你展开', subtitle: '把心事轻轻递给小羊宝宝' },
+  memory: { type: 'memory', icon: '🌸', title: '回忆开始发光', subtitle: '每一帧都在等你来看' },
+  gaokao: { type: 'gaokao', icon: '⭐', title: '星星正在为你加油', subtitle: '小羊一定会闪闪发光' },
+  play: { type: 'play', icon: '🎁', title: '小机关准备好啦', subtitle: '惊喜马上掉进你怀里' },
+  effects: { type: 'effects', icon: '✨', title: '正在进入星河宇宙', subtitle: '给小羊宝宝看的浪漫要亮起来了' },
+  final: { type: 'final', icon: '💗', title: '最后一章要打开了', subtitle: '最认真的话，慢慢给你听' },
+}
+
+function ChapterEntryEffect({ effect }) {
+  if (!effect) return null
+
+  const sparks = Array.from({ length: 34 }, (_, index) => ({
+    id: index,
+    angle: `${index * 10.6}deg`,
+    distance: `${34 + (index % 6) * 8}vmin`,
+    delay: `${(index % 9) * 0.045}s`,
+    size: `${0.42 + (index % 5) * 0.12}rem`,
+  }))
+  const comets = Array.from({ length: 7 }, (_, index) => ({
+    id: index,
+    top: `${12 + index * 11}%`,
+    delay: `${index * 0.09}s`,
+  }))
+
+  return createPortal(
+    <div className={`chapter-entry-effect chapter-entry-${effect.type}`} role="status" aria-live="polite">
+      <div className="chapter-entry-glow" />
+      <div className="chapter-entry-comets" aria-hidden="true">
+        {comets.map((comet) => (
+          <span key={comet.id} style={{ top: comet.top, animationDelay: comet.delay }} />
+        ))}
+      </div>
+      <div className="chapter-entry-burst" aria-hidden="true">
+        {sparks.map((spark) => (
+          <span
+            key={spark.id}
+            style={{
+              '--spark-angle': spark.angle,
+              '--spark-distance': spark.distance,
+              animationDelay: spark.delay,
+              width: spark.size,
+              height: spark.size,
+            }}
+          />
+        ))}
+      </div>
+      <div className="chapter-entry-card">
+        <span className="chapter-entry-icon">{effect.icon}</span>
+        <strong>{effect.title}</strong>
+        <p>{effect.subtitle}</p>
+      </div>
+    </div>,
+    document.body
+  )
+}
+
 export default function App() {
   const [page, setPage] = useState('cover') // cover | gate | transition | home | letter | memory | gaokao | play | effects | final
   const [input, setInput] = useState('')
@@ -2539,6 +2596,8 @@ export default function App() {
   const [confessionDone, setConfessionDone] = useState(false)
   const [confessionOpen, setConfessionOpen] = useState(false)
   const [activityLog, setActivityLog] = useState([])
+  const [chapterTransition, setChapterTransition] = useState(null)
+  const chapterTransitionTimerRef = useRef(null)
   const visitInfoRef = useRef('')
   const visitLoggedRef = useRef(false)
 
@@ -2558,9 +2617,31 @@ export default function App() {
       final: '最后',
     }
     recordActivity(`进入章节：${names[nextPage] || nextPage}`)
-    setPage(nextPage)
-    window.scrollTo({ top: 0, behavior: 'smooth' })
+    if (chapterTransitionTimerRef.current) {
+      clearTimeout(chapterTransitionTimerRef.current)
+    }
+    if (nextPage === 'home' || !CHAPTER_ENTRY_EFFECTS[nextPage]) {
+      setChapterTransition(null)
+      setPage(nextPage)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      return
+    }
+    setChapterTransition(CHAPTER_ENTRY_EFFECTS[nextPage])
+    chapterTransitionTimerRef.current = setTimeout(() => {
+      setPage(nextPage)
+      window.scrollTo({ top: 0, behavior: 'smooth' })
+      chapterTransitionTimerRef.current = setTimeout(() => {
+        setChapterTransition(null)
+        chapterTransitionTimerRef.current = null
+      }, 360)
+    }, 760)
   }, [recordActivity])
+
+  useEffect(() => () => {
+    if (chapterTransitionTimerRef.current) {
+      clearTimeout(chapterTransitionTimerRef.current)
+    }
+  }, [])
 
   useEffect(() => {
     if (page === 'final' && !heartBurstShown.current) {
@@ -2681,7 +2762,12 @@ export default function App() {
 
   /* ── Effects showcase page ── */
   if (page === 'effects') {
-    return <EffectsShowcase config={letterConfig} onBack={() => goToPage('home')} />
+    return (
+      <>
+        <EffectsShowcase config={letterConfig} onBack={() => goToPage('home')} />
+        <ChapterEntryEffect effect={chapterTransition} />
+      </>
+    )
   }
 
   /* ── Cover page ── */
@@ -2702,6 +2788,7 @@ export default function App() {
         <button className="btn btn-primary fade-in-delay2" onClick={handleOpenClick}>
           {letterConfig.openButtonText}
         </button>
+        <ChapterEntryEffect effect={chapterTransition} />
       </div>
     )
   }
@@ -2739,6 +2826,7 @@ export default function App() {
             </p>
           )}
         </div>
+        <ChapterEntryEffect effect={chapterTransition} />
       </div>
     )
   }
@@ -2759,6 +2847,7 @@ export default function App() {
           </div>
           <p className="transition-text fade-in">{letterConfig.gateSuccessText}</p>
         </div>
+        <ChapterEntryEffect effect={chapterTransition} />
       </div>
     )
   }
@@ -2805,6 +2894,7 @@ export default function App() {
         </main>
         <CursorHearts />
         <PetalRain />
+        <ChapterEntryEffect effect={chapterTransition} />
       </div>
     )
   }
@@ -3133,10 +3223,7 @@ export default function App() {
             </div>
             <button
               className="btn btn-soft effects-entry-btn"
-              onClick={() => {
-                recordActivity('进入独立特效合集页面')
-                setPage('effects')
-              }}
+              onClick={() => goToPage('effects')}
             >
               打开浪漫特效合集
             </button>
@@ -3236,6 +3323,7 @@ export default function App() {
       </main>
       <CursorHearts />
       <PetalRain />
+      <ChapterEntryEffect effect={chapterTransition} />
       {heartBurst && <HeartBurst onClose={() => setHeartBurst(false)} />}
       {confessionOpen && !confessionDone && (
         <ConfessionDialog

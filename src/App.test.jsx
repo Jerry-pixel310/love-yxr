@@ -12,9 +12,10 @@ const enterWithPassphrase = async () => {
   await new Promise((r) => setTimeout(r, 2100))
 }
 
-const openChapter = async (label) => {
+const openChapter = async (cardTitle) => {
   await enterWithPassphrase()
-  fireEvent.click(screen.getAllByText(label)[0])
+  fireEvent.click(screen.getByText(cardTitle))
+  await new Promise((r) => setTimeout(r, 1300))
 }
 
 test('shows cover page initially', () => {
@@ -24,7 +25,7 @@ test('shows cover page initially', () => {
 })
 
 test('shows WhisperEnvelopes module', async () => {
-  await openChapter('机关')
+  await openChapter('打开小机关')
   expect(screen.getByText('星冉专属甜甜印章册')).toBeTruthy()
   expect(screen.getAllByText('今日想你章').length).toBeGreaterThan(0)
   expect(screen.getByText('写给小羊的悄悄话')).toBeTruthy()
@@ -55,13 +56,13 @@ test('transitions after correct passphrase', () => {
 })
 
 test('shows media cinema module on letter page', async () => {
-  await openChapter('回忆')
+  await openChapter('翻一页回忆')
   expect(screen.getByText('我们的精彩瞬间')).toBeTruthy()
   expect(screen.getByText('每一帧都值得被好好保存。')).toBeTruthy()
 })
 
 test('shows full interactive romance modules', async () => {
-  await openChapter('机关')
+  await openChapter('打开小机关')
   expect(screen.getByText('520 心动小问答')).toBeTruthy()
   expect(screen.getByText('小羊宝宝的心动粒子宇宙')).toBeTruthy()
   expect(screen.getByText('点一下，换一种心动形状')).toBeTruthy()
