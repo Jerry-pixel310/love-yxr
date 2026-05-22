@@ -61,6 +61,21 @@ test('shows media cinema module on letter page', async () => {
   expect(screen.getByText('每一帧都值得被好好保存。')).toBeTruthy()
 })
 
+test('shows sheep home easter egg and comfort pasture', async () => {
+  await enterWithPassphrase()
+  expect(screen.getByLabelText('小羊宝宝的安心牧场已经亮灯啦')).toBeTruthy()
+  fireEvent.click(screen.getByText('给你加油'))
+  await new Promise((r) => setTimeout(r, 1300))
+  expect(screen.getByText('小羊宝宝的安心牧场')).toBeTruthy()
+  expect(screen.getByText('抱抱小羊')).toBeTruthy()
+})
+
+test('shows sheep confession ritual on final chapter', async () => {
+  await openChapter('最后一章')
+  expect(screen.getByText('把小羊宝宝抱进心里')).toBeTruthy()
+  expect(screen.getByText('把小羊抱进心里')).toBeTruthy()
+})
+
 test('shows full interactive romance modules', async () => {
   await openChapter('打开小机关')
   expect(screen.getByText('520 心动小问答')).toBeTruthy()

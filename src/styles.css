@@ -4697,6 +4697,545 @@ body::after {
   display: block;
 }
 
+.sheep-kicker {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  margin-bottom: 0.55rem;
+  color: rgba(152, 91, 138, 0.78);
+  font-family: 'Ma Shan Zheng', cursive;
+  font-size: 1rem;
+  letter-spacing: 0.08em;
+}
+
+.sheep-figure {
+  position: relative;
+  width: 128px;
+  height: 100px;
+}
+
+.sheep-body,
+.sheep-head,
+.sheep-wool,
+.sheep-leg,
+.sheep-ear,
+.sheep-face,
+.sheep-eye,
+.sheep-mouth {
+  position: absolute;
+  display: block;
+}
+
+.sheep-body {
+  left: 20px;
+  top: 36px;
+  width: 78px;
+  height: 48px;
+  border-radius: 46% 52% 44% 48%;
+  background: linear-gradient(145deg, #fffaf4, #f6e3d4);
+  box-shadow: inset -12px -10px 18px rgba(221, 177, 159, 0.22), 0 14px 34px rgba(164, 94, 123, 0.18);
+}
+
+.sheep-wool {
+  z-index: 2;
+  border-radius: 999px;
+  background: radial-gradient(circle at 36% 30%, #fff, #f6e6d9 72%);
+  box-shadow: 0 6px 16px rgba(175, 112, 128, 0.14);
+}
+
+.wool-one {
+  left: 12px;
+  top: 24px;
+  width: 42px;
+  height: 42px;
+}
+
+.wool-two {
+  left: 42px;
+  top: 18px;
+  width: 48px;
+  height: 48px;
+}
+
+.wool-three {
+  left: 72px;
+  top: 28px;
+  width: 38px;
+  height: 38px;
+}
+
+.sheep-head {
+  z-index: 3;
+  right: 8px;
+  top: 40px;
+  width: 42px;
+  height: 44px;
+  border-radius: 45% 52% 44% 48%;
+  background: linear-gradient(145deg, #6f5148, #4d342f);
+  transform: rotate(5deg);
+}
+
+.sheep-ear {
+  top: 6px;
+  width: 14px;
+  height: 22px;
+  border-radius: 999px;
+  background: #5a3b36;
+}
+
+.sheep-ear-left {
+  left: -8px;
+  transform: rotate(34deg);
+}
+
+.sheep-ear-right {
+  right: -7px;
+  transform: rotate(-22deg);
+}
+
+.sheep-face {
+  inset: 0;
+}
+
+.sheep-eye {
+  top: 16px;
+  width: 4px;
+  height: 4px;
+  border-radius: 999px;
+  background: #fff5ee;
+}
+
+.sheep-eye-left {
+  left: 13px;
+}
+
+.sheep-eye-right {
+  right: 13px;
+}
+
+.sheep-mouth {
+  left: 18px;
+  bottom: 11px;
+  width: 8px;
+  height: 4px;
+  border-bottom: 1.5px solid rgba(255, 245, 238, 0.82);
+  border-radius: 999px;
+}
+
+.sheep-leg {
+  bottom: 8px;
+  width: 9px;
+  height: 18px;
+  border-radius: 999px;
+  background: #5c403a;
+}
+
+.sheep-leg-one {
+  left: 36px;
+}
+
+.sheep-leg-two {
+  left: 76px;
+}
+
+.sheep-home-egg {
+  position: fixed;
+  right: clamp(1rem, 4vw, 2.2rem);
+  bottom: clamp(1rem, 4vw, 2.2rem);
+  z-index: 90;
+  width: 132px;
+  height: 112px;
+  border: 0;
+  background: transparent;
+  cursor: pointer;
+  filter: drop-shadow(0 18px 28px rgba(169, 92, 133, 0.18));
+  animation: sheepFloat 4.8s ease-in-out infinite;
+}
+
+.sheep-home-cloud {
+  position: absolute;
+  left: 8px;
+  right: 0;
+  bottom: 4px;
+  height: 42px;
+  border-radius: 999px;
+  background: linear-gradient(135deg, rgba(255,255,255,0.96), rgba(255, 228, 240, 0.92));
+  box-shadow: inset 0 0 22px rgba(255,255,255,0.8), 0 14px 36px rgba(181, 95, 142, 0.16);
+}
+
+.sheep-home-cloud::before,
+.sheep-home-cloud::after {
+  content: '';
+  position: absolute;
+  bottom: 18px;
+  border-radius: 999px;
+  background: inherit;
+}
+
+.sheep-home-cloud::before {
+  left: 18px;
+  width: 42px;
+  height: 42px;
+}
+
+.sheep-home-cloud::after {
+  right: 22px;
+  width: 34px;
+  height: 34px;
+}
+
+.sheep-home-figure {
+  position: absolute;
+  left: 9px;
+  bottom: 24px;
+  transform: scale(0.7);
+  transform-origin: left bottom;
+}
+
+.sheep-home-bubble {
+  position: absolute;
+  right: 94px;
+  bottom: 74px;
+  width: min(230px, 62vw);
+  padding: 0.78rem 0.9rem;
+  border: 1px solid rgba(255,255,255,0.72);
+  border-radius: 20px 20px 6px 20px;
+  background: rgba(255, 250, 253, 0.92);
+  color: #905275;
+  box-shadow: 0 18px 44px rgba(150, 76, 124, 0.16);
+  font-size: 0.86rem;
+  line-height: 1.55;
+  opacity: 0;
+  transform: translateY(8px) scale(0.96);
+  transition: 0.26s ease;
+  backdrop-filter: blur(12px);
+}
+
+.sheep-home-egg:hover .sheep-home-bubble,
+.sheep-home-egg:focus-visible .sheep-home-bubble,
+.sheep-home-egg.is-awake .sheep-home-bubble {
+  opacity: 1;
+  transform: translateY(0) scale(1);
+}
+
+.sheep-home-burst i {
+  position: absolute;
+  left: 58px;
+  top: 50px;
+  width: 8px;
+  height: 8px;
+  border-radius: 999px;
+  background: #ffd4eb;
+  box-shadow: 0 0 12px rgba(255, 167, 214, 0.82);
+  opacity: 0;
+}
+
+.sheep-home-egg.is-awake .sheep-home-burst i {
+  animation: sheepBurst 0.8s ease-out both;
+  transform: rotate(var(--burst-angle)) translateX(48px);
+}
+
+.sheep-pasture-section,
+.sheep-ritual-section {
+  position: relative;
+  overflow: hidden;
+  margin: 3rem auto;
+  padding: clamp(1.4rem, 5vw, 2.4rem);
+  border: 1px solid rgba(255,255,255,0.62);
+  border-radius: 36px;
+  background:
+    radial-gradient(circle at 18% 20%, rgba(255,255,255,0.78), transparent 18%),
+    radial-gradient(circle at 88% 16%, rgba(255, 227, 167, 0.42), transparent 20%),
+    linear-gradient(145deg, rgba(255, 248, 253, 0.92), rgba(232, 244, 218, 0.86));
+  box-shadow: 0 24px 70px rgba(156, 90, 131, 0.14);
+}
+
+.sheep-pasture-section {
+  display: grid;
+  grid-template-columns: minmax(0, 0.95fr) minmax(280px, 1.05fr);
+  gap: clamp(1.2rem, 4vw, 2.4rem);
+  align-items: center;
+}
+
+.sheep-pasture-sky {
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+}
+
+.sheep-pasture-star {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #fff3a8;
+  clip-path: polygon(50% 0%, 62% 34%, 100% 34%, 69% 56%, 82% 100%, 50% 72%, 18% 100%, 31% 56%, 0 34%, 38% 34%);
+  filter: drop-shadow(0 0 10px rgba(255, 213, 91, 0.78));
+  animation: sheepTwinkle 2.6s ease-in-out infinite;
+}
+
+.star-one {
+  left: 14%;
+  top: 18%;
+}
+
+.star-two {
+  right: 24%;
+  top: 12%;
+  animation-delay: 0.5s;
+}
+
+.star-three {
+  right: 12%;
+  bottom: 24%;
+  animation-delay: 1s;
+}
+
+.sheep-pasture-copy,
+.sheep-pasture-stage,
+.sheep-pasture-message,
+.sheep-ritual-section > * {
+  position: relative;
+  z-index: 1;
+}
+
+.sheep-pasture-copy p {
+  margin: 0;
+  color: rgba(117, 75, 106, 0.8);
+  line-height: 1.9;
+}
+
+.sheep-pasture-stage {
+  min-height: 280px;
+  border-radius: 32px;
+  background:
+    radial-gradient(circle at 50% 22%, rgba(53, 48, 112, 0.92), rgba(88, 58, 137, 0.72) 45%, transparent 46%),
+    linear-gradient(180deg, transparent 0 56%, rgba(181, 223, 170, 0.86) 57%);
+}
+
+.sheep-moon {
+  position: absolute;
+  right: 36px;
+  top: 28px;
+  width: 72px;
+  height: 72px;
+  border: 0;
+  border-radius: 999px;
+  background: radial-gradient(circle at 34% 30%, #fff9d2, #ffd77b 72%);
+  color: transparent;
+  box-shadow: 0 0 32px rgba(255, 223, 121, 0.72);
+  cursor: pointer;
+}
+
+.sheep-star-button {
+  position: absolute;
+  border: 0;
+  background: transparent;
+  font-size: 1.8rem;
+  cursor: pointer;
+  filter: drop-shadow(0 0 12px rgba(255,255,255,0.8));
+  animation: sheepTwinkle 2.4s ease-in-out infinite;
+}
+
+.sheep-star-left {
+  left: 36px;
+  top: 58px;
+}
+
+.sheep-star-right {
+  right: 132px;
+  top: 104px;
+  animation-delay: 0.7s;
+}
+
+.sheep-pasture-sheep {
+  position: absolute;
+  left: 50%;
+  bottom: 42px;
+  border: 0;
+  background: transparent;
+  transform: translateX(-50%);
+  cursor: pointer;
+  animation: sheepBreatheCenter 3.4s ease-in-out infinite;
+}
+
+.sheep-pasture-grass span {
+  position: absolute;
+  bottom: 18px;
+  width: 86px;
+  height: 26px;
+  border-radius: 999px 999px 0 0;
+  background: linear-gradient(135deg, rgba(118, 190, 126, 0.78), rgba(213, 238, 172, 0.82));
+}
+
+.sheep-pasture-grass span:nth-child(1) {
+  left: 14%;
+}
+
+.sheep-pasture-grass span:nth-child(2) {
+  left: 42%;
+  width: 118px;
+}
+
+.sheep-pasture-grass span:nth-child(3) {
+  right: 12%;
+}
+
+.sheep-pasture-message {
+  grid-column: 1 / -1;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 1rem 1.1rem;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.62);
+  color: #8f4d73;
+  box-shadow: inset 0 0 24px rgba(255,255,255,0.72);
+}
+
+.sheep-pasture-message strong {
+  font-size: clamp(1rem, 3.8vw, 1.18rem);
+}
+
+.sheep-hug-btn {
+  white-space: nowrap;
+}
+
+.sheep-ritual-section {
+  text-align: center;
+  background:
+    radial-gradient(circle at 50% 34%, rgba(255,255,255,0.88), transparent 17%),
+    radial-gradient(circle at 50% 46%, rgba(255, 112, 170, 0.24), transparent 35%),
+    linear-gradient(145deg, rgba(255, 244, 251, 0.94), rgba(255, 230, 239, 0.9));
+}
+
+.sheep-ritual-stage {
+  position: relative;
+  display: grid;
+  place-items: center;
+  width: min(260px, 70vw);
+  height: 190px;
+  margin: 0.8rem auto;
+}
+
+.sheep-ritual-stage::before {
+  content: '';
+  position: absolute;
+  inset: 16px;
+  border: 1px solid rgba(255, 113, 169, 0.38);
+  border-radius: 50%;
+  box-shadow: 0 0 30px rgba(255, 128, 181, 0.22);
+  animation: sheepOrbit 5s linear infinite;
+}
+
+.sheep-ritual-figure {
+  transform: scale(1.05);
+  animation: sheepBreathePlain 3.2s ease-in-out infinite;
+}
+
+.sheep-ritual-orbit span {
+  position: absolute;
+  width: 14px;
+  height: 14px;
+  border-radius: 999px;
+  background: #ffb9d9;
+  box-shadow: 0 0 18px rgba(255, 127, 183, 0.62);
+}
+
+.sheep-ritual-orbit span:nth-child(1) {
+  left: 18%;
+  top: 24%;
+}
+
+.sheep-ritual-orbit span:nth-child(2) {
+  right: 20%;
+  top: 34%;
+}
+
+.sheep-ritual-orbit span:nth-child(3) {
+  left: 48%;
+  bottom: 18%;
+}
+
+.sheep-ritual-copy {
+  max-width: 560px;
+  margin: 0 auto 1rem;
+  color: rgba(123, 75, 105, 0.78);
+  line-height: 1.85;
+}
+
+.sheep-ritual-message {
+  max-width: 620px;
+  margin: 1rem auto 0;
+  padding: 1rem 1.1rem;
+  border-radius: 24px;
+  background: rgba(255,255,255,0.72);
+  color: #9a4671;
+  font-size: clamp(1.05rem, 4vw, 1.32rem);
+  line-height: 1.8;
+  box-shadow: 0 20px 54px rgba(169, 77, 121, 0.14);
+}
+
+.sheep-ritual-section.is-activated {
+  box-shadow: 0 0 0 1px rgba(255,255,255,0.7), 0 28px 90px rgba(255, 97, 157, 0.24);
+}
+
+@keyframes sheepFloat {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes sheepBurst {
+  0% { transform: rotate(var(--burst-angle)) translateX(0) scale(0); opacity: 0; }
+  25% { opacity: 1; }
+  100% { transform: rotate(var(--burst-angle)) translateX(54px) scale(1); opacity: 0; }
+}
+
+@keyframes sheepTwinkle {
+  0%, 100% { transform: scale(1); opacity: 0.7; }
+  50% { transform: scale(1.25); opacity: 1; }
+}
+
+@keyframes sheepBreatheCenter {
+  0%, 100% { transform: translateX(-50%) translateY(0) scale(1); }
+  50% { transform: translateX(-50%) translateY(-6px) scale(1.03); }
+}
+
+@keyframes sheepBreathePlain {
+  0%, 100% { transform: translateY(0) scale(1.05); }
+  50% { transform: translateY(-6px) scale(1.08); }
+}
+
+@keyframes sheepOrbit {
+  from { transform: rotate(0deg) scale(1); }
+  to { transform: rotate(360deg) scale(1.04); }
+}
+
+@media (max-width: 760px) {
+  .sheep-pasture-section {
+    grid-template-columns: 1fr;
+  }
+
+  .sheep-pasture-message {
+    align-items: stretch;
+    flex-direction: column;
+  }
+
+  .sheep-home-egg {
+    width: 106px;
+    height: 96px;
+  }
+
+  .sheep-home-figure {
+    transform: scale(0.58);
+  }
+
+  .sheep-home-bubble {
+    right: 76px;
+    bottom: 66px;
+  }
+}
+
 .chapter-page-letter #chapter-letter,
 .chapter-page-letter .letter-section,
 .chapter-page-letter .missing-clock-section,
@@ -4717,7 +5256,8 @@ body::after {
 }
 
 .chapter-page-gaokao #chapter-gaokao,
-.chapter-page-gaokao .gaokao-section {
+.chapter-page-gaokao .gaokao-section,
+.chapter-page-gaokao .sheep-pasture-section {
   display: revert;
 }
 
@@ -4748,6 +5288,7 @@ body::after {
 .chapter-page-final .confession-prelude-section,
 .chapter-page-final #chapter-final,
 .chapter-page-final .final-section,
+.chapter-page-final .sheep-ritual-section,
 .chapter-page-final .spinwheel-section,
 .chapter-page-final .sweetness-section,
 .chapter-page-final .timeline-section,

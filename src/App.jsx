@@ -1646,6 +1646,135 @@ function GaokaoCheer({ config }) {
   )
 }
 
+function SheepFigure({ className = '' }) {
+  return (
+    <div className={`sheep-figure ${className}`} aria-hidden="true">
+      <span className="sheep-wool wool-one" />
+      <span className="sheep-wool wool-two" />
+      <span className="sheep-wool wool-three" />
+      <span className="sheep-body" />
+      <span className="sheep-head">
+        <span className="sheep-ear sheep-ear-left" />
+        <span className="sheep-ear sheep-ear-right" />
+        <span className="sheep-face">
+          <span className="sheep-eye sheep-eye-left" />
+          <span className="sheep-eye sheep-eye-right" />
+          <span className="sheep-mouth" />
+        </span>
+      </span>
+      <span className="sheep-leg sheep-leg-one" />
+      <span className="sheep-leg sheep-leg-two" />
+    </div>
+  )
+}
+
+function SheepHomeEasterEgg() {
+  const [tapCount, setTapCount] = useState(0)
+  const showBurst = tapCount >= 3
+
+  return (
+    <button
+      className={`sheep-home-egg ${showBurst ? 'is-awake' : ''}`}
+      type="button"
+      onClick={() => setTapCount((count) => count + 1)}
+      aria-label="小羊宝宝的安心牧场已经亮灯啦"
+    >
+      <span className="sheep-home-cloud" />
+      <SheepFigure className="sheep-home-figure" />
+      <span className="sheep-home-bubble">咩～小羊宝宝的安心牧场已经亮灯啦，去“加油”那一章看看吧。</span>
+      <span className="sheep-home-burst" aria-hidden="true">
+        {Array.from({ length: 10 }, (_, index) => (
+          <i key={index} style={{ '--burst-angle': `${index * 36}deg` }} />
+        ))}
+      </span>
+    </button>
+  )
+}
+
+function SheepComfortPasture() {
+  const comfortMessages = [
+    '小羊今天也辛苦啦，已经很棒很棒了。',
+    '宝宝要被温柔接住，不用一个人硬撑。',
+    '小羊可以慢慢来，我一直在这里陪你。',
+    '害怕的时候就看看星星，它们和我都站在你这边。',
+  ]
+  const [messageIndex, setMessageIndex] = useState(0)
+  const [activeMoment, setActiveMoment] = useState('小羊可以慢慢来，我一直在。')
+
+  const nextComfort = () => {
+    setMessageIndex((index) => (index + 1) % comfortMessages.length)
+    setActiveMoment(comfortMessages[(messageIndex + 1) % comfortMessages.length])
+  }
+
+  return (
+    <section className="sheep-pasture-section fade-in-scroll">
+      <div className="sheep-pasture-sky" aria-hidden="true">
+        <span className="sheep-pasture-star star-one" />
+        <span className="sheep-pasture-star star-two" />
+        <span className="sheep-pasture-star star-three" />
+      </div>
+      <div className="sheep-pasture-copy">
+        <span className="sheep-kicker">Little Sheep Pasture</span>
+        <h3 className="section-title">小羊宝宝的安心牧场</h3>
+        <p>这里不是催你一定要立刻变得很厉害。这里只是想告诉你，小羊可以慢慢来。累了就靠一靠，害怕了就听我说：你已经很棒了。</p>
+      </div>
+      <div className="sheep-pasture-stage">
+        <button className="sheep-moon" type="button" onClick={() => setActiveMoment('小羊今晚要好好睡觉，明天也会闪闪发光。')}>
+          月亮晚安
+        </button>
+        <button className="sheep-star-button sheep-star-left" type="button" onClick={() => setActiveMoment('这颗星星替我给你加油。')}>
+          ⭐
+        </button>
+        <button className="sheep-star-button sheep-star-right" type="button" onClick={() => setActiveMoment('小羊一定会走到很亮很亮的地方。')}>
+          ✨
+        </button>
+        <button className="sheep-pasture-sheep" type="button" onClick={nextComfort} aria-label="摸摸小羊">
+          <SheepFigure className="sheep-pasture-figure" />
+        </button>
+        <div className="sheep-pasture-grass" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+        </div>
+      </div>
+      <div className="sheep-pasture-message">
+        <strong>{activeMoment}</strong>
+        <button className="btn btn-soft sheep-hug-btn" type="button" onClick={() => setActiveMoment('抱抱小羊宝宝，今天也被我认真喜欢着。')}>
+          抱抱小羊
+        </button>
+      </div>
+    </section>
+  )
+}
+
+function SheepConfessionRitual() {
+  const [isActivated, setIsActivated] = useState(false)
+
+  return (
+    <section className={`sheep-ritual-section fade-in-scroll ${isActivated ? 'is-activated' : ''}`}>
+      <div className="sheep-ritual-orbit" aria-hidden="true">
+        <span />
+        <span />
+        <span />
+      </div>
+      <span className="sheep-kicker">Final Little Sheep</span>
+      <h3 className="section-title">把小羊宝宝抱进心里</h3>
+      <div className="sheep-ritual-stage">
+        <SheepFigure className="sheep-ritual-figure" />
+      </div>
+      <p className="sheep-ritual-copy">最后想把最柔软的位置留给小羊宝宝，把害怕、疲惫和委屈都轻轻抱住。</p>
+      <button className="btn btn-primary sheep-ritual-btn" type="button" onClick={() => setIsActivated(true)}>
+        把小羊抱进心里
+      </button>
+      {isActivated && (
+        <p className="sheep-ritual-message fade-in">
+          小羊宝宝，你不是路过我的世界。你是我想认真守护很久很久的人。
+        </p>
+      )}
+    </section>
+  )
+}
+
 function MissingClock({ config }) {
   const [now, setNow] = useState(() => new Date())
 
@@ -2894,6 +3023,7 @@ export default function App() {
         </main>
         <CursorHearts />
         <PetalRain />
+        <SheepHomeEasterEgg />
         <ChapterEntryEffect effect={chapterTransition} />
       </div>
     )
@@ -3167,6 +3297,8 @@ export default function App() {
 
         <GaokaoCheer config={letterConfig} />
 
+        <SheepComfortPasture />
+
         <ChapterDivider
           id="chapter-play"
           kicker="Chapter 04"
@@ -3256,6 +3388,8 @@ export default function App() {
           <TypewriterText text={letterConfig.finalText} delay={800 + letterConfig.sections.length * 1200 + 600} />
           <TypewriterText text={letterConfig.finalSubText} delay={800 + letterConfig.sections.length * 1200 + 1800} />
         </section>
+
+        <SheepConfessionRitual />
 
         {/* Spin wheel */}
         <section className="spinwheel-section fade-in-scroll">
