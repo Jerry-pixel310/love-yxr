@@ -2,38 +2,6 @@
    520 Love Letter — 温柔治愈 Theme
    ══════════════════════════════════════════ */
 
-@font-face {
-  font-family: 'Ranran Xingkai';
-  src: url('/fonts/STXINGKA.TTF?v=202605211145') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: optional;
-}
-
-@font-face {
-  font-family: 'Ranran Xinwei';
-  src: url('/fonts/STXINWEI.TTF?v=202605211145') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: optional;
-}
-
-@font-face {
-  font-family: 'Ranran Youyuan';
-  src: url('/fonts/SIMYOU.TTF?v=202605211145') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: optional;
-}
-
-@font-face {
-  font-family: 'Ranran Yao';
-  src: url('/fonts/FZYTK.TTF?v=202605211145') format('truetype');
-  font-weight: 400;
-  font-style: normal;
-  font-display: optional;
-}
-
 :root {
   --cream: #fef9f4;
   --pink-light: #fff0f3;
@@ -7145,10 +7113,6 @@ textarea,
   letter-spacing: 0.02em;
 }
 
-body * {
-  font-family: 'Ranran Youyuan', 'Ranran Yao', sans-serif !important;
-}
-
 h1,
 h2,
 h3,
@@ -7156,7 +7120,7 @@ h3,
 .chapter-divider h2,
 .cover-title,
 .gate-prompt {
-  font-family: 'Ranran Yao', 'Ranran Xingkai', cursive !important;
+  font-family: var(--font-hand) !important;
   font-weight: 400 !important;
 }
 
