@@ -4310,6 +4310,81 @@ body::after {
   line-height: 1.7;
 }
 
+.confession-prelude-section {
+  max-width: 680px;
+  margin: 3.2rem auto 2.6rem;
+  padding: 0 1rem;
+}
+
+.confession-prelude-card {
+  position: relative;
+  overflow: hidden;
+  padding: 2.2rem 1.5rem;
+  border-radius: 32px;
+  text-align: center;
+  background:
+    radial-gradient(circle at 20% 0%, rgba(255, 220, 236, 0.48), transparent 34%),
+    radial-gradient(circle at 82% 88%, rgba(232, 201, 154, 0.24), transparent 36%),
+    linear-gradient(135deg, rgba(255,255,255,0.82), rgba(255,244,249,0.66));
+  border: 1px solid rgba(255,255,255,0.82);
+  box-shadow: 0 24px 70px rgba(179, 78, 128, 0.13);
+  backdrop-filter: blur(16px);
+}
+
+.confession-prelude-card::before {
+  content: '\2661';
+  position: absolute;
+  right: 1.1rem;
+  top: 0.7rem;
+  color: rgba(185, 86, 134, 0.13);
+  font-size: 4.2rem;
+}
+
+.confession-prelude-kicker {
+  display: inline-flex;
+  margin-bottom: 0.75rem;
+  padding: 0.28rem 0.75rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.68);
+  color: #c58a67;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.confession-prelude-card h3 {
+  margin: 0 0 0.75rem;
+  color: var(--rose-ink);
+  font-size: clamp(1.35rem, 5vw, 2rem);
+  line-height: 1.35;
+}
+
+.confession-prelude-card p {
+  max-width: 510px;
+  margin: 0 auto 1.35rem;
+  color: var(--blush-text);
+  line-height: 1.9;
+  font-size: 0.98rem;
+}
+
+.confession-prelude-btn {
+  position: relative;
+  z-index: 1;
+  padding: 0.78rem 1.6rem;
+  border-radius: 999px;
+  background: linear-gradient(135deg, #ee6a9f, #d85c93);
+  color: #fff;
+  box-shadow: 0 16px 36px rgba(216, 92, 147, 0.22);
+}
+
+.confession-prelude-btn.is-done {
+  background: rgba(255,255,255,0.78);
+  color: var(--rose-dark);
+  box-shadow: none;
+  cursor: default;
+}
+
 /* ── Heart burst trigger button ── */
 .heart-burst-trigger-section {
   margin-bottom: 3rem;

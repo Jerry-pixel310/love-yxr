@@ -223,6 +223,29 @@ function ConfessionDialog({ onConfirm }) {
   )
 }
 
+function ConfessionPrelude({ isDone, onOpen }) {
+  return (
+    <section className="confession-prelude-section fade-in-scroll">
+      <div className="confession-prelude-card">
+        <span className="confession-prelude-kicker">A little brave question</span>
+        <h3>我有一句话，想等你准备好再听</h3>
+        <p>
+          不是突然把答案放到你面前，而是想先把这封信写完，
+          再轻轻问你一个我认真藏了很久的问题。
+        </p>
+        <button
+          className={`btn confession-prelude-btn ${isDone ? 'is-done' : ''}`}
+          type="button"
+          onClick={onOpen}
+          disabled={isDone}
+        >
+          {isDone ? '已经收到你的答案啦 💗' : '我准备好了，轻轻打开'}
+        </button>
+      </div>
+    </section>
+  )
+}
+
 /* ── Cursor hearts ── */
 function CursorHearts() {
   const [sparks, setSparks] = useState([])
@@ -2504,6 +2527,7 @@ export default function App() {
   const [heartBurst, setHeartBurst] = useState(false)
   const heartBurstShown = useRef(false)
   const [confessionDone, setConfessionDone] = useState(false)
+  const [confessionOpen, setConfessionOpen] = useState(false)
   const [activityLog, setActivityLog] = useState([])
   const visitInfoRef = useRef('')
   const visitLoggedRef = useRef(false)
@@ -2547,6 +2571,7 @@ export default function App() {
       setPage('transition')
       setTimeout(() => setPage('letter'), 2000)
       setConfessionDone(false)
+      setConfessionOpen(false)
     } else {
       recordActivity(`尝试输入暗号失败：${input.trim() || '空'}`)
       setError(letterConfig.gateErrorText)
@@ -3055,6 +3080,14 @@ export default function App() {
           activityLog={activityLog.join('\n')}
         />
 
+        <ConfessionPrelude
+          isDone={confessionDone}
+          onOpen={() => {
+            recordActivity('打开告白确认入口')
+            setConfessionOpen(true)
+          }}
+        />
+
         <ChapterDivider
           id="chapter-final"
           kicker="Final Chapter"
@@ -3130,11 +3163,12 @@ export default function App() {
       <CursorHearts />
       <PetalRain />
       {heartBurst && <HeartBurst onClose={() => setHeartBurst(false)} />}
-      {!confessionDone && (
+      {confessionOpen && !confessionDone && (
         <ConfessionDialog
           onConfirm={() => {
             recordActivity('确认告白弹窗：喜欢你')
             setConfessionDone(true)
+            setConfessionOpen(false)
           }}
         />
       )}
