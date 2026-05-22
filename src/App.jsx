@@ -2929,13 +2929,26 @@ function HeartPetalTrail({ config }) {
 
 /* ── Standalone Effects Showcase (全部特效合集独立页面) ── */
 function EffectsShowcase({ config, onBack }) {
+  const effectBadges = ['52种语言爱心', '弹幕告白', '此爱弹窗', '关怀弹窗', '爱心花海']
+
   return (
     <div className="page effects-showcase-page">
       <Particles />
+      <div className="effects-starry-layer" aria-hidden="true">
+        <span className="effects-orbit orbit-one" />
+        <span className="effects-orbit orbit-two" />
+        <span className="effects-star star-one" />
+        <span className="effects-star star-two" />
+        <span className="effects-star star-three" />
+      </div>
       <header className="effects-showcase-header">
         <button className="btn btn-soft effects-back-btn" onClick={onBack}>← 返回情书</button>
+        <span className="effects-showcase-kicker">Ranran's romantic universe</span>
         <h1 className="effects-showcase-title">{config.effectsShowcaseTitle}</h1>
         <p className="effects-showcase-subtitle">{config.effectsShowcaseSubtitle}</p>
+        <div className="effects-showcase-badges" aria-hidden="true">
+          {effectBadges.map((badge) => <span key={badge}>{badge}</span>)}
+        </div>
       </header>
       <main className="effects-showcase-body">
         <MultiLangHeart config={config} />
