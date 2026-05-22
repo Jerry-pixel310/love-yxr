@@ -46,7 +46,7 @@ function MultiLangHeart({ config }) {
     })
 
     // Danmaku
-    const danmakuTexts = config.loveDanmakuTexts || ['我爱你', '在一起', '冉冉']
+    const danmakuTexts = config.loveDanmakuTexts || ['我爱你', '在一起', '小羊宝宝']
     const danmakus = Array.from({ length: 20 }, () => createDanmaku(w, h, danmakuTexts))
 
     function createDanmaku(w, h, txts) {
@@ -84,7 +84,7 @@ function MultiLangHeart({ config }) {
       ctx.font = `bold ${Math.min(w, h) * 0.06}px "Ma Shan Zheng", cursive`
       ctx.fillStyle = 'rgba(255,255,255,0.9)'
       ctx.textAlign = 'center'
-      ctx.fillText('冉冉', w / 2, h / 2)
+      ctx.fillText('小羊', w / 2, h / 2)
 
       // Danmaku
       danmakus.forEach((d, i) => {

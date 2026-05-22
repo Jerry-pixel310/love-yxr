@@ -52,7 +52,7 @@ function HeartBurst({ onClose }) {
     delay: (i % 6) * 0.08,
   }))
 
-  const vows = ['冉冉高考加油', '杜昊翔一直在想你', '你会闪闪发光', '你一定会去理想的地方']
+  const vows = ['小羊高考加油', '杜昊翔一直在想你', '你会闪闪发光', '你一定会去理想的地方']
 
   return (
     <div
@@ -1780,8 +1780,8 @@ function ParticleUniverse({ config }) {
         ctx.font = 'bold 172px Microsoft YaHei, sans-serif'
         ctx.lineWidth = 16
         ctx.strokeStyle = '#fff'
-        ctx.strokeText('冉冉', 310, 132)
-        ctx.fillText('冉冉', 310, 132)
+        ctx.strokeText('小羊', 310, 132)
+        ctx.fillText('小羊', 310, 132)
         const data = ctx.getImageData(0, 0, offscreen.width, offscreen.height).data
         const points = []
         for (let y = 8; y < offscreen.height; y += 4) {
@@ -2104,7 +2104,7 @@ function ParticleUniverse({ config }) {
         <canvas ref={canvasRef} className="particle-universe-canvas" />
         <div className="particle-universe-overlay" aria-hidden="true" />
         <div key={shapeIndex} className="particle-universe-shockwave" aria-hidden="true" />
-        {shapeIndex === 1 && <div className="particle-universe-text-guide" aria-hidden="true">冉冉</div>}
+        {shapeIndex === 1 && <div className="particle-universe-text-guide" aria-hidden="true">小羊</div>}
         <div className="particle-universe-shape">
           <span>正在绽放</span>
           <strong>{shapeName}</strong>
@@ -2192,7 +2192,7 @@ function IceRoseShow({ config }) {
       </div>
       <div className="ice-rose-stage" aria-hidden="true">
         <div className="ice-rose-code" aria-hidden="true">
-          <span>✦ ICE</span><span>ROSE</span><span>FOR</span><span>冉冉</span>
+          <span>✦ ICE</span><span>ROSE</span><span>FOR</span><span>小羊宝宝</span>
         </div>
         <div className="ice-rose-meteor ice-rose-meteor-one" />
         <div className="ice-rose-meteor ice-rose-meteor-two" />
@@ -2769,7 +2769,7 @@ export default function App() {
       { key: 'memory', icon: '🌸', title: '翻一页回忆', text: '照片、聊天、瞬间，都是我想保存的小星星。' },
       { key: 'gaokao', icon: '⭐', title: '给你加油', text: '高考前的勇气、安心和偏爱，都放在这里。' },
       { key: 'play', icon: '🎁', title: '打开小机关', text: '信封、盲盒、天气、拼图，慢慢收下我的心意。' },
-      { key: 'effects', icon: '✨', title: '进入特效世界', text: '一整个星空宇宙，专门放给冉冉看的浪漫。' },
+      { key: 'effects', icon: '✨', title: '进入特效世界', text: '一整个星空宇宙，专门放给小羊宝宝看的浪漫。' },
       { key: 'final', icon: '💗', title: '最后一章', text: '更郑重、更温柔的话，等你准备好再打开。' },
     ]
 
@@ -3048,7 +3048,7 @@ export default function App() {
         <ChapterDivider
           id="chapter-memory"
           kicker="Chapter 02"
-          title="把回忆放给冉冉看"
+          title="把回忆放给小羊宝宝看"
           text="有些画面不只是照片和视频，是我很想好好保存的瞬间。"
         />
 
@@ -3117,14 +3117,14 @@ export default function App() {
         <ChapterDivider
           id="chapter-effects"
           kicker="Chapter 05"
-          title="给冉冉的浪漫特效合集"
+          title="给杨星冉宝宝的浪漫特效合集"
           text="这里不把所有特效都堆在信里，而是为你单独留出一整个浪漫小世界。"
         />
 
         <section className="effects-entry-section fade-in-scroll">
           <div className="effects-entry-card">
             <span className="effects-entry-icon">✨</span>
-            <h3 className="effects-entry-title">冉冉的互动特效世界</h3>
+            <h3 className="effects-entry-title">小羊宝宝的互动特效世界</h3>
             <p className="effects-entry-text">52 种语言爱心、弹幕告白、此爱弹窗、关怀弹窗和爱心花海，都被我放进了这扇门后面。</p>
             <div className="effects-entry-tags" aria-hidden="true">
               <span>52种语言</span>
@@ -3249,4 +3249,5 @@ export default function App() {
     </div>
   )
 }
+
 

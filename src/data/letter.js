@@ -4,7 +4,7 @@
   occasion: '520',
 
   coverTitle: '有一封信',
-  coverSubtitle: '只想写给冉冉',
+  coverSubtitle: '只想写给小羊宝宝',
   openButtonText: '打开这封信',
 
   gatePrompt: '请输入我们之间的小暗号',
@@ -12,14 +12,14 @@
   gateSuccessText: '暗号正确，正在把这封信交给你。',
   gateErrorText: '好像还差一点点。\n再想想，是那句很可爱的暗号呀。',
 
-  openingLine: '冉冉，520 快乐。\n这一次，我想认真又温柔地告诉你一些话。',
+  openingLine: '冉冉宝宝，520 快乐。\n这一次，我想认真又温柔地告诉你一些话。',
   musicButtonText: '播放一点温柔的音乐',
   musicPath: '/music/daoxiang.mp3',
 
   sections: [
     {
       title: null,
-      text: '冉冉，其实我一直觉得，\n喜欢你不是一件突然发生的事。\n\n它像是很多个很小很小的瞬间，\n一点一点落在我心里，\n然后慢慢变成了一个很确定的答案。',
+      text: '小羊，其实我一直觉得，\n喜欢你不是一件突然发生的事。\n\n它像是很多个很小很小的瞬间，\n一点一点落在我心里，\n然后慢慢变成了一个很确定的答案。',
     },
     {
       title: null,
@@ -31,7 +31,7 @@
     },
     {
       title: null,
-      text: '所以在 5 月 20 日这一天，\n我想把这句话认真地放在你面前：\n\n冉冉，我喜欢你。\n不是随便说说，\n是很认真、很想一直对你好的那种喜欢。',
+      text: '所以在 5 月 20 日这一天，\n我想把这句话认真地放在你面前：\n\n杨星冉宝宝，我喜欢你。\n不是随便说说，\n是很认真、很想一直对你好的那种喜欢。',
     },
   ],
 
@@ -42,7 +42,7 @@
     { src: '/photos/photo-3.jpg', placeholder: '想放一张以后看了还会笑的照片' },
   ],
 
-  reasonsTitle: '喜欢冉冉的 20 个小理由',
+  reasonsTitle: '喜欢小羊宝宝的 20 个小理由',
   reasons: [
     '喜欢你认真说话的样子。',
     '喜欢你偶尔可爱的小脾气。',
@@ -66,12 +66,12 @@
     '喜欢你这件事，我想慢慢喜欢很久。',
   ],
 
-  secretEnvelopesTitle: '给冉冉的 5 个小信封',
+  secretEnvelopesTitle: '给冉冉宝宝的 5 个小信封',
   secretEnvelopes: [
-    { title: '第一封：想你', text: '有时候不是一定要发生什么，才会想你。只是某个很普通的瞬间，我就会突然想到冉冉。' },
-    { title: '第二封：偏爱', text: '我想把很多温柔都留给你。不是因为今天是 520，而是因为你是冉冉。' },
+    { title: '第一封：想你', text: '有时候不是一定要发生什么，才会想你。只是某个很普通的瞬间，我就会突然想到小羊。' },
+    { title: '第二封：偏爱', text: '我想把很多温柔都留给你。不是因为今天是 520，而是因为你是小羊宝宝。' },
     { title: '第三封：陪伴', text: '我希望以后你开心的时候我在，不开心的时候我也在。' },
-    { title: '第四封：未来', text: '未来听起来很远，但如果是和冉冉一起，好像每一步都值得期待。' },
+    { title: '第四封：未来', text: '未来听起来很远，但如果是和杨星冉宝宝一起，好像每一步都值得期待。' },
     { title: '第五封：只给你', text: '这封信、这首歌、这些话，还有我此刻的认真，都只给你。' },
   ],
 
@@ -89,28 +89,28 @@
     '一起慢慢拥有更多属于我们的回忆。',
   ],
 
-  heartLoadingText: '正在加载我对冉冉的喜欢...',
+  heartLoadingText: '正在加载我对小羊宝宝的喜欢...',
   heartLoadingResult: '加载失败：喜欢太多，无法计算。',
 
   chatTitle: '如果把想你写成聊天记录',
   chatMessages: [
-    { from: 'me', text: '冉冉，在吗？' },
+    { from: 'me', text: '小羊，在吗？' },
     { from: 'her', text: '怎么啦？' },
     { from: 'me', text: '没什么，就是突然很想告诉你一件事。' },
     { from: 'her', text: '什么事呀？' },
     { from: 'me', text: '今天的风、歌、路灯和晚霞，好像都在提醒我想你。' },
     { from: 'me', text: '还有，520 快乐。' },
     { from: 'her', text: '那你想说的只有这些吗？' },
-    { from: 'me', text: '当然不是。后面还有很多很多，都是写给冉冉的。' },
+    { from: 'me', text: '当然不是。后面还有很多很多，都是写给冉冉宝宝的。' },
   ],
 
   fortuneTitle: '抽一张今天的心动签',
   fortunes: [
-    '今日心动签：冉冉会被认真喜欢一整天。',
+    '今日心动签：小羊宝宝会被认真喜欢一整天。',
     '今日幸运事：听到《稻香》的时候，会有人偷偷想你。',
     '今日隐藏奖励：你会收到一份只属于你的温柔。',
-    '今日最佳答案：冉冉最可爱，这题不用证明。',
-    '今日心愿：希望冉冉每天都被好好惦记。',
+    '今日最佳答案：杨星冉宝宝最可爱，这题不用证明。',
+    '今日心愿：希望小羊每天都被好好惦记。',
     '今日偏爱值：满格，还溢出来了一点点。',
   ],
 
@@ -120,7 +120,7 @@
       question: '这封信是写给谁的？',
       options: ['路过的人', '冉冉', '风和月亮'],
       answer: '冉冉',
-      feedback: '答对啦，这封信从第一行开始就是冉冉的。',
+      feedback: '答对啦，这封信从第一行开始就是小羊宝宝的。',
     },
     {
       question: '输入暗号后打开的是？',
@@ -129,28 +129,28 @@
       feedback: '是的，这不是普通网页，是我认真准备的小礼物。',
     },
     {
-      question: '我想和冉冉一起听完哪首歌？',
+      question: '我想和小羊一起听完哪首歌？',
       options: ['稻香', '随机播放', '安静'],
       answer: '稻香',
       feedback: '因为这首歌会让温柔慢慢落下来。',
     },
     {
-      question: '我对冉冉的喜欢加载到 100% 后会怎样？',
+      question: '我对冉冉宝宝的喜欢加载到 100% 后会怎样？',
       options: ['刚刚好', '喜欢太多，无法计算', '自动结束'],
       answer: '喜欢太多，无法计算',
-      feedback: '没办法，喜欢冉冉这件事很难用数字讲清楚。',
+      feedback: '没办法，喜欢杨星冉宝宝这件事很难用数字讲清楚。',
     },
     {
-      question: '这份 520 礼物最想告诉冉冉什么？',
+      question: '这份 520 礼物最想告诉小羊宝宝什么？',
       options: ['你很特别', '你值得被好好喜欢', '以上都是'],
       answer: '以上都是',
-      feedback: '全都对，冉冉就是很特别，也很值得。',
+      feedback: '全都对，小羊就是很特别，也很值得。',
     },
   ],
 
   timeCapsuleTitle: '给未来冉冉宝宝的一颗时间胶囊',
   timeCapsuleHint: '点开以后，会收到一封来自今天的温柔。',
-  timeCapsuleText: '未来某一天，如果冉冉又看到这里，希望你还会记得：在这个 520，有一个人很认真地把喜欢写成网页，把《稻香》放进信里，把很多温柔都藏起来，只等你慢慢发现。',
+  timeCapsuleText: '未来某一天，如果小羊宝宝又看到这里，希望你还会记得：在这个 520，有一个人很认真地把喜欢写成网页，把《稻香》放进信里，把很多温柔都藏起来，只等你慢慢发现。',
 
   starTitle: '点亮 9 颗想你的星星',
   stars: [
@@ -165,18 +165,18 @@
     '第九颗星：想一直一直喜欢你。',
   ],
 
-  loveCardTitle: '生成给冉冉的专属情书卡片',
+  loveCardTitle: '生成给杨星冉宝宝的专属情书卡片',
   loveCardLines: [
-    'To：冉冉',
+    'To：小羊宝宝',
     '520 快乐。',
     '今天的歌是《稻香》，今天的信是给你。',
     '我把喜欢写进每一个小卡片里，',
     '也把未来想和你一起做的事，认真放在这里。',
-    '愿冉冉被温柔包围，也被我好好喜欢。',
+    '愿冉冉宝宝被温柔包围，也被我好好喜欢。',
     'From：稻香',
   ],
 
-  promisesTitle: '还想和冉冉一起做很多事',
+  promisesTitle: '还想和小羊一起做很多事',
   promises: [
     '一起吃很多顿饭',
     '一起看一次很漂亮的日落',
@@ -187,10 +187,10 @@
   ],
 
   finalText: '如果这封信有结尾，\n那我的喜欢没有。',
-  finalSubText: '520 快乐，冉冉。\n希望你看到这里的时候，\n能感觉到我很认真地喜欢着你。',
+  finalSubText: '520 快乐，小羊宝宝。\n希望你看到这里的时候，\n能感觉到我很认真地喜欢着你。',
 
   easterEggButton: '再听我说一句',
-  easterEggText: '冉冉，你真的很可爱。\n也真的很值得被我好好喜欢。',
+  easterEggText: '杨星冉宝宝，你真的很可爱。\n也真的很值得被我好好喜欢。',
 
   signOff: 'From：稻香',
 
@@ -227,16 +227,16 @@
   sweetnessLevels: [
     { min: 0, max: 2, label: '普通朋友味', desc: '没关系，我继续努力。' },
     { min: 3, max: 5, label: '微甜拿铁', desc: '有一点点心动了？很好。' },
-    { min: 6, max: 7, label: '满杯玫瑰奶茶', desc: '冉冉真的好甜，我喜欢。' },
+    { min: 6, max: 7, label: '满杯玫瑰奶茶', desc: '小羊真的好甜，我喜欢。' },
     { min: 8, max: 9, label: '超甜限定款！', desc: '这已经是满分了，你真的很可爱。' },
   ],
 
   timelineTitle: '我们的小时光轴',
   timelineEvents: [
-    { date: '遇见你那天', text: '认识了冉冉，世界好像多了一个颜色。' },
+    { date: '遇见你那天', text: '认识了冉冉宝宝，世界好像多了一个颜色。' },
     { date: '第一次聊到很晚', text: '那天我就知道，我很喜欢和你说话。' },
     { date: '慢慢地', text: '你开始出现在我想分享的每一件小事里。' },
-    { date: '520 这天', text: '想认真告诉你：我很喜欢你，冉冉。' },
+    { date: '520 这天', text: '想认真告诉你：我很喜欢你，小羊。' },
     { date: '以后的每一天', text: '这里还没写完，因为故事还在继续。' },
   ],
 
@@ -251,7 +251,7 @@
   },
   memoryVideo: {
     src: '/videos/ranran-memory-websafe-v2.mp4',
-    caption: '这是一段只给冉冉宝宝看的小电影。',
+    caption: '这是一段只给小羊宝宝看的小电影。',
   },
 
   starUniverseTitle: '杨星冉的小宇宙',
@@ -418,7 +418,7 @@
     {
       id: 'food',
       emoji: '🍜',
-      wish: '想和冉冉宝宝吃遍所有我们想吃的东西，一家一家慢慢打卡。',
+      wish: '想和小羊宝宝吃遍所有我们想吃的东西，一家一家慢慢打卡。',
     },
     {
       id: 'morning',
@@ -446,7 +446,7 @@
       icon: '🌤️',
       condition: '偏爱晴',
       temp: '爱意值 +99°',
-      desc: '全天想你，无云，空气里都是冉冉的味道。',
+      desc: '全天想你，无云，空气里都是小羊宝宝的味道。',
     },
     {
       icon: '🌸',
@@ -487,7 +487,7 @@
   medals: [
     { id: 'm1', emoji: '💖', label: '偏爱勋章', hint: '点击领取', desc: '被我偏爱的认证勋章，永久有效。' },
     { id: 'm2', emoji: '🌟', label: '闪闪勋章', hint: '点击领取', desc: '杨星冉发光的样子，任何人都比不了。' },
-    { id: 'm3', emoji: '🐑', label: '小羊勋章', hint: '点击领取', desc: '世界上最可爱的小羊，非冉冉莫属。' },
+    { id: 'm3', emoji: '🐑', label: '小羊勋章', hint: '点击领取', desc: '世界上最可爱的小羊，非小羊莫属。' },
     { id: 'm4', emoji: '🍀', label: '幸运勋章', hint: '点击领取', desc: '认识星冉是我这辈子最幸运的事。' },
     { id: 'm5', emoji: '🌙', label: '晚安勋章', hint: '点击领取', desc: '每一个晚安，都是只给小羊的温柔。' },
     { id: 'm6', emoji: '♾️', label: '永远勋章', hint: '点击领取', desc: '不是一会儿，是以后很长很长的时间。' },
@@ -502,7 +502,7 @@
   dailyQuestions: [
     {
       q: '如果今天只能做一件事，你希望是什么？',
-      a: '陪着冉冉宝宝，什么都不做也行，待在一起就够了。',
+      a: '陪着杨星冉宝宝，什么都不做也行，待在一起就够了。',
     },
     {
       q: '你觉得我最喜欢你哪一点？',
@@ -538,7 +538,7 @@
     ],
     medium: [
       { emoji: '⭐', title: '使劲摇，今日运势：大吉', text: '星冉今天运势超好！适合被喜欢、被偏爱、被温柔对待。' },
-      { emoji: '🌈', title: '用力摇，今日甜度：超甜', text: '今天的冉冉宝宝甜度爆表，就算什么都不做也很可爱。' },
+      { emoji: '🌈', title: '用力摇，今日甜度：超甜', text: '今天的小羊宝宝甜度爆表，就算什么都不做也很可爱。' },
     ],
     strong: [
       { emoji: '🎉', title: '使劲摇！今日运势：爆发', text: '哇！杨星冉今天的好运已经溢出来了，快接住！' },
@@ -557,7 +557,7 @@
     { keywords: ['开心', '高兴', '快乐', '好玩', '哈哈'], emoji: '🌸', reply: '小羊开心，我就放心了。' },
     { keywords: ['难过', '不开心', '委屈', '哭'], emoji: '🫂', reply: '来，先抱一下。不管什么事，都可以告诉我。' },
     { keywords: ['累了', '好累', '累', '困'], emoji: '🌙', reply: '辛苦了。今天可以什么都不做，好好休息。' },
-    { keywords: ['饿', '吃饭', '好饿'], emoji: '🍜', reply: '快去吃东西！冉冉宝宝不可以饿着。' },
+    { keywords: ['饿', '吃饭', '好饿'], emoji: '🍜', reply: '快去吃东西！小羊宝宝不可以饿着。' },
     { keywords: ['谢谢', '感谢'], emoji: '☀️', reply: '不客气。做这些是因为喜欢你，不需要谢。' },
     { keywords: ['讨厌', '烦'], emoji: '🌈', reply: '哪里不开心了？说给我听，我帮你烦。' },
     { keywords: ['晚安', '睡觉', '睡了'], emoji: '🌙', reply: '晚安，杨星冉。做个好梦，明天也要好好的。' },
@@ -565,7 +565,7 @@
   ],
   replyDefault: [
     { emoji: '💌', reply: '我看到了，谢谢小羊愿意跟我说。' },
-    { emoji: '🐑', reply: '冉冉说的话，我都会认真记住的。' },
+    { emoji: '🐑', reply: '小羊说的话，我都会认真记住的。' },
     { emoji: '✨', reply: '嗯，我知道了。不管说什么，我都在。' },
   ],
 
@@ -591,32 +591,32 @@
   timeCapsuleSealedTitle: '✓ 已封存',
   timeCapsuleSealedText: '这句话已被小心收藏。未来的某天，当你们打开这颗胶囊，会想起今天的心情。',
 
-  missClockTitle: '今天也在想冉冉',
+  missClockTitle: '今天也在想小羊宝宝',
   missClockSubtitle: '从 2026 年 5 月 18 日开始，时间每走一秒，都悄悄变成一句想你。',
   missClockStartDate: '2026-05-18T00:00:00+08:00',
   missClockDateLabel: '今天是',
-  missClockSinceLabel: '这是我想冉冉的',
+  missClockSinceLabel: '这是我想小羊的',
   missClockNote: '不是只有特别的日子才想你，是每一个普通的今天，都因为你变得软乎乎。',
   missClockWishes: [
-    '愿冉冉今天被好运轻轻抱住。',
+    '愿冉冉宝宝今天被好运轻轻抱住。',
     '愿小羊做题顺顺利利，心情也亮晶晶。',
     '如果风吹到你那里，那是我偷偷寄过去的想念。',
     '今天也要记得：杨星冉真的很棒。',
   ],
 
-  particleUniverseTitle: '冉冉的心动粒子宇宙',
+  particleUniverseTitle: '小羊宝宝的心动粒子宇宙',
   particleUniverseSubtitle: '把想你变成会动的星星，手指靠近哪里，心动就亮到哪里。',
   particleUniverseHint: '移动鼠标 / 滑动手指，让星星靠近你',
   particleUniverseButtonText: '点一下，换一种心动形状',
   particleUniverseShapes: ['爱心星云', '冉冉', '告白轨道', '星河花束', '小羊星球'],
 
-  iceRoseTitle: '送冉冉一朵冰玫瑰',
+  iceRoseTitle: '送杨星冉宝宝一朵冰玫瑰',
   iceRoseSubtitle: '把温柔冻成会发光的花，慢慢开在只属于你的夜里。',
   iceRoseButtonText: '打开冰玫瑰全屏特效',
   iceRoseNote: '蓝色是想念，粉色是喜欢，碎光都是我藏起来的心动。',
   iceRoseVideo: '/videos/ice-rose-reference-websafe-v2.mp4',
 
-  gaokaoTitle: '给冉冉的高考加油站',
+  gaokaoTitle: '给小羊宝宝的高考加油站',
   gaokaoSubtitle: '高三的这一年，你一直在努力。我相信你，也在这里陪你。',
   gaokaoDate: '2025-06-07',
   gaokaoCountdownPrefix: '距离高考还有',
@@ -640,25 +640,25 @@
   heartPopupCenterTitle: '冉冉宝宝',
   heartPopupCenterText: '我喜欢你',
   heartPopupMessages: [
-    '冉冉，我想你了',
+    '小羊，我想你了',
     '今天也喜欢你',
     '你是我的偏爱',
     '想把温柔都给你',
-    '冉冉宝宝要天天开心',
+    '小羊宝宝要天天开心',
     '这颗心只给你',
     '想陪你看很多日落',
     '想听你说好多小事',
     '你一出现世界就亮了',
     '把浪漫都留给你',
     '想一直好好喜欢你',
-    '冉冉最特别',
+    '杨星冉宝宝最特别',
   ],
   /* ── 互动特效集 (from Python code) ── */
-  effectsShowcaseTitle: '给冉冉的浪漫特效合集',
+  effectsShowcaseTitle: '给小羊宝宝的浪漫特效合集',
   effectsShowcaseSubtitle: '这些效果都是专门为你写的程序，现在变成了可以在手机上看的网页版。',
 
   multiLangHeartTitle: '52 种语言说「我爱你」',
-  multiLangHeartSubtitle: '世界上有那么多种语言，每一种都想用来对冉冉说同一句话。',
+  multiLangHeartSubtitle: '世界上有那么多种语言，每一种都想用来对冉冉宝宝说同一句话。',
   multiLangHeartButtonText: '打开爱心',
   multiLangHeartTexts: [
     'I love you', 'Je t\'aime', 'Ich liebe dich', 'Ti amo', 'Te amo',
@@ -673,19 +673,19 @@
     'Ma armastan sind', 'Minä rakastan sinua', 'Mina armastan sind',
     '勾买蒙', '额爱你', '我待见你', '恩欢喜你', '我爱列',
     '俺喜欢你', '我稀罕你', '阿秋拉嘎', '在一起', '和我交往吧',
-    '我喜欢你', '冉冉我爱你',
+    '我喜欢你', '小羊宝宝我爱你',
   ],
 
   loveDanmakuTitle: '弹幕告白',
-  loveDanmakuSubtitle: '把对冉冉说的话变成满屏弹幕，让整个世界都听见。',
+  loveDanmakuSubtitle: '把对小羊说的话变成满屏弹幕，让整个世界都听见。',
   loveDanmakuButtonText: '开启弹幕',
   loveDanmakuTexts: [
     '我爱你', '在一起', '我喜欢你', '和我交往吧', '阿秋拉嘎',
-    '冉冉最可爱', '想你了', '冉冉宝宝', '永远喜欢你', '你是我的全世界',
+    '小羊最可爱', '想你了', '冉冉宝宝', '永远喜欢你', '你是我的全世界',
   ],
 
   loveQuotePopupsTitle: '此爱不变',
-  loveQuotePopupsSubtitle: '每一句话都是认认真真写给冉冉的偏爱，点开爱心听我说。',
+  loveQuotePopupsSubtitle: '每一句话都是认认真真写给杨星冉宝宝的偏爱，点开爱心听我说。',
   loveQuotePopupsButtonText: '打开爱心弹窗',
   loveQuotePopupsTexts: [
     '我们的相遇你遗忘不了',
@@ -706,7 +706,7 @@
     '世界无限',
   ],
 
-  carePopupsTitle: '给冉冉的温柔提醒',
+  carePopupsTitle: '给小羊宝宝的温柔提醒',
   carePopupsSubtitle: '这些小弹窗，是我每天都想对你说的话。',
   carePopupsButtonText: '收到温柔',
   carePopupsTexts: [
@@ -716,10 +716,11 @@
   ],
 
   heartPetalTrailTitle: '爱心花海',
-  heartPetalTrailSubtitle: '一颗流星划过爱心的轨迹，花瓣从光芒中散落，这是我为冉冉写的浪漫。',
+  heartPetalTrailSubtitle: '一颗流星划过爱心的轨迹，花瓣从光芒中散落，这是我为冉冉宝宝写的浪漫。',
   heartPetalTrailButtonText: '打开花海',
 }
 
 export default letterConfig
+
 
 

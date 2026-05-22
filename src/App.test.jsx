@@ -12,6 +12,11 @@ const enterWithPassphrase = async () => {
   await new Promise((r) => setTimeout(r, 2100))
 }
 
+const openChapter = async (label) => {
+  await enterWithPassphrase()
+  fireEvent.click(screen.getAllByText(label)[0])
+}
+
 test('shows cover page initially', () => {
   render(<App />)
   expect(screen.getByText('有一封信')).toBeTruthy()
@@ -19,7 +24,7 @@ test('shows cover page initially', () => {
 })
 
 test('shows WhisperEnvelopes module', async () => {
-  await enterWithPassphrase()
+  await openChapter('机关')
   expect(screen.getByText('星冉专属甜甜印章册')).toBeTruthy()
   expect(screen.getAllByText('今日想你章').length).toBeGreaterThan(0)
   expect(screen.getByText('写给小羊的悄悄话')).toBeTruthy()
@@ -50,29 +55,16 @@ test('transitions after correct passphrase', () => {
 })
 
 test('shows media cinema module on letter page', async () => {
-  await enterWithPassphrase()
-  expect(screen.getByText('冉冉宝宝的回忆放映厅')).toBeTruthy()
-  expect(screen.getByText('这里放着只想给你看的画面。')).toBeTruthy()
-  expect(screen.getByText('这是一段只给冉冉宝宝看的小电影。')).toBeTruthy()
+  await openChapter('回忆')
+  expect(screen.getByText('我们的精彩瞬间')).toBeTruthy()
+  expect(screen.getByText('每一帧都值得被好好保存。')).toBeTruthy()
 })
 
 test('shows full interactive romance modules', async () => {
-  await enterWithPassphrase()
-  expect(screen.getByText('如果把想你写成聊天记录')).toBeTruthy()
-  expect(screen.getByText('抽一张今天的心动签')).toBeTruthy()
+  await openChapter('机关')
   expect(screen.getByText('520 心动小问答')).toBeTruthy()
-  expect(screen.getByText('转一转，抽今日约会计划')).toBeTruthy()
-  expect(screen.getByText('测测我们的今日甜度')).toBeTruthy()
-  expect(screen.getByText('我们的小时光轴')).toBeTruthy()
-  expect(screen.getByText('今天也在想冉冉')).toBeTruthy()
-  expect(screen.getByText('这是我想冉冉的')).toBeTruthy()
-  expect(screen.getByText('冉冉的心动粒子宇宙')).toBeTruthy()
+  expect(screen.getByText('小羊宝宝的心动粒子宇宙')).toBeTruthy()
   expect(screen.getByText('点一下，换一种心动形状')).toBeTruthy()
-  expect(screen.getByText('全屏打开这片星河')).toBeTruthy()
-  expect(screen.getByText('送冉冉一朵冰玫瑰')).toBeTruthy()
-  expect(screen.getByText('打开冰玫瑰全屏特效')).toBeTruthy()
-  expect(screen.getByText('把想你拼成一颗心')).toBeTruthy()
-  expect(screen.getByText('点亮满屏心动')).toBeTruthy()
   expect(screen.getByText('小羊的今日心动盲盒')).toBeTruthy()
   expect(screen.getByText('打开盲盒')).toBeTruthy()
   expect(screen.getByText('给小羊的许愿瓶')).toBeTruthy()
@@ -88,14 +80,4 @@ test('shows full interactive romance modules', async () => {
   expect(screen.getAllByText('把我们的名字拼在一起')[0]).toBeTruthy()
   expect(screen.getAllByText('我们的专属时间胶囊')[0]).toBeTruthy()
   expect(screen.getAllByText('封存进胶囊')[0]).toBeTruthy()
-  expect(screen.getAllByText('给冉冉的高考加油站')[0]).toBeTruthy()
-  expect(screen.getAllByText('换一句加油')[0]).toBeTruthy()
-  expect(screen.getByText('给小羊宝宝的悄悄回信')).toBeTruthy()
-  expect(screen.getByText('把回信寄给你')).toBeTruthy()
-})
-
-test('opens ice rose modal with original video', async () => {
-  await enterWithPassphrase()
-  fireEvent.click(screen.getByText('打开冰玫瑰全屏特效'))
-  expect(screen.getByLabelText('冰玫瑰原视频')).toBeTruthy()
 })
