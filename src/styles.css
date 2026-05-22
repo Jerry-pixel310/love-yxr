@@ -1,13 +1,13 @@
-ï»¿/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   520 Love Letter â€” æ¸©æŸ”æ²»æ„ˆ Theme
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T
+   520 Love Letter ¡ª ÎÂÈáÖÎÓú Theme
+   ¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T */
 
 @font-face {
   font-family: 'Ranran Xingkai';
   src: url('/fonts/STXINGKA.TTF?v=202605211145') format('truetype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -15,7 +15,7 @@
   src: url('/fonts/STXINWEI.TTF?v=202605211145') format('truetype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -23,7 +23,7 @@
   src: url('/fonts/SIMYOU.TTF?v=202605211145') format('truetype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 @font-face {
@@ -31,7 +31,7 @@
   src: url('/fonts/FZYTK.TTF?v=202605211145') format('truetype');
   font-weight: 400;
   font-style: normal;
-  font-display: swap;
+  font-display: optional;
 }
 
 :root {
@@ -49,9 +49,9 @@
   --white-alpha: rgba(255, 255, 255, 0.75);
   --shadow: 0 4px 20px rgba(200, 120, 140, 0.15);
   --radius: 16px;
-  --font-body: 'Ranran Youyuan', 'Ranran Yao', 'Microsoft YaHei UI', sans-serif;
-  --font-hand: 'Ranran Yao', 'Ranran Xingkai', 'Ranran Xinwei', cursive;
-  --font-soft: 'Ranran Youyuan', 'Ranran Yao', 'Microsoft YaHei UI', sans-serif;
+  --font-body: 'Microsoft YaHei UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
+  --font-hand: 'Microsoft YaHei UI', 'PingFang SC', 'Hiragino Sans GB', cursive;
+  --font-soft: 'Microsoft YaHei UI', 'PingFang SC', 'Hiragino Sans GB', sans-serif;
   --glass-line: rgba(255, 255, 255, 0.72);
   --star-blue: #b9d9ff;
   --night-rose: #6e1d4c;
@@ -109,7 +109,7 @@ body::after {
   opacity: 0.5;
 }
 
-/* â”€â”€ Page layout â”€â”€ */
+/* ©¤©¤ Page layout ©¤©¤ */
 .page {
   position: relative;
   display: flex;
@@ -194,7 +194,7 @@ body::after {
   animation-delay: 3.4s;
 }
 
-/* â”€â”€ Particles â”€â”€ */
+/* ©¤©¤ Particles ©¤©¤ */
 .particles {
   position: fixed;
   inset: 0;
@@ -210,12 +210,12 @@ body::after {
 }
 
 .particle.heart::after {
-  content: 'â™¡';
+  content: '?';
   color: var(--rose);
 }
 
 .particle.dot::after {
-  content: 'Â·';
+  content: '¡¤';
   color: var(--gold);
   font-size: 1.4em;
 }
@@ -237,7 +237,7 @@ body::after {
   }
 }
 
-/* â”€â”€ Fade animations â”€â”€ */
+/* ©¤©¤ Fade animations ©¤©¤ */
 .fade-in {
   animation: fadeIn 0.8s ease forwards;
 }
@@ -277,7 +277,7 @@ body::after {
   100% { opacity: 0; transform: translate3d(-62vw, 34vh, 0) rotate(-28deg); }
 }
 
-/* â”€â”€ Envelope â”€â”€ */
+/* ©¤©¤ Envelope ©¤©¤ */
 .envelope-wrapper {
   margin-bottom: 1.5rem;
 }
@@ -325,7 +325,7 @@ body::after {
   margin-bottom: 1rem;
 }
 
-/* â”€â”€ Envelope opening animation â”€â”€ */
+/* ©¤©¤ Envelope opening animation ©¤©¤ */
 .envelope-open .flap-open {
   transform: rotateX(180deg);
 }
@@ -363,7 +363,7 @@ body::after {
   margin-top: 0.5rem;
 }
 
-/* â”€â”€ Cover page â”€â”€ */
+/* ©¤©¤ Cover page ©¤©¤ */
 .cover-title {
   font-family: var(--font-hand);
   font-size: 2rem;
@@ -377,7 +377,7 @@ body::after {
   margin-bottom: 2rem;
 }
 
-/* â”€â”€ Gate page â”€â”€ */
+/* ©¤©¤ Gate page ©¤©¤ */
 .gate-card {
   background: var(--white-alpha);
   backdrop-filter: blur(10px);
@@ -432,7 +432,7 @@ body::after {
   line-height: 1.6;
 }
 
-/* â”€â”€ Buttons â”€â”€ */
+/* ©¤©¤ Buttons ©¤©¤ */
 .btn {
   display: inline-flex;
   align-items: center;
@@ -494,7 +494,7 @@ body::after {
   50% { transform: scale(1.04); }
 }
 
-/* â”€â”€ Music â”€â”€ */
+/* ©¤©¤ Music ©¤©¤ */
 .music-control {
   position: sticky;
   top: 1rem;
@@ -508,7 +508,7 @@ body::after {
   margin-top: 0.5rem;
 }
 
-/* â”€â”€ Letter content â”€â”€ */
+/* ©¤©¤ Letter content ©¤©¤ */
 .letter-header {
   margin-bottom: 2.5rem;
   max-width: 520px;
@@ -583,7 +583,7 @@ body::after {
 }
 
 .chapter-divider::after {
-  content: 'âœ¦';
+  content: '?';
   position: absolute;
   top: 0.32rem;
   left: 50%;
@@ -631,7 +631,7 @@ body::after {
   text-shadow: 0 1px 0 rgba(255,255,255,0.78);
 }
 
-/* â”€â”€ Typewriter â”€â”€ */
+/* ©¤©¤ Typewriter ©¤©¤ */
 .typewriter-block {
   text-align: left;
 }
@@ -687,7 +687,7 @@ body::after {
   backdrop-filter: blur(14px);
 }
 
-/* â”€â”€ Photos â”€â”€ */
+/* ©¤©¤ Photos ©¤©¤ */
 .photos-section {
   margin-bottom: 2.5rem;
 }
@@ -731,7 +731,7 @@ body::after {
   opacity: 0.6;
 }
 
-/* â”€â”€ Reasons â”€â”€ */
+/* ©¤©¤ Reasons ©¤©¤ */
 .reasons-section,
 .secret-envelopes-section,
 .future-checklist-section,
@@ -785,7 +785,7 @@ body::after {
   font-size: 0.92rem;
 }
 
-/* â”€â”€ Secret envelopes â”€â”€ */
+/* ©¤©¤ Secret envelopes ©¤©¤ */
 .secret-envelopes-grid {
   display: grid;
   grid-template-columns: 1fr;
@@ -835,7 +835,7 @@ body::after {
   animation: fadeIn 0.35s ease forwards;
 }
 
-/* â”€â”€ Future checklist â”€â”€ */
+/* ©¤©¤ Future checklist ©¤©¤ */
 .future-checklist {
   display: grid;
   grid-template-columns: 1fr;
@@ -874,7 +874,7 @@ body::after {
   font-size: 0.85rem;
 }
 
-/* â”€â”€ Heart loading â”€â”€ */
+/* ©¤©¤ Heart loading ©¤©¤ */
 .heart-loading-section {
   padding: 1.4rem;
   border-radius: 20px;
@@ -919,7 +919,7 @@ body::after {
   to { transform: scaleX(1); }
 }
 
-/* â”€â”€ Interactive romance modules â”€â”€ */
+/* ©¤©¤ Interactive romance modules ©¤©¤ */
 .chat-section,
 .fortune-section,
 .quiz-section,
@@ -1112,7 +1112,7 @@ body::after {
 }
 
 .generated-love-card::before {
-  content: 'â™¡';
+  content: '?';
   position: absolute;
   right: 1rem;
   top: 0.5rem;
@@ -1134,7 +1134,7 @@ body::after {
   color: var(--rose-dark);
 }
 
-/* â”€â”€ Memory cinema â”€â”€ */
+/* ©¤©¤ Memory cinema ©¤©¤ */
 .memory-cinema-section {
   margin-bottom: 3rem;
 }
@@ -1293,7 +1293,7 @@ body::after {
   line-height: 1.8;
 }
 
-/* â”€â”€ Star universe â”€â”€ */
+/* ©¤©¤ Star universe ©¤©¤ */
 .star-universe-section {
   position: relative;
   margin-bottom: 3rem;
@@ -1414,7 +1414,7 @@ body::after {
 }
 
 .star-planet.is-lit::after {
-  content: 'å·²ç‚¹äº®';
+  content: 'ÒÑµãÁÁ';
   position: absolute;
   bottom: -1.5rem;
   left: 50%;
@@ -1541,7 +1541,7 @@ body::after {
   }
 }
 
-/* â”€â”€ Love blind box â”€â”€ */
+/* ©¤©¤ Love blind box ©¤©¤ */
 .love-blind-box-section {
   margin-bottom: 3rem;
   padding: 2rem 1.2rem;
@@ -1678,7 +1678,7 @@ body::after {
   }
 }
 
-/* â”€â”€ Whisper envelopes â”€â”€ */
+/* ©¤©¤ Whisper envelopes ©¤©¤ */
 .whisper-section {
   margin-bottom: 3rem;
   padding: 2rem 1.2rem;
@@ -1799,7 +1799,7 @@ body::after {
   }
 }
 
-/* â”€â”€ Wish bottle â”€â”€ */
+/* ©¤©¤ Wish bottle ©¤©¤ */
 .wish-bottle-section {
   margin-bottom: 3rem;
   padding: 2.5rem 1.2rem;
@@ -1993,7 +1993,7 @@ body::after {
   }
 }
 
-/* â”€â”€ Love weather â”€â”€ */
+/* ©¤©¤ Love weather ©¤©¤ */
 .love-weather-section {
   margin-bottom: 3rem;
   padding: 2.5rem 1.2rem;
@@ -2153,7 +2153,7 @@ body::after {
   }
 }
 
-/* â”€â”€ Medal wall â”€â”€ */
+/* ©¤©¤ Medal wall ©¤©¤ */
 .medal-wall-section {
   margin-bottom: 3rem;
   padding: 2.5rem 1.2rem;
@@ -2345,7 +2345,7 @@ body::after {
   }
 }
 
-/* â”€â”€ Daily question â”€â”€ */
+/* ©¤©¤ Daily question ©¤©¤ */
 .daily-q-section {
   margin-bottom: 3rem;
   padding: 2.5rem 1.2rem;
@@ -2497,7 +2497,7 @@ body::after {
   }
 }
 
-/* â”€â”€ Shake fortune â”€â”€ */
+/* ©¤©¤ Shake fortune ©¤©¤ */
 .shake-section {
   margin-bottom: 3rem;
   padding: 2.5rem 1.2rem;
@@ -2701,7 +2701,7 @@ body::after {
   to   { opacity: 1; transform: scale(1.1); }
 }
 
-/* â”€â”€ Reply letter â”€â”€ */
+/* ©¤©¤ Reply letter ©¤©¤ */
 .reply-section {
   margin-bottom: 3rem;
   padding: 2.5rem 1.2rem;
@@ -2883,7 +2883,7 @@ body::after {
   40%           { transform: scale(1.2); opacity: 1; }
 }
 
-/* â”€â”€ Drag puzzle â”€â”€ */
+/* ©¤©¤ Drag puzzle ©¤©¤ */
 .drag-puzzle-section {
   margin-bottom: 3rem;
   padding: 2.5rem 1.2rem;
@@ -3013,7 +3013,7 @@ body::after {
   to   { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* â”€â”€ Time capsule â”€â”€ */
+/* ©¤©¤ Time capsule ©¤©¤ */
 .time-capsule-section {
   margin-bottom: 3rem;
   padding: 2.5rem 1.2rem;
@@ -3365,7 +3365,7 @@ body::after {
   to { opacity: 1; transform: translateY(0) scale(1); }
 }
 
-/* â”€â”€ Gaokao cheer â”€â”€ */
+/* ©¤©¤ Gaokao cheer ©¤©¤ */
 .gaokao-section {
   margin-bottom: 3rem;
   padding: 2.5rem 1.2rem;
@@ -3523,7 +3523,7 @@ body::after {
   to { opacity: 1; transform: translateX(0); }
 }
 
-/* â”€â”€ Heart popup show â”€â”€ */
+/* ©¤©¤ Heart popup show ©¤©¤ */
 .heart-popup-section {
   margin-bottom: 3rem;
   padding: 2rem 1.2rem;
@@ -3734,7 +3734,7 @@ body::after {
 }
 
 .heart-popup-card::before {
-  content: 'âœ¦';
+  content: '?';
   margin-right: 0.3rem;
   color: #ffd1df;
 }
@@ -3891,7 +3891,7 @@ body::after {
   }
 }
 
-/* â”€â”€ Cursor hearts â”€â”€ */
+/* ©¤©¤ Cursor hearts ©¤©¤ */
 .cursor-hearts {
   position: fixed;
   inset: 0;
@@ -3917,7 +3917,7 @@ body::after {
   100% { opacity: 0; transform: translate(-50%, -220%) scale(0.6); }
 }
 
-/* â”€â”€ Petal rain â”€â”€ */
+/* ©¤©¤ Petal rain ©¤©¤ */
 .petal-rain {
   position: fixed;
   top: 0; left: 0; right: 0;
@@ -3944,7 +3944,7 @@ body::after {
   100% { opacity: 0; transform: translateY(105vh) translateX(var(--drift, 0px)) rotate(var(--rotate, 120deg)); }
 }
 
-/* â”€â”€ Spin wheel â”€â”€ */
+/* ©¤©¤ Spin wheel ©¤©¤ */
 .spinwheel-section,
 .sweetness-section,
 .timeline-section,
@@ -4002,7 +4002,7 @@ body::after {
   max-width: min(80vw, 320px);
 }
 
-/* â”€â”€ Sweetness quiz â”€â”€ */
+/* ©¤©¤ Sweetness quiz ©¤©¤ */
 .sweetness-wrap {
   display: flex;
   flex-direction: column;
@@ -4036,7 +4036,7 @@ body::after {
   line-height: 1.7;
 }
 
-/* â”€â”€ Timeline â”€â”€ */
+/* ©¤©¤ Timeline ©¤©¤ */
 .timeline {
   position: relative;
   padding: 0.5rem 0;
@@ -4106,7 +4106,7 @@ body::after {
   line-height: 1.7;
 }
 
-/* â”€â”€ 520 Countdown â”€â”€ */
+/* ©¤©¤ 520 Countdown ©¤©¤ */
 .countdown-wrap {
   padding: 1.8rem 1.2rem;
   border-radius: 24px;
@@ -4164,7 +4164,7 @@ body::after {
   line-height: 1.7;
 }
 
-/* â”€â”€ Confession Dialog â”€â”€ */
+/* ©¤©¤ Confession Dialog ©¤©¤ */
 .confession-overlay {
   position: fixed;
   inset: 0;
@@ -4289,7 +4289,7 @@ body::after {
   line-height: 1.7;
 }
 
-/* â”€â”€ Heart burst trigger button â”€â”€ */
+/* ©¤©¤ Heart burst trigger button ©¤©¤ */
 .heart-burst-trigger-section {
   margin-bottom: 3rem;
   text-align: center;
@@ -4338,7 +4338,7 @@ body::after {
   72%, 100% { transform: translateX(90%) rotate(18deg); }
 }
 
-/* â”€â”€ Heart burst overlay â”€â”€ */
+/* ©¤©¤ Heart burst overlay ©¤©¤ */
 .heart-burst-overlay {
   position: fixed;
   inset: 0;
@@ -4797,7 +4797,7 @@ body::after {
 
 /* Previous compact overlay fallback removed visually by overrides above */
 
-/* â”€â”€ Promises â”€â”€ */
+/* ©¤©¤ Promises ©¤©¤ */
 .promises-section {
   margin-bottom: 3rem;
 }
@@ -4827,7 +4827,7 @@ body::after {
   font-size: 1.2rem;
 }
 
-/* â”€â”€ Final â”€â”€ */
+/* ©¤©¤ Final ©¤©¤ */
 .final-section {
   margin-top: 2rem;
   margin-bottom: 2.5rem;
@@ -4845,7 +4845,7 @@ body::after {
   text-align: center;
 }
 
-/* â”€â”€ Easter egg â”€â”€ */
+/* ©¤©¤ Easter egg ©¤©¤ */
 .easter-section {
   padding: 2rem 0 1rem;
   display: flex;
@@ -4877,9 +4877,9 @@ body::after {
   text-align: center;
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   Responsive â€” Desktop
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T
+   Responsive ¡ª Desktop
+   ¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T */
 @media (min-width: 640px) {
   .cover-title {
     font-size: 2.6rem;
@@ -4919,7 +4919,7 @@ body::after {
   }
 }
 
-/* ï¿½ï¿½ï¿½ï¿½ Cinematic final chapter overrides ï¿½ï¿½ï¿½ï¿½ */
+/* ???? Cinematic final chapter overrides ???? */
 .heart-burst-trigger-section {
   position: relative;
   max-width: 720px;
@@ -5003,7 +5003,7 @@ body::after {
 }
 
 
-/* â”€â”€ Missing clock â”€â”€ */
+/* ©¤©¤ Missing clock ©¤©¤ */
 .missing-clock-section {
   position: relative;
   max-width: 680px;
@@ -5022,7 +5022,7 @@ body::after {
 }
 
 .missing-clock-section::before {
-  content: 'â™¡';
+  content: '?';
   position: absolute;
   right: 1.1rem;
   top: 0.2rem;
@@ -5227,7 +5227,7 @@ body::after {
 }
 
 
-/* â”€â”€ Cute typography overrides â”€â”€ */
+/* ©¤©¤ Cute typography overrides ©¤©¤ */
 body,
 button,
 input,
@@ -5281,7 +5281,7 @@ select {
 }
 
 
-/* â”€â”€ Final cute font lock: remove brush-calligraphy feeling â”€â”€ */
+/* ©¤©¤ Final cute font lock: remove brush-calligraphy feeling ©¤©¤ */
 html body,
 html body *:not(.heart-burst-mega-heart):not(.heart-burst-love-core):not(.heart-burst-heart-symbol) {
   font-family: 'ZCOOL QingKe HuangYou', 'ZCOOL KuaiLe', 'Microsoft YaHei UI', sans-serif !important;
@@ -5312,7 +5312,7 @@ html body .letter-section p {
   line-height: 2.05 !important;
 }
 
-/* â”€â”€ 3D particle universe â”€â”€ */
+/* ©¤©¤ 3D particle universe ©¤©¤ */
 .particle-universe-section {
   position: relative;
   max-width: 760px;
@@ -5344,7 +5344,7 @@ html body .letter-section p {
 }
 
 .particle-universe-section::after {
-  content: 'â™¡';
+  content: '?';
   position: absolute;
   right: -0.3rem;
   top: -1.6rem;
@@ -5503,7 +5503,7 @@ html body .letter-section p {
   }
 }
 
-/* â”€â”€ Particle universe premium depth overrides â”€â”€ */
+/* ©¤©¤ Particle universe premium depth overrides ©¤©¤ */
 .particle-universe-stage {
   isolation: isolate;
   background:
@@ -5577,7 +5577,7 @@ html body .letter-section p {
   50% { text-shadow: 0 0 30px rgba(255, 229, 168, 1), 0 0 44px rgba(255, 112, 178, 0.65); }
 }
 
-/* â”€â”€ Particle universe clarity + shockwave â”€â”€ */
+/* ©¤©¤ Particle universe clarity + shockwave ©¤©¤ */
 .particle-universe-stage:focus-visible {
   outline: 3px solid rgba(255, 229, 168, 0.78);
   outline-offset: 4px;
@@ -5608,12 +5608,12 @@ html body .letter-section p {
 }
 
 .particle-universe-shape strong::before {
-  content: 'âœ¦ ';
+  content: '? ';
   color: #fff;
 }
 
 .particle-universe-shape strong::after {
-  content: ' âœ¦';
+  content: ' ?';
   color: #fff;
 }
 
@@ -5639,7 +5639,7 @@ html body .letter-section p {
   }
 }
 
-/* â”€â”€ Particle universe comfort/performance tuning â”€â”€ */
+/* ©¤©¤ Particle universe comfort/performance tuning ©¤©¤ */
 .particle-universe-section {
   box-shadow: 0 24px 58px rgba(81, 16, 70, 0.18), inset 0 1px 0 rgba(255,255,255,0.12) !important;
 }
@@ -5680,7 +5680,7 @@ html body .letter-section p {
   box-shadow: 0 0 14px rgba(255,255,255,0.34), 0 0 24px rgba(255, 112, 178, 0.28) !important;
 }
 
-/* â”€â”€ Particle universe fullscreen mode â”€â”€ */
+/* ©¤©¤ Particle universe fullscreen mode ©¤©¤ */
 .particle-universe-fullscreen {
   position: fixed;
   inset: 0;
@@ -5787,7 +5787,7 @@ html body .letter-section p {
   }
 }
 
-/* â”€â”€ Fix fullscreen particle canvas sizing â”€â”€ */
+/* ©¤©¤ Fix fullscreen particle canvas sizing ©¤©¤ */
 .particle-universe-fullscreen .particle-universe-stage {
   width: min(1180px, 96vw) !important;
   height: min(66vh, 680px) !important;
@@ -5809,7 +5809,7 @@ html body .letter-section p {
   }
 }
 
-/* â”€â”€ Fix fullscreen controls and close clickability â”€â”€ */
+/* ©¤©¤ Fix fullscreen controls and close clickability ©¤©¤ */
 .particle-universe-fullscreen {
   grid-template-rows: auto minmax(0, 1fr) auto !important;
   height: 100vh;
@@ -5878,7 +5878,7 @@ html body .letter-section p {
   }
 }
 
-/* â”€â”€ Particle universe readable text shape â”€â”€ */
+/* ©¤©¤ Particle universe readable text shape ©¤©¤ */
 .particle-universe-text-guide {
   position: absolute;
   left: 50%;
@@ -5908,7 +5908,7 @@ html body .letter-section p {
   font-size: clamp(7rem, 17vw, 15rem);
 }
 
-/* â”€â”€ Particle universe spacious fullscreen + real particle text emphasis â”€â”€ */
+/* ©¤©¤ Particle universe spacious fullscreen + real particle text emphasis ©¤©¤ */
 .particle-universe-fullscreen {
   gap: 0.35rem !important;
   padding: 0.55rem 0.75rem 0.65rem !important;
@@ -5971,7 +5971,7 @@ html body .letter-section p {
   }
 }
 
-/* â”€â”€ Ice rose show â”€â”€ */
+/* ©¤©¤ Ice rose show ©¤©¤ */
 .ice-rose-section {
   position: relative;
   margin: clamp(2.8rem, 7vw, 5.5rem) auto;
@@ -6277,7 +6277,7 @@ html body .letter-section p {
   }
 }
 
-/* â”€â”€ Ice rose redesign: crystalline rose, not flower stickers â”€â”€ */
+/* ©¤©¤ Ice rose redesign: crystalline rose, not flower stickers ©¤©¤ */
 .ice-rose-stage {
   background:
     radial-gradient(circle at 50% 42%, rgba(91, 214, 255, 0.18), transparent 18%),
@@ -6442,7 +6442,7 @@ html body .letter-section p {
   }
 }
 
-/* â”€â”€ Final ice rose: SVG illustration style like reference â”€â”€ */
+/* ©¤©¤ Final ice rose: SVG illustration style like reference ©¤©¤ */
 .ice-rose-stage {
   height: clamp(460px, 62vw, 680px) !important;
   background:
@@ -6646,7 +6646,7 @@ html body .letter-section p {
   animation: iceSparkle calc(2.4s + (var(--i) % 4) * 0.5s) ease-in-out infinite;
   animation-delay: calc(var(--i) * -0.2s);
 }
-/* 12 orbit dots at 30Â° intervals, r=188px in 380px container (50% Â± r/width) */
+/* 12 orbit dots at 30¡ã intervals, r=188px in 380px container (50% ¡À r/width) */
 .ice-rose-orbit-dot:nth-child(1)  { left: calc(50% + 188px); top: 50%; }
 .ice-rose-orbit-dot:nth-child(2)  { left: calc(50% + 163px); top: calc(50% + 94px); }
 .ice-rose-orbit-dot:nth-child(3)  { left: calc(50% + 94px);  top: calc(50% + 163px); }
@@ -6718,7 +6718,7 @@ html body .letter-section p {
   }
 }
 
-/* â”€â”€ Ice rose video modal replacement â”€â”€ */
+/* ©¤©¤ Ice rose video modal replacement ©¤©¤ */
 body.ice-rose-modal-open {
   overflow: hidden;
 }
@@ -7130,7 +7130,7 @@ h3,
 }
 
 .netlify-reply-card::before {
-  content: 'ğŸ’Œ';
+  content: '??';
   position: absolute;
   right: 1.1rem;
   top: 0.8rem;
@@ -7270,11 +7270,11 @@ h3,
   }
 }
 
-/* â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•
-   Effects Showcase & New Interactive Effects (Python â†’ Web)
-   â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â•â• */
+/* ¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T
+   Effects Showcase & New Interactive Effects (Python ¡ú Web)
+   ¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T¨T */
 
-/* â”€â”€ Shared effect section styles â”€â”€ */
+/* ©¤©¤ Shared effect section styles ©¤©¤ */
 .effect-section {
   margin: 2.4rem auto;
   max-width: 720px;
@@ -7333,12 +7333,12 @@ h3,
   color: #fff;
 }
 
-/* â”€â”€ MultiLangHeart (52ç§è¯­è¨€çˆ±å¿ƒ) â”€â”€ */
+/* ©¤©¤ MultiLangHeart (52ÖÖÓïÑÔ°®ĞÄ) ©¤©¤ */
 .multilang-canvas {
   background: transparent;
 }
 
-/* â”€â”€ LoveDanmaku (å¼¹å¹•å‘Šç™½) â”€â”€ */
+/* ©¤©¤ LoveDanmaku (µ¯Ä»¸æ°×) ©¤©¤ */
 .effect-danmaku-wrap {
   position: relative;
   width: 100%;
@@ -7391,7 +7391,7 @@ h3,
   to { transform: translateX(calc(-100vw - 400px)); opacity: 0; }
 }
 
-/* â”€â”€ LoveQuotePopups (æ­¤çˆ±å¼¹çª—) â”€â”€ */
+/* ©¤©¤ LoveQuotePopups (´Ë°®µ¯´°) ©¤©¤ */
 .effect-popup-wrap {
   position: relative;
   width: 100%;
@@ -7467,7 +7467,7 @@ h3,
   letter-spacing: 0.2em;
 }
 
-/* â”€â”€ CarePopups (å…³æ€€å¼¹çª—) â”€â”€ */
+/* ©¤©¤ CarePopups (¹Ø»³µ¯´°) ©¤©¤ */
 .care-stage {
   padding: 8px;
 }
@@ -7492,7 +7492,7 @@ h3,
   100% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
 }
 
-/* â”€â”€ HeartPetalTrail (çˆ±å¿ƒèŠ±æµ·) â”€â”€ */
+/* ©¤©¤ HeartPetalTrail (°®ĞÄ»¨º£) ©¤©¤ */
 .petal-trail-wrap {
   background: radial-gradient(ellipse at center, rgba(12, 6, 20, 0.98), rgba(4, 2, 8, 1));
 }
@@ -7501,7 +7501,7 @@ h3,
   background: transparent;
 }
 
-/* â”€â”€ Effects Entry Section (æƒ…ä¹¦å†…çš„å…¥å£å¡ç‰‡) â”€â”€ */
+/* ©¤©¤ Effects Entry Section (ÇéÊéÄÚµÄÈë¿Ú¿¨Æ¬) ©¤©¤ */
 .effects-entry-section {
   margin: 3rem auto;
   max-width: 520px;
@@ -7534,7 +7534,7 @@ h3,
   padding: 0.7rem 2.2rem;
 }
 
-/* â”€â”€ Effects Showcase Page (ç‹¬ç«‹é¡µé¢) â”€â”€ */
+/* ©¤©¤ Effects Showcase Page (¶ÀÁ¢Ò³Ãæ) ©¤©¤ */
 .effects-showcase-page {
   min-height: 100vh;
   background: linear-gradient(135deg, #0a0614 0%, #150d25 30%, #1a0f2e 60%, #0d0819 100%);
@@ -7578,7 +7578,7 @@ h3,
   padding: 0 1rem;
 }
 
-/* â”€â”€ Mobile responsive â”€â”€ */
+/* ©¤©¤ Mobile responsive ©¤©¤ */
 @media (max-width: 560px) {
   .effect-canvas-wrap,
   .effect-danmaku-wrap,

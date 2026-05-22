@@ -507,7 +507,7 @@ function MusicButton() {
 
   return (
     <div className="music-control">
-      <audio ref={audioRef} src={letterConfig.musicPath} loop preload="auto" />
+      <audio ref={audioRef} src={letterConfig.musicPath} loop preload="none" />
       <button className="btn btn-music" onClick={toggle} aria-label="播放音乐">
         {playing ? '🎵 音乐播放中…' : `🎵 ${letterConfig.musicButtonText}`}
       </button>
@@ -555,6 +555,8 @@ function PhotoCard({ photo }) {
           src={photo.src}
           alt={photo.placeholder}
           className="photo-img"
+          loading="lazy"
+          decoding="async"
           onError={() => setImgError(true)}
         />
       ) : (
@@ -3523,11 +3525,11 @@ export default function App() {
           <p className="memory-cinema-subtitle">{letterConfig.memoryCinemaSubtitle}</p>
           <div className="memory-cinema-grid">
             <article className="memory-photo-card">
-              <img src={letterConfig.memoryPhoto.src} alt={letterConfig.memoryPhoto.caption} />
+              <img src={letterConfig.memoryPhoto.src} alt={letterConfig.memoryPhoto.caption} loading="lazy" decoding="async" />
               <p>{letterConfig.memoryPhoto.caption}</p>
             </article>
             <article className="memory-photo-card">
-              <img src="/images/ranran-game-mvp.jpg" alt="小羊宝宝的王者 MVP" />
+              <img src="/images/ranran-game-mvp.jpg" alt="小羊宝宝的王者 MVP" loading="lazy" decoding="async" />
               <p>MVP 就是小羊，这一局太厉害了。</p>
             </article>
           </div>
