@@ -465,7 +465,7 @@ function Countdown520() {
 
 /* ── Floating particles ── */
 function Particles() {
-  const items = Array.from({ length: 18 }, (_, i) => i)
+  const items = Array.from({ length: 10 }, (_, i) => i)
   return (
     <div className="particles" aria-hidden="true">
       {items.map((i) => (
@@ -482,6 +482,38 @@ function Particles() {
         />
       ))}
     </div>
+  )
+}
+
+function ChapterNav({ onEffectsClick }) {
+  const chapters = [
+    { href: '#chapter-letter', icon: '💌', label: '信' },
+    { href: '#chapter-memory', icon: '🌸', label: '回忆' },
+    { href: '#chapter-gaokao', icon: '⭐', label: '加油' },
+    { href: '#chapter-play', icon: '🎁', label: '机关' },
+    { href: '#chapter-effects', icon: '✨', label: '特效' },
+    { href: '#chapter-final', icon: '💗', label: '最后' },
+  ]
+
+  return (
+    <nav className="chapter-nav" aria-label="情书章节导航">
+      {chapters.map((chapter) => {
+        if (chapter.href === '#chapter-effects') {
+          return (
+            <button key={chapter.href} type="button" className="chapter-nav-item" onClick={onEffectsClick}>
+              <span>{chapter.icon}</span>
+              <em>{chapter.label}</em>
+            </button>
+          )
+        }
+        return (
+          <a key={chapter.href} href={chapter.href} className="chapter-nav-item">
+            <span>{chapter.icon}</span>
+            <em>{chapter.label}</em>
+          </a>
+        )
+      })}
+    </nav>
   )
 }
 
@@ -2918,9 +2950,9 @@ function EffectsShowcase({ config, onBack }) {
   )
 }
 
-function ChapterDivider({ kicker, title, text }) {
+function ChapterDivider({ id, kicker, title, text }) {
   return (
-    <section className="chapter-divider fade-in-scroll">
+    <section id={id} className="chapter-divider fade-in-scroll">
       <span className="chapter-kicker">{kicker}</span>
       <h2>{title}</h2>
       <p>{text}</p>
@@ -3295,6 +3327,12 @@ export default function App() {
 
       {/* Music */}
       <MusicButton />
+      <ChapterNav
+        onEffectsClick={() => {
+          recordActivity('通过章节导航进入独立特效合集页面')
+          setPage('effects')
+        }}
+      />
 
       {/* Opening */}
       <header className="letter-header">
@@ -3304,6 +3342,7 @@ export default function App() {
       {/* Sections */}
       <main className="letter-body">
         <ChapterDivider
+          id="chapter-letter"
           kicker="Chapter 01"
           title="先把我想你的这封信打开"
           text="这一页从温柔开始，慢慢写到回忆、陪伴、想念和祝福。"
@@ -3514,6 +3553,7 @@ export default function App() {
         </section>
 
         <ChapterDivider
+          id="chapter-memory"
           kicker="Chapter 02"
           title="把回忆放给冉冉看"
           text="有些画面不只是照片和视频，是我很想好好保存的瞬间。"
@@ -3536,6 +3576,7 @@ export default function App() {
         </section>
 
         <ChapterDivider
+          id="chapter-gaokao"
           kicker="Chapter 03"
           title="我在远处陪你上岸"
           text="高三很辛苦，马上高考了。希望这些小小的温柔，能陪你多一点勇气和安心。"
@@ -3544,6 +3585,7 @@ export default function App() {
         <GaokaoCheer config={letterConfig} />
 
         <ChapterDivider
+          id="chapter-play"
           kicker="Chapter 04"
           title="给小羊准备的浪漫机关"
           text="这些小互动不是为了热闹，是想让你一点一点收到我的偏爱。"
@@ -3580,21 +3622,22 @@ export default function App() {
         <HeartPopupShow config={letterConfig} />
 
         <ChapterDivider
+          id="chapter-effects"
           kicker="Chapter 05"
           title="给冉冉的浪漫特效合集"
-          text="这些效果都是专门为你写的程序，现在变成了可以在手机上看的网页版。"
+          text="这里不把所有特效都堆在信里，而是为你单独留出一整个浪漫小世界。"
         />
-
-        <MultiLangHeart config={letterConfig} />
-        <LoveDanmaku config={letterConfig} />
-        <LoveQuotePopups config={letterConfig} />
-        <CarePopups config={letterConfig} />
-        <HeartPetalTrail config={letterConfig} />
 
         <section className="effects-entry-section fade-in-scroll">
           <div className="effects-entry-card">
             <span className="effects-entry-icon">✨</span>
-            <p className="effects-entry-text">想在独立页面一次看完所有特效？</p>
+            <h3 className="effects-entry-title">冉冉的互动特效世界</h3>
+            <p className="effects-entry-text">52 种语言爱心、弹幕告白、此爱弹窗、关怀弹窗和爱心花海，都被我放进了这扇门后面。</p>
+            <div className="effects-entry-tags" aria-hidden="true">
+              <span>52种语言</span>
+              <span>弹幕告白</span>
+              <span>爱心花海</span>
+            </div>
             <button
               className="btn btn-soft effects-entry-btn"
               onClick={() => {
@@ -3614,6 +3657,7 @@ export default function App() {
         />
 
         <ChapterDivider
+          id="chapter-final"
           kicker="Final Chapter"
           title="把所有温柔都送给你"
           text="最后这一章，不讲大道理，只想把很想你这件事认真送到你面前。"
