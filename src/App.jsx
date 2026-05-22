@@ -1,6 +1,10 @@
 ﻿import { useState, useRef, useEffect, useCallback } from 'react'
 import { createPortal } from 'react-dom'
 import letterConfig from './data/letter.js'
+import ChapterNav from './components/letter/ChapterNav.jsx'
+import ChapterDivider from './components/letter/ChapterDivider.jsx'
+import MusicButton from './components/letter/MusicButton.jsx'
+import PhotoCard from './components/letter/PhotoCard.jsx'
 
 /* ── Heart Burst overlay ── */
 const HEART_COUNT = 128
@@ -485,69 +489,6 @@ function Particles() {
   )
 }
 
-function ChapterNav({ onEffectsClick }) {
-  const chapters = [
-    { href: '#chapter-letter', icon: '💌', label: '信' },
-    { href: '#chapter-memory', icon: '🌸', label: '回忆' },
-    { href: '#chapter-gaokao', icon: '⭐', label: '加油' },
-    { href: '#chapter-play', icon: '🎁', label: '机关' },
-    { href: '#chapter-effects', icon: '✨', label: '特效' },
-    { href: '#chapter-final', icon: '💗', label: '最后' },
-  ]
-
-  return (
-    <nav className="chapter-nav" aria-label="情书章节导航">
-      {chapters.map((chapter) => {
-        if (chapter.href === '#chapter-effects') {
-          return (
-            <button key={chapter.href} type="button" className="chapter-nav-item" onClick={onEffectsClick}>
-              <span>{chapter.icon}</span>
-              <em>{chapter.label}</em>
-            </button>
-          )
-        }
-        return (
-          <a key={chapter.href} href={chapter.href} className="chapter-nav-item">
-            <span>{chapter.icon}</span>
-            <em>{chapter.label}</em>
-          </a>
-        )
-      })}
-    </nav>
-  )
-}
-
-/* ── Music button ── */
-function MusicButton() {
-  const audioRef = useRef(null)
-  const [playing, setPlaying] = useState(false)
-  const [failed, setFailed] = useState(false)
-
-  const toggle = useCallback(() => {
-    const audio = audioRef.current
-    if (!audio) return
-    if (playing) {
-      audio.pause()
-      setPlaying(false)
-    } else {
-      audio.play().then(() => setPlaying(true)).catch(() => {
-        setFailed(true)
-        setTimeout(() => setFailed(false), 3000)
-      })
-    }
-  }, [playing])
-
-  return (
-    <div className="music-control">
-      <audio ref={audioRef} src={letterConfig.musicPath} loop preload="none" />
-      <button className="btn btn-music" onClick={toggle} aria-label="播放音乐">
-        {playing ? '🎵 音乐播放中…' : `🎵 ${letterConfig.musicButtonText}`}
-      </button>
-      {failed && <p className="music-hint">暂时无法播放，再点一次试试</p>}
-    </div>
-  )
-}
-
 /* ── Typewriter text ── */
 function TypewriterText({ text, delay = 0 }) {
   const [visible, setVisible] = useState(false)
@@ -571,31 +512,6 @@ function TypewriterText({ text, delay = 0 }) {
             {line}
           </p>
         )
-      )}
-    </div>
-  )
-}
-
-/* ── Photo card ── */
-function PhotoCard({ photo }) {
-  const [imgError, setImgError] = useState(false)
-
-  return (
-    <div className="photo-card">
-      {!imgError ? (
-        <img
-          src={photo.src}
-          alt={photo.placeholder}
-          className="photo-img"
-          loading="lazy"
-          decoding="async"
-          onError={() => setImgError(true)}
-        />
-      ) : (
-        <div className="photo-placeholder">
-          <span className="photo-placeholder-icon">📷</span>
-          <p>{photo.placeholder}</p>
-        </div>
       )}
     </div>
   )
@@ -2963,16 +2879,6 @@ function EffectsShowcase({ config, onBack }) {
   )
 }
 
-function ChapterDivider({ id, kicker, title, text }) {
-  return (
-    <section id={id} className="chapter-divider fade-in-scroll">
-      <span className="chapter-kicker">{kicker}</span>
-      <h2>{title}</h2>
-      <p>{text}</p>
-    </section>
-  )
-}
-
 function getVisitInfo() {
   const nav = navigator
   return [
@@ -3339,7 +3245,7 @@ export default function App() {
       </div>
 
       {/* Music */}
-      <MusicButton />
+      <MusicButton musicPath={letterConfig.musicPath} buttonText={letterConfig.musicButtonText} />
       <ChapterNav
         onEffectsClick={() => {
           recordActivity('通过章节导航进入独立特效合集页面')
