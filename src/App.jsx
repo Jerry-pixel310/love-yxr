@@ -2787,7 +2787,7 @@ export default function App() {
         <main className="home-directory">
           <section className="home-hero fade-in">
             <span className="home-kicker">Ranran's Love Letter</span>
-            <h1>这里不是一条很长的路了</h1>
+            <h1>每一页，都是写给你的心动</h1>
             <p>我把想给你的话，分成了几间小小的房间。你想先去哪里，就轻轻点开哪里。</p>
           </section>
           <section className="home-chapter-grid" aria-label="章节目录">
@@ -3227,6 +3227,11 @@ export default function App() {
               <p className="sign-off">{letterConfig.signOff}</p>
             </div>
           )}
+        </section>
+        <section className="chapter-bottom-nav">
+          <button className="btn btn-soft chapter-back-btn" type="button" onClick={() => goToPage('home')}>
+            ← 回到首页
+          </button>
         </section>
       </main>
       <CursorHearts />

@@ -4488,6 +4488,11 @@ body::after {
   margin-bottom: 1.3rem;
 }
 
+.chapter-bottom-nav {
+  margin: 2.5rem auto 0;
+  text-align: center;
+}
+
 .chapter-nav-item.is-active {
   background: linear-gradient(135deg, rgba(255, 218, 232, 0.88), rgba(255, 240, 248, 0.78));
   color: var(--rose-ink);
@@ -4496,6 +4501,10 @@ body::after {
 
 .chapter-page .letter-body > * {
   display: none;
+}
+
+.chapter-page .letter-body > .chapter-bottom-nav {
+  display: block;
 }
 
 .chapter-page-letter #chapter-letter,
