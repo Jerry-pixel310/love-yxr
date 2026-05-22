@@ -246,6 +246,16 @@ function ConfessionPrelude({ isDone, onOpen }) {
   )
 }
 
+function HomeChapterCard({ icon, title, text, onClick }) {
+  return (
+    <button className="home-chapter-card" type="button" onClick={onClick}>
+      <span className="home-chapter-icon">{icon}</span>
+      <strong>{title}</strong>
+      <p>{text}</p>
+    </button>
+  )
+}
+
 /* ── Cursor hearts ── */
 function CursorHearts() {
   const [sparks, setSparks] = useState([])
@@ -2515,7 +2525,7 @@ function NetlifyReplyForm({ summary, visitInfo, activityLog }) {
 
 /* ── Main App ── */
 export default function App() {
-  const [page, setPage] = useState('cover') // cover | gate | transition | letter | effects
+  const [page, setPage] = useState('cover') // cover | gate | transition | home | letter | memory | gaokao | play | effects | final
   const [input, setInput] = useState('')
   const [error, setError] = useState('')
   const [showEasterEgg, setShowEasterEgg] = useState(false)
@@ -2537,8 +2547,23 @@ export default function App() {
     setActivityLog((current) => [`${time}｜${text}`, ...current].slice(0, 80))
   }, [])
 
+  const goToPage = useCallback((nextPage) => {
+    const names = {
+      home: '首页目录',
+      letter: '信',
+      memory: '回忆',
+      gaokao: '加油',
+      play: '机关',
+      effects: '特效',
+      final: '最后',
+    }
+    recordActivity(`进入章节：${names[nextPage] || nextPage}`)
+    setPage(nextPage)
+    window.scrollTo({ top: 0, behavior: 'smooth' })
+  }, [recordActivity])
+
   useEffect(() => {
-    if (page === 'letter' && !heartBurstShown.current) {
+    if (page === 'final' && !heartBurstShown.current) {
       heartBurstShown.current = true
       const t = setTimeout(() => setHeartBurst(true), 5000)
       return () => clearTimeout(t)
@@ -2546,7 +2571,7 @@ export default function App() {
   }, [page])
 
   useEffect(() => {
-    if (page !== 'letter' || visitLoggedRef.current) return
+    if (!['home', 'letter', 'memory', 'gaokao', 'play', 'final'].includes(page) || visitLoggedRef.current) return
     visitLoggedRef.current = true
     visitInfoRef.current = getVisitInfo()
     recordActivity('成功进入情书正文')
@@ -2569,7 +2594,7 @@ export default function App() {
       setError('')
       recordActivity('输入正确暗号，进入情书')
       setPage('transition')
-      setTimeout(() => setPage('letter'), 2000)
+      setTimeout(() => setPage('home'), 2000)
       setConfessionDone(false)
       setConfessionOpen(false)
     } else {
@@ -2630,7 +2655,7 @@ export default function App() {
   ].join('\n')
 
   useEffect(() => {
-    if (page !== 'letter') return undefined
+    if (!['home', 'letter', 'memory', 'gaokao', 'play', 'final'].includes(page)) return undefined
     const sendFinalSnapshot = () => {
       const body = new URLSearchParams({
         'form-name': 'ranran-visit-log',
@@ -2656,7 +2681,7 @@ export default function App() {
 
   /* ── Effects showcase page ── */
   if (page === 'effects') {
-    return <EffectsShowcase config={letterConfig} onBack={() => setPage('letter')} />
+    return <EffectsShowcase config={letterConfig} onBack={() => goToPage('home')} />
   }
 
   /* ── Cover page ── */
@@ -2738,9 +2763,55 @@ export default function App() {
     )
   }
 
+  if (page === 'home') {
+    const homeCards = [
+      { key: 'letter', icon: '💌', title: '先读这封信', text: '把想念、喜欢和认真，一点一点写给你。' },
+      { key: 'memory', icon: '🌸', title: '翻一页回忆', text: '照片、聊天、瞬间，都是我想保存的小星星。' },
+      { key: 'gaokao', icon: '⭐', title: '给你加油', text: '高考前的勇气、安心和偏爱，都放在这里。' },
+      { key: 'play', icon: '🎁', title: '打开小机关', text: '信封、盲盒、天气、拼图，慢慢收下我的心意。' },
+      { key: 'effects', icon: '✨', title: '进入特效世界', text: '一整个星空宇宙，专门放给冉冉看的浪漫。' },
+      { key: 'final', icon: '💗', title: '最后一章', text: '更郑重、更温柔的话，等你准备好再打开。' },
+    ]
+
+    return (
+      <div className="page letter-page home-page">
+        <Particles />
+        <div className="letter-atmosphere" aria-hidden="true">
+          <span className="atmosphere-glow glow-one" />
+          <span className="atmosphere-glow glow-two" />
+          <span className="atmosphere-meteor meteor-one" />
+          <span className="atmosphere-meteor meteor-two" />
+        </div>
+        <MusicButton musicPath={letterConfig.musicPath} buttonText={letterConfig.musicButtonText} />
+        <ChapterNav activeChapter={page} onNavigate={goToPage} />
+        <main className="home-directory">
+          <section className="home-hero fade-in">
+            <span className="home-kicker">Ranran's Love Letter</span>
+            <h1>这里不是一条很长的路了</h1>
+            <p>我把想给你的话，分成了几间小小的房间。你想先去哪里，就轻轻点开哪里。</p>
+          </section>
+          <section className="home-chapter-grid" aria-label="章节目录">
+            {homeCards.map((card) => (
+              <HomeChapterCard
+                key={card.key}
+                icon={card.icon}
+                title={card.title}
+                text={card.text}
+                onClick={() => goToPage(card.key)}
+              />
+            ))}
+          </section>
+          <p className="home-guide">选一个地方开始吧，每一页都藏着我想认真给你的温柔。</p>
+        </main>
+        <CursorHearts />
+        <PetalRain />
+      </div>
+    )
+  }
+
   /* ── Letter page ── */
   return (
-    <div className="page letter-page">
+    <div className={`page letter-page chapter-page chapter-page-${page}`}>
       <Particles />
       <div className="letter-atmosphere" aria-hidden="true">
         <span className="atmosphere-glow glow-one" />
@@ -2751,15 +2822,13 @@ export default function App() {
 
       {/* Music */}
       <MusicButton musicPath={letterConfig.musicPath} buttonText={letterConfig.musicButtonText} />
-      <ChapterNav
-        onEffectsClick={() => {
-          recordActivity('通过章节导航进入独立特效合集页面')
-          setPage('effects')
-        }}
-      />
+      <ChapterNav activeChapter={page} onNavigate={goToPage} />
 
       {/* Opening */}
-      <header className="letter-header">
+      <header className="letter-header chapter-page-header">
+        <button className="btn btn-soft chapter-back-btn" type="button" onClick={() => goToPage('home')}>
+          ← 回到首页
+        </button>
         <TypewriterText text={letterConfig.openingLine} delay={300} />
       </header>
 

@@ -4385,6 +4385,189 @@ body::after {
   cursor: default;
 }
 
+.home-directory {
+  position: relative;
+  z-index: 1;
+  width: min(1040px, 92vw);
+  margin: 0 auto;
+  padding: 5.5rem 0 4rem;
+}
+
+.home-hero {
+  max-width: 760px;
+  margin: 0 auto 2.4rem;
+  text-align: center;
+}
+
+.home-kicker {
+  display: inline-flex;
+  margin-bottom: 0.9rem;
+  padding: 0.35rem 0.9rem;
+  border-radius: 999px;
+  background: rgba(255,255,255,0.68);
+  color: #c58a67;
+  font-size: 0.76rem;
+  font-weight: 800;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
+}
+
+.home-hero h1 {
+  margin: 0 0 0.9rem;
+  color: var(--rose-ink);
+  font-size: clamp(2rem, 7vw, 4.4rem);
+  line-height: 1.08;
+}
+
+.home-hero p,
+.home-guide {
+  color: var(--blush-text);
+  line-height: 1.9;
+}
+
+.home-chapter-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.home-chapter-card {
+  position: relative;
+  min-height: 178px;
+  padding: 1.35rem;
+  border: 1px solid rgba(255,255,255,0.78);
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 18% 0%, rgba(255, 221, 236, 0.64), transparent 34%),
+    linear-gradient(135deg, rgba(255,255,255,0.82), rgba(255,247,250,0.68));
+  box-shadow: 0 18px 52px rgba(179, 78, 128, 0.12);
+  color: var(--rose-ink);
+  text-align: left;
+  cursor: pointer;
+  transition: transform 0.22s ease, box-shadow 0.22s ease;
+}
+
+.home-chapter-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 24px 68px rgba(179, 78, 128, 0.18);
+}
+
+.home-chapter-icon {
+  display: inline-grid;
+  place-items: center;
+  width: 3rem;
+  height: 3rem;
+  margin-bottom: 0.85rem;
+  border-radius: 18px;
+  background: rgba(255,255,255,0.74);
+  font-size: 1.45rem;
+}
+
+.home-chapter-card strong {
+  display: block;
+  margin-bottom: 0.45rem;
+  font-size: 1.22rem;
+}
+
+.home-chapter-card p {
+  margin: 0;
+  color: var(--blush-text);
+  line-height: 1.75;
+}
+
+.home-guide {
+  margin: 2rem auto 0;
+  text-align: center;
+}
+
+.chapter-page-header {
+  padding-top: 5rem;
+}
+
+.chapter-back-btn {
+  margin-bottom: 1.3rem;
+}
+
+.chapter-nav-item.is-active {
+  background: linear-gradient(135deg, rgba(255, 218, 232, 0.88), rgba(255, 240, 248, 0.78));
+  color: var(--rose-ink);
+  box-shadow: 0 12px 28px rgba(185, 86, 134, 0.16);
+}
+
+.chapter-page .letter-body > * {
+  display: none;
+}
+
+.chapter-page-letter #chapter-letter,
+.chapter-page-letter .letter-section,
+.chapter-page-letter .missing-clock-section,
+.chapter-page-letter .reasons-section {
+  display: revert;
+}
+
+.chapter-page-memory .photos-section,
+.chapter-page-memory .future-checklist-section,
+.chapter-page-memory .promises-section,
+.chapter-page-memory .heart-loading-section,
+.chapter-page-memory .chat-section,
+.chapter-page-memory .fortune-section,
+.chapter-page-memory .love-card-section,
+.chapter-page-memory .memory-cinema-section,
+.chapter-page-memory #chapter-memory {
+  display: revert;
+}
+
+.chapter-page-gaokao #chapter-gaokao,
+.chapter-page-gaokao .gaokao-section {
+  display: revert;
+}
+
+.chapter-page-play .secret-envelopes-section,
+.chapter-page-play .quiz-section,
+.chapter-page-play .time-capsule-section,
+.chapter-page-play .star-section,
+.chapter-page-play #chapter-play,
+.chapter-page-play .particle-universe-section,
+.chapter-page-play .ice-rose-section,
+.chapter-page-play .star-universe-section,
+.chapter-page-play .love-blind-box-section,
+.chapter-page-play .sweet-stamp-section,
+.chapter-page-play .whisper-section,
+.chapter-page-play .wish-bottle-section,
+.chapter-page-play .love-weather-section,
+.chapter-page-play .medal-wall-section,
+.chapter-page-play .daily-q-section,
+.chapter-page-play .shake-section,
+.chapter-page-play .reply-section,
+.chapter-page-play .drag-puzzle-section,
+.chapter-page-play .time-capsule-section,
+.chapter-page-play .heart-popup-section {
+  display: revert;
+}
+
+.chapter-page-final .netlify-reply-section,
+.chapter-page-final .confession-prelude-section,
+.chapter-page-final #chapter-final,
+.chapter-page-final .final-section,
+.chapter-page-final .spinwheel-section,
+.chapter-page-final .sweetness-section,
+.chapter-page-final .timeline-section,
+.chapter-page-final .countdown-section,
+.chapter-page-final .heart-burst-trigger-section,
+.chapter-page-final .easter-section {
+  display: revert;
+}
+
+@media (max-width: 760px) {
+  .home-directory {
+    padding-top: 4.6rem;
+  }
+
+  .home-chapter-grid {
+    grid-template-columns: 1fr;
+  }
+}
+
 /* ── Heart burst trigger button ── */
 .heart-burst-trigger-section {
   margin-bottom: 3rem;

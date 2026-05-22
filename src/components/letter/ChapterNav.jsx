@@ -1,31 +1,26 @@
-function ChapterNav({ onEffectsClick }) {
+function ChapterNav({ activeChapter, onNavigate }) {
   const chapters = [
-    { href: '#chapter-letter', icon: '💌', label: '信' },
-    { href: '#chapter-memory', icon: '🌸', label: '回忆' },
-    { href: '#chapter-gaokao', icon: '⭐', label: '加油' },
-    { href: '#chapter-play', icon: '🎁', label: '机关' },
-    { href: '#chapter-effects', icon: '✨', label: '特效' },
-    { href: '#chapter-final', icon: '💗', label: '最后' },
+    { key: 'letter', icon: '💌', label: '信' },
+    { key: 'memory', icon: '🌸', label: '回忆' },
+    { key: 'gaokao', icon: '⭐', label: '加油' },
+    { key: 'play', icon: '🎁', label: '机关' },
+    { key: 'effects', icon: '✨', label: '特效' },
+    { key: 'final', icon: '💗', label: '最后' },
   ]
 
   return (
     <nav className="chapter-nav" aria-label="情书章节导航">
-      {chapters.map((chapter) => {
-        if (chapter.href === '#chapter-effects') {
-          return (
-            <button key={chapter.href} type="button" className="chapter-nav-item" onClick={onEffectsClick}>
-              <span>{chapter.icon}</span>
-              <em>{chapter.label}</em>
-            </button>
-          )
-        }
-        return (
-          <a key={chapter.href} href={chapter.href} className="chapter-nav-item">
-            <span>{chapter.icon}</span>
-            <em>{chapter.label}</em>
-          </a>
-        )
-      })}
+      {chapters.map((chapter) => (
+        <button
+          key={chapter.key}
+          type="button"
+          className={`chapter-nav-item ${activeChapter === chapter.key ? 'is-active' : ''}`}
+          onClick={() => onNavigate(chapter.key)}
+        >
+          <span>{chapter.icon}</span>
+          <em>{chapter.label}</em>
+        </button>
+      ))}
     </nav>
   )
 }
