@@ -653,6 +653,71 @@
     '想一直好好喜欢你',
     '冉冉最特别',
   ],
+  /* ── 互动特效集 (from Python code) ── */
+  effectsShowcaseTitle: '给冉冉的浪漫特效合集',
+  effectsShowcaseSubtitle: '这些效果都是专门为你写的程序，现在变成了可以在手机上看的网页版。',
+
+  multiLangHeartTitle: '52 种语言说「我爱你」',
+  multiLangHeartSubtitle: '世界上有那么多种语言，每一种都想用来对冉冉说同一句话。',
+  multiLangHeartButtonText: '打开爱心',
+  multiLangHeartTexts: [
+    'I love you', 'Je t\'aime', 'Ich liebe dich', 'Ti amo', 'Te amo',
+    'あいしてる', '사랑해요', '我爱你', '我中意你', '我爱侬',
+    '我欢喜你', 'Kocham Cię', 'Я тебя люблю', 'Σ\'αγαπώ', 'Seni seviyorum',
+    'Ik hou van je', 'Jag älskar dig', 'Jeg elsker dig', 'Jeg elsker deg',
+    'Eu te amo', 'Mahal kita', 'Aku cinta padamu', 'أحبك', 'אני אוהב אותך',
+    'ฉันรักคุณ', 'Tôi yêu bạn', 'मैं तुमसे प्यार करता हूँ', 'আমি তোমাকে ভালোবাসি',
+    'میں تم سے محبت کرتا ہوں', 'Мен сені сүйемін', 'Мен сени сүйөм',
+    'Те сакам', 'Te dua', 'Ljubim te', 'Volim te', 'Szeretlek',
+    'Miluju tě', 'Ľúbim ťa', 'Es tevi mīlu', 'Aš tave myliu',
+    'Ma armastan sind', 'Minä rakastan sinua', 'Mina armastan sind',
+    '勾买蒙', '额爱你', '我待见你', '恩欢喜你', '我爱列',
+    '俺喜欢你', '我稀罕你', '阿秋拉嘎', '在一起', '和我交往吧',
+    '我喜欢你', '冉冉我爱你',
+  ],
+
+  loveDanmakuTitle: '弹幕告白',
+  loveDanmakuSubtitle: '把对冉冉说的话变成满屏弹幕，让整个世界都听见。',
+  loveDanmakuButtonText: '开启弹幕',
+  loveDanmakuTexts: [
+    '我爱你', '在一起', '我喜欢你', '和我交往吧', '阿秋拉嘎',
+    '冉冉最可爱', '想你了', '冉冉宝宝', '永远喜欢你', '你是我的全世界',
+  ],
+
+  loveQuotePopupsTitle: '此爱不变',
+  loveQuotePopupsSubtitle: '每一句话都是认认真真写给冉冉的偏爱，点开爱心听我说。',
+  loveQuotePopupsButtonText: '打开爱心弹窗',
+  loveQuotePopupsTexts: [
+    '我们的相遇你遗忘不了',
+    '我心里认定是你，那就是你了',
+    '还算你眼光不错，最后选了我啊',
+    '你的整个存在本身，对我来说都很重要',
+    '我当然也是心有所求',
+    '程序和结果都不重要，你才重要',
+    '我们一定会再次相会',
+    '这个世界上如果没有你，该是如何的了无生趣',
+    '但是我的心是有偏向的，它偏向你',
+    '你是我独特而不同，不可失去的颜色',
+    '凡我所能，无有不应',
+    '我永远在你身后，而一切会如你所愿',
+    '真心是藏不住的',
+    '无论是哪里，我都会和你一起去',
+    '此爱不变',
+    '世界无限',
+  ],
+
+  carePopupsTitle: '给冉冉的温柔提醒',
+  carePopupsSubtitle: '这些小弹窗，是我每天都想对你说的话。',
+  carePopupsButtonText: '收到温柔',
+  carePopupsTexts: [
+    '多喝水哦', '好好爱自己', '好好吃饭', '保持好心情',
+    '我想你了', '顺顺利利', '别熬夜', '天凉了多穿衣服',
+    '充实自己', '记得休息', '你很棒的', '有我在呢',
+  ],
+
+  heartPetalTrailTitle: '爱心花海',
+  heartPetalTrailSubtitle: '一颗流星划过爱心的轨迹，花瓣从光芒中散落，这是我为冉冉写的浪漫。',
+  heartPetalTrailButtonText: '打开花海',
 }
 
 export default letterConfig

@@ -7269,3 +7269,343 @@ h3,
     grid-template-columns: 1fr;
   }
 }
+
+/* ═══════════════════════════════════════════════════════════════
+   Effects Showcase & New Interactive Effects (Python → Web)
+   ═══════════════════════════════════════════════════════════════ */
+
+/* ── Shared effect section styles ── */
+.effect-section {
+  margin: 2.4rem auto;
+  max-width: 720px;
+  padding: 0 1.2rem;
+  text-align: center;
+}
+
+.effect-subtitle {
+  color: rgba(255, 255, 255, 0.6);
+  font-size: 0.92rem;
+  margin: 0.4rem 0 1.4rem;
+  line-height: 1.7;
+}
+
+.effect-btn {
+  font-size: 1rem;
+  padding: 0.7rem 2rem;
+}
+
+/* Canvas wrapper */
+.effect-canvas-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 520px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, rgba(30, 10, 40, 0.95), rgba(8, 8, 16, 0.98));
+  box-shadow: 0 4px 32px rgba(200, 80, 140, 0.15), inset 0 0 60px rgba(100, 40, 80, 0.1);
+  margin: 0 auto;
+}
+
+.effect-canvas {
+  display: block;
+  width: 100%;
+  height: 100%;
+}
+
+.btn-close-effect {
+  position: absolute;
+  top: 12px;
+  right: 12px;
+  background: rgba(255, 255, 255, 0.12);
+  color: rgba(255, 255, 255, 0.8);
+  border: 1px solid rgba(255, 255, 255, 0.18);
+  border-radius: 20px;
+  padding: 0.35rem 1rem;
+  font-size: 0.82rem;
+  cursor: pointer;
+  backdrop-filter: blur(8px);
+  transition: all 0.2s;
+  z-index: 10;
+}
+.btn-close-effect:hover {
+  background: rgba(255, 255, 255, 0.22);
+  color: #fff;
+}
+
+/* ── MultiLangHeart (52种语言爱心) ── */
+.multilang-canvas {
+  background: transparent;
+}
+
+/* ── LoveDanmaku (弹幕告白) ── */
+.effect-danmaku-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 16 / 9;
+  max-height: 420px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, rgba(30, 10, 40, 0.95), rgba(8, 8, 16, 0.98));
+  box-shadow: 0 4px 32px rgba(200, 80, 140, 0.15);
+  margin: 0 auto;
+}
+
+.danmaku-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.danmaku-item {
+  position: absolute;
+  white-space: nowrap;
+  font-weight: 600;
+  text-shadow: 0 1px 4px rgba(0, 0, 0, 0.5);
+  pointer-events: none;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.danmaku-item.from-left {
+  left: -200px;
+  animation-name: danmakuLeft;
+}
+
+.danmaku-item.from-right {
+  right: -200px;
+  animation-name: danmakuRight;
+}
+
+@keyframes danmakuLeft {
+  from { transform: translateX(0); opacity: 0; }
+  5% { opacity: 1; }
+  90% { opacity: 1; }
+  to { transform: translateX(calc(100vw + 400px)); opacity: 0; }
+}
+
+@keyframes danmakuRight {
+  from { transform: translateX(0); opacity: 0; }
+  5% { opacity: 1; }
+  90% { opacity: 1; }
+  to { transform: translateX(calc(-100vw - 400px)); opacity: 0; }
+}
+
+/* ── LoveQuotePopups (此爱弹窗) ── */
+.effect-popup-wrap {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 4 / 3;
+  max-height: 520px;
+  border-radius: 16px;
+  overflow: hidden;
+  background: radial-gradient(ellipse at center, rgba(30, 10, 50, 0.92), rgba(8, 8, 16, 0.96));
+  box-shadow: 0 4px 32px rgba(200, 80, 140, 0.15);
+  margin: 0 auto;
+}
+
+.popup-stage {
+  position: absolute;
+  inset: 0;
+  overflow: hidden;
+}
+
+.love-quote-heart {
+  position: absolute;
+  width: var(--heart-size, 120px);
+  height: var(--heart-size, 120px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  opacity: 0;
+  animation: heartPopIn 0.5s ease-out forwards;
+  transform: translate(-50%, -50%);
+}
+
+.heart-svg {
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  filter: drop-shadow(0 2px 8px rgba(0, 0, 0, 0.15));
+}
+
+.heart-quote-text {
+  position: relative;
+  z-index: 2;
+  color: var(--heart-text-color, #C2185B);
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-align: center;
+  max-width: 80%;
+  line-height: 1.4;
+  padding: 4px;
+}
+
+@keyframes heartPopIn {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.3); }
+  60% { opacity: 1; transform: translate(-50%, -50%) scale(1.1); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1); }
+}
+
+.love-quote-final {
+  position: absolute;
+  inset: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  z-index: 20;
+  background: rgba(0, 0, 0, 0.4);
+  backdrop-filter: blur(4px);
+}
+
+.love-quote-final span {
+  font-size: 2.4rem;
+  font-weight: 700;
+  color: #fff;
+  text-shadow: 0 0 30px rgba(255, 100, 160, 0.6), 0 0 60px rgba(255, 80, 140, 0.3);
+  font-family: 'Ma Shan Zheng', cursive;
+  letter-spacing: 0.2em;
+}
+
+/* ── CarePopups (关怀弹窗) ── */
+.care-stage {
+  padding: 8px;
+}
+
+.care-popup-card {
+  position: absolute;
+  padding: 6px 14px;
+  border-radius: 8px;
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: #333;
+  white-space: nowrap;
+  opacity: 0;
+  animation: carePopIn 0.4s ease-out forwards;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.12);
+  transform: translate(-50%, -50%);
+}
+
+@keyframes carePopIn {
+  0% { opacity: 0; transform: translate(-50%, -50%) scale(0.5) rotate(-5deg); }
+  70% { opacity: 1; transform: translate(-50%, -50%) scale(1.05) rotate(1deg); }
+  100% { opacity: 1; transform: translate(-50%, -50%) scale(1) rotate(0deg); }
+}
+
+/* ── HeartPetalTrail (爱心花海) ── */
+.petal-trail-wrap {
+  background: radial-gradient(ellipse at center, rgba(12, 6, 20, 0.98), rgba(4, 2, 8, 1));
+}
+
+.petal-canvas {
+  background: transparent;
+}
+
+/* ── Effects Entry Section (情书内的入口卡片) ── */
+.effects-entry-section {
+  margin: 3rem auto;
+  max-width: 520px;
+  text-align: center;
+}
+
+.effects-entry-card {
+  background: linear-gradient(135deg, rgba(255, 180, 210, 0.08), rgba(200, 140, 200, 0.06));
+  border: 1px solid rgba(255, 180, 210, 0.15);
+  border-radius: 20px;
+  padding: 2rem 1.6rem;
+  backdrop-filter: blur(12px);
+}
+
+.effects-entry-icon {
+  font-size: 2.2rem;
+  display: block;
+  margin-bottom: 0.6rem;
+}
+
+.effects-entry-text {
+  color: rgba(255, 255, 255, 0.65);
+  font-size: 0.92rem;
+  margin: 0 0 1.2rem;
+  line-height: 1.6;
+}
+
+.effects-entry-btn {
+  font-size: 1rem;
+  padding: 0.7rem 2.2rem;
+}
+
+/* ── Effects Showcase Page (独立页面) ── */
+.effects-showcase-page {
+  min-height: 100vh;
+  background: linear-gradient(135deg, #0a0614 0%, #150d25 30%, #1a0f2e 60%, #0d0819 100%);
+  padding: 0 0 4rem;
+}
+
+.effects-showcase-header {
+  text-align: center;
+  padding: 3rem 1.2rem 1rem;
+  position: relative;
+}
+
+.effects-back-btn {
+  position: absolute;
+  top: 1.2rem;
+  left: 1.2rem;
+  font-size: 0.88rem;
+  padding: 0.5rem 1.2rem;
+}
+
+.effects-showcase-title {
+  font-size: 1.8rem;
+  font-weight: 700;
+  color: rgba(255, 255, 255, 0.92);
+  margin: 0 0 0.4rem;
+  font-family: 'Ma Shan Zheng', cursive;
+  letter-spacing: 0.05em;
+  text-shadow: 0 0 20px rgba(255, 100, 160, 0.3);
+}
+
+.effects-showcase-subtitle {
+  color: rgba(255, 255, 255, 0.5);
+  font-size: 0.92rem;
+  margin: 0;
+  line-height: 1.7;
+}
+
+.effects-showcase-body {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 0 1rem;
+}
+
+/* ── Mobile responsive ── */
+@media (max-width: 560px) {
+  .effect-canvas-wrap,
+  .effect-danmaku-wrap,
+  .effect-popup-wrap {
+    aspect-ratio: 3 / 4;
+    max-height: 70vh;
+  }
+
+  .heart-quote-text {
+    font-size: 0.6rem;
+  }
+
+  .love-quote-final span {
+    font-size: 1.8rem;
+  }
+
+  .effects-showcase-title {
+    font-size: 1.4rem;
+  }
+
+  .effects-back-btn {
+    position: static;
+    margin-bottom: 1rem;
+  }
+
+  .care-popup-card {
+    font-size: 0.72rem;
+    padding: 4px 10px;
+  }
+}
