@@ -59,6 +59,7 @@ test('shows media cinema module on letter page', async () => {
   await openChapter('翻一页回忆')
   expect(screen.getByText('我们的精彩瞬间')).toBeTruthy()
   expect(screen.getByText('每一帧都值得被好好保存。')).toBeTruthy()
+  expect(screen.getByText('我们的回忆电影胶片')).toBeTruthy()
 })
 
 test('shows sheep home easter egg and comfort pasture', async () => {
@@ -68,11 +69,14 @@ test('shows sheep home easter egg and comfort pasture', async () => {
   await new Promise((r) => setTimeout(r, 1300))
   expect(screen.getByText('小羊宝宝的安心牧场')).toBeTruthy()
   expect(screen.getByText('抱抱小羊')).toBeTruthy()
+  expect(screen.getByText('今日小羊礼物')).toBeTruthy()
+  expect(screen.getByText('打开今日小羊礼物')).toBeTruthy()
 })
 
 test('shows sheep confession ritual on final chapter', async () => {
   await openChapter('最后一章')
   expect(screen.getByText('把小羊宝宝抱进心里')).toBeTruthy()
+  expect(screen.getByText('点亮第一圈光')).toBeTruthy()
   expect(screen.getByText('把小羊抱进心里')).toBeTruthy()
 })
 

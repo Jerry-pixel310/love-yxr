@@ -1747,8 +1747,56 @@ function SheepComfortPasture() {
   )
 }
 
+function DailySheepGift() {
+  const gifts = [
+    { emoji: '🫂', title: '今日抱抱券', text: '凭这张券，小羊今天可以被我无条件抱抱一次，难过也抱，开心也抱。' },
+    { emoji: '🌟', title: '今日夸夸星', text: '今天的小羊也很棒，哪怕只是好好醒来、好好吃饭，都值得被认真夸奖。' },
+    { emoji: '🌙', title: '今日晚安星星', text: '这颗星星负责今晚陪小羊睡觉，替我轻轻说一句：宝宝晚安。' },
+    { emoji: '🍬', title: '今日安心糖', text: '如果今天有一点紧张，就把这颗糖含在心里：我一直都站在小羊这边。' },
+    { emoji: '🔔', title: '今日好运铃铛', text: '叮铃一声，好运就往小羊身边跑。今天也会有小小的好事发生。' },
+    { emoji: '💌', title: '今日想你便签', text: '今天也想你，不是突然想起，是一直有一小块心思在你那里。' },
+  ]
+  const [isOpen, setIsOpen] = useState(false)
+  const dayKey = new Date().toISOString().slice(0, 10).replaceAll('-', '')
+  const gift = gifts[Number(dayKey) % gifts.length]
+
+  return (
+    <section className={`daily-sheep-gift-section fade-in-scroll ${isOpen ? 'is-open' : ''}`}>
+      <div className="daily-sheep-gift-copy">
+        <span className="sheep-kicker">Daily Little Gift</span>
+        <h3 className="section-title">今日小羊礼物</h3>
+        <p>每天给小羊留一个小小的礼物，不一定很贵重，但一定是认真偏向你的。</p>
+      </div>
+      <div className="daily-sheep-gift-box">
+        {!isOpen ? (
+          <>
+            <span className="daily-gift-ribbon" />
+            <span className="daily-gift-emoji">🎁</span>
+            <button className="btn btn-primary daily-gift-btn" type="button" onClick={() => setIsOpen(true)}>
+              打开今日小羊礼物
+            </button>
+          </>
+        ) : (
+          <article className="daily-gift-card fade-in">
+            <span className="daily-gift-result-emoji">{gift.emoji}</span>
+            <strong>{gift.title}</strong>
+            <p>{gift.text}</p>
+            <em>From：一直惦记小羊的人</em>
+          </article>
+        )}
+      </div>
+    </section>
+  )
+}
+
 function SheepConfessionRitual() {
-  const [isActivated, setIsActivated] = useState(false)
+  const [activeStep, setActiveStep] = useState(0)
+  const steps = [
+    { button: '点亮第一圈光', title: '谢谢你出现', text: '谢谢小羊宝宝出现在我的世界里，让很多普通的日子都变得很值得记住。' },
+    { button: '点亮第二圈光', title: '想认真陪你', text: '不是只想说几句好听的话，是想在你需要的时候，真的站在你身边。' },
+    { button: '把小羊抱进心里', title: '小羊宝宝，我喜欢你', text: '这句话很认真，也想说很久很久。' },
+  ]
+  const isActivated = activeStep >= steps.length
 
   return (
     <section className={`sheep-ritual-section fade-in-scroll ${isActivated ? 'is-activated' : ''}`}>
@@ -1760,17 +1808,91 @@ function SheepConfessionRitual() {
       <span className="sheep-kicker">Final Little Sheep</span>
       <h3 className="section-title">把小羊宝宝抱进心里</h3>
       <div className="sheep-ritual-stage">
+        <div className={`sheep-ritual-ring ring-one ${activeStep >= 1 ? 'is-lit' : ''}`} />
+        <div className={`sheep-ritual-ring ring-two ${activeStep >= 2 ? 'is-lit' : ''}`} />
+        <div className={`sheep-ritual-ring ring-three ${activeStep >= 3 ? 'is-lit' : ''}`} />
         <SheepFigure className="sheep-ritual-figure" />
       </div>
       <p className="sheep-ritual-copy">最后想把最柔软的位置留给小羊宝宝，把害怕、疲惫和委屈都轻轻抱住。</p>
-      <button className="btn btn-primary sheep-ritual-btn" type="button" onClick={() => setIsActivated(true)}>
-        把小羊抱进心里
-      </button>
+      <div className="sheep-ritual-steps">
+        {steps.map((step, index) => (
+          <button
+            key={step.title}
+            className={`btn sheep-ritual-step ${activeStep > index ? 'is-done' : ''}`}
+            type="button"
+            onClick={() => setActiveStep(Math.max(activeStep, index + 1))}
+          >
+            {step.button}
+          </button>
+        ))}
+      </div>
+      <div className="sheep-ritual-step-copy" aria-live="polite">
+        {steps.slice(0, activeStep).map((step) => (
+          <article key={step.title} className="fade-in">
+            <strong>{step.title}</strong>
+            <p>{step.text}</p>
+          </article>
+        ))}
+      </div>
       {isActivated && (
         <p className="sheep-ritual-message fade-in">
-          小羊宝宝，你不是路过我的世界。你是我想认真守护很久很久的人。
+          小羊宝宝，你不是路过我的世界。你是我想认真守护很久很久的人。如果可以，我想把以后的温柔都慢慢给你。
         </p>
       )}
+    </section>
+  )
+}
+
+function MemoryFilmStrip() {
+  const frames = [
+    {
+      title: '小羊宝宝这一帧',
+      src: letterConfig.memoryPhoto.src,
+      caption: letterConfig.memoryPhoto.caption,
+      note: '这一帧不是普通照片，是我很想一直保存的小羊宝宝。',
+    },
+    {
+      title: '游戏里发光的小羊',
+      src: '/images/ranran-game-mvp.jpg',
+      caption: 'MVP 就是小羊，这一局太厉害了。',
+      note: '你认真发光的时候，我会在屏幕这边偷偷骄傲很久。',
+    },
+    {
+      title: '想一直保存的瞬间',
+      src: letterConfig.memoryPhoto.src,
+      caption: '有些画面，光是想起来就会变温柔。',
+      note: '不是因为画面多完美，是因为里面有你，所以它才特别。',
+    },
+  ]
+  const [activeIndex, setActiveIndex] = useState(0)
+
+  return (
+    <section className="memory-film-section fade-in-scroll">
+      <div className="memory-film-header">
+        <span className="memory-film-kicker">Memory Cinema</span>
+        <h3 className="section-title">我们的回忆电影胶片</h3>
+        <p>不是每一帧都轰轰烈烈，但每一帧里有你，就值得被我收藏很久。</p>
+      </div>
+      <div className="memory-film-strip">
+        {frames.map((frame, index) => (
+          <button
+            key={frame.title}
+            className={`memory-film-frame ${activeIndex === index ? 'is-active' : ''}`}
+            type="button"
+            onClick={() => setActiveIndex(index)}
+          >
+            <span className="film-sprockets top" />
+            <img src={frame.src} alt={frame.caption} loading="lazy" decoding="async" />
+            <span className="film-sprockets bottom" />
+            <strong>{frame.title}</strong>
+          </button>
+        ))}
+      </div>
+      <article className="memory-film-note">
+        <span>Frame {String(activeIndex + 1).padStart(2, '0')}</span>
+        <strong>{frames[activeIndex].caption}</strong>
+        <p>{frames[activeIndex].note}</p>
+      </article>
     </section>
   )
 }
@@ -3288,6 +3410,8 @@ export default function App() {
           </div>
         </section>
 
+        <MemoryFilmStrip />
+
         <ChapterDivider
           id="chapter-gaokao"
           kicker="Chapter 03"
@@ -3298,6 +3422,8 @@ export default function App() {
         <GaokaoCheer config={letterConfig} />
 
         <SheepComfortPasture />
+
+        <DailySheepGift />
 
         <ChapterDivider
           id="chapter-play"

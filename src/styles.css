@@ -4697,6 +4697,144 @@ body::after {
   display: block;
 }
 
+.memory-film-section {
+  position: relative;
+  overflow: hidden;
+  margin: 3rem auto;
+  padding: clamp(1.3rem, 5vw, 2.2rem);
+  border-radius: 34px;
+  border: 1px solid rgba(255,255,255,0.34);
+  background:
+    radial-gradient(circle at 12% 18%, rgba(255, 218, 161, 0.22), transparent 28%),
+    radial-gradient(circle at 88% 30%, rgba(255, 125, 179, 0.18), transparent 26%),
+    linear-gradient(145deg, rgba(42, 22, 46, 0.96), rgba(88, 37, 69, 0.9));
+  color: #fff;
+  box-shadow: 0 28px 80px rgba(82, 34, 66, 0.22);
+}
+
+.memory-film-section::before {
+  content: '';
+  position: absolute;
+  inset: -40%;
+  background: linear-gradient(105deg, transparent 42%, rgba(255,255,255,0.12), transparent 58%);
+  animation: memoryProjectorSweep 7s ease-in-out infinite;
+}
+
+.memory-film-header,
+.memory-film-strip,
+.memory-film-note {
+  position: relative;
+  z-index: 1;
+}
+
+.memory-film-kicker {
+  color: rgba(255, 220, 174, 0.82);
+  font-size: 0.78rem;
+  letter-spacing: 0.26em;
+  text-transform: uppercase;
+}
+
+.memory-film-header .section-title {
+  color: #fff7fb;
+}
+
+.memory-film-header p {
+  max-width: 620px;
+  margin: 0.4rem auto 1.3rem;
+  color: rgba(255,255,255,0.72);
+  line-height: 1.85;
+  text-align: center;
+}
+
+.memory-film-strip {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 1rem;
+}
+
+.memory-film-frame {
+  position: relative;
+  overflow: hidden;
+  min-height: 220px;
+  padding: 1.3rem 0.8rem 1rem;
+  border: 1px solid rgba(255,255,255,0.28);
+  border-radius: 24px;
+  background: rgba(18, 12, 22, 0.74);
+  color: #fff;
+  cursor: pointer;
+  box-shadow: inset 0 0 0 8px rgba(255,255,255,0.06);
+  transition: transform 0.28s ease, border-color 0.28s ease, box-shadow 0.28s ease;
+}
+
+.memory-film-frame:hover,
+.memory-film-frame.is-active {
+  transform: translateY(-6px);
+  border-color: rgba(255, 212, 128, 0.78);
+  box-shadow: inset 0 0 0 8px rgba(255,255,255,0.08), 0 22px 46px rgba(255, 145, 189, 0.18);
+}
+
+.memory-film-frame img {
+  width: 100%;
+  height: 150px;
+  object-fit: cover;
+  border-radius: 16px;
+  filter: saturate(1.06) contrast(1.04);
+}
+
+.memory-film-frame strong {
+  display: block;
+  margin-top: 0.8rem;
+  color: #ffe4ef;
+  font-size: 1rem;
+}
+
+.film-sprockets {
+  position: absolute;
+  left: 12px;
+  right: 12px;
+  height: 10px;
+  background: repeating-linear-gradient(90deg, rgba(255,255,255,0.82) 0 9px, transparent 9px 22px);
+  opacity: 0.72;
+}
+
+.film-sprockets.top {
+  top: 10px;
+}
+
+.film-sprockets.bottom {
+  bottom: 10px;
+}
+
+.memory-film-note {
+  max-width: 650px;
+  margin: 1.4rem auto 0;
+  padding: 1rem 1.1rem;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.12);
+  border: 1px solid rgba(255,255,255,0.22);
+  text-align: center;
+  backdrop-filter: blur(14px);
+}
+
+.memory-film-note span {
+  color: rgba(255, 218, 161, 0.88);
+  font-size: 0.76rem;
+  letter-spacing: 0.2em;
+  text-transform: uppercase;
+}
+
+.memory-film-note strong {
+  display: block;
+  margin: 0.45rem 0;
+  color: #fff;
+}
+
+.memory-film-note p {
+  margin: 0;
+  color: rgba(255,255,255,0.78);
+  line-height: 1.8;
+}
+
 .sheep-kicker {
   display: inline-flex;
   align-items: center;
@@ -5101,6 +5239,113 @@ body::after {
   white-space: nowrap;
 }
 
+.daily-sheep-gift-section {
+  position: relative;
+  display: grid;
+  grid-template-columns: minmax(0, 0.9fr) minmax(260px, 1fr);
+  gap: clamp(1.2rem, 4vw, 2rem);
+  align-items: center;
+  margin: 3rem auto;
+  padding: clamp(1.4rem, 5vw, 2.3rem);
+  border-radius: 34px;
+  border: 1px solid rgba(255,255,255,0.68);
+  background:
+    radial-gradient(circle at 20% 24%, rgba(255,255,255,0.82), transparent 22%),
+    linear-gradient(135deg, rgba(255, 245, 251, 0.94), rgba(255, 237, 205, 0.88));
+  box-shadow: 0 24px 70px rgba(178, 101, 139, 0.14);
+}
+
+.daily-sheep-gift-copy p {
+  color: rgba(126, 78, 108, 0.78);
+  line-height: 1.85;
+}
+
+.daily-sheep-gift-box {
+  position: relative;
+  display: grid;
+  place-items: center;
+  min-height: 240px;
+  border-radius: 30px;
+  background:
+    radial-gradient(circle at 50% 24%, rgba(255,255,255,0.8), transparent 24%),
+    linear-gradient(160deg, rgba(255, 196, 221, 0.76), rgba(255, 244, 215, 0.86));
+  box-shadow: inset 0 0 28px rgba(255,255,255,0.72);
+}
+
+.daily-gift-ribbon {
+  position: absolute;
+  width: 132px;
+  height: 112px;
+  border-radius: 22px;
+  background: linear-gradient(135deg, #ff8fbd, #ffd3a0);
+  box-shadow: 0 18px 44px rgba(182, 90, 132, 0.22);
+}
+
+.daily-gift-ribbon::before,
+.daily-gift-ribbon::after {
+  content: '';
+  position: absolute;
+  background: rgba(255,255,255,0.56);
+}
+
+.daily-gift-ribbon::before {
+  left: 50%;
+  top: 0;
+  bottom: 0;
+  width: 20px;
+  transform: translateX(-50%);
+}
+
+.daily-gift-ribbon::after {
+  left: 0;
+  right: 0;
+  top: 44%;
+  height: 18px;
+}
+
+.daily-gift-emoji {
+  position: relative;
+  z-index: 1;
+  font-size: 3.2rem;
+  filter: drop-shadow(0 10px 18px rgba(139, 63, 110, 0.2));
+  animation: sheepFloat 3.8s ease-in-out infinite;
+}
+
+.daily-gift-btn {
+  position: absolute;
+  bottom: 22px;
+}
+
+.daily-gift-card {
+  display: grid;
+  place-items: center;
+  max-width: 360px;
+  padding: 1.4rem;
+  border-radius: 28px;
+  background: rgba(255,255,255,0.7);
+  text-align: center;
+  color: #8f4d73;
+  box-shadow: 0 20px 52px rgba(166, 86, 129, 0.14);
+}
+
+.daily-gift-result-emoji {
+  font-size: 3rem;
+  margin-bottom: 0.4rem;
+}
+
+.daily-gift-card strong {
+  font-size: 1.35rem;
+}
+
+.daily-gift-card p {
+  line-height: 1.8;
+}
+
+.daily-gift-card em {
+  color: rgba(143, 77, 115, 0.68);
+  font-style: normal;
+}
+
 .sheep-ritual-section {
   text-align: center;
   background:
@@ -5126,6 +5371,33 @@ body::after {
   border-radius: 50%;
   box-shadow: 0 0 30px rgba(255, 128, 181, 0.22);
   animation: sheepOrbit 5s linear infinite;
+}
+
+.sheep-ritual-ring {
+  position: absolute;
+  border-radius: 999px;
+  border: 1px solid rgba(255, 125, 181, 0.2);
+  opacity: 0.45;
+  transition: opacity 0.35s ease, box-shadow 0.35s ease, transform 0.35s ease;
+}
+
+.ring-one {
+  inset: 42px;
+}
+
+.ring-two {
+  inset: 26px;
+}
+
+.ring-three {
+  inset: 10px;
+}
+
+.sheep-ritual-ring.is-lit {
+  opacity: 1;
+  transform: scale(1.03);
+  border-color: rgba(255, 113, 169, 0.62);
+  box-shadow: 0 0 28px rgba(255, 128, 181, 0.28);
 }
 
 .sheep-ritual-figure {
@@ -5164,6 +5436,50 @@ body::after {
   line-height: 1.85;
 }
 
+.sheep-ritual-steps {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+  margin: 1rem auto;
+}
+
+.sheep-ritual-step {
+  background: rgba(255,255,255,0.62);
+  color: #9a4671;
+  border: 1px solid rgba(255, 142, 187, 0.28);
+}
+
+.sheep-ritual-step.is-done {
+  background: linear-gradient(135deg, rgba(255, 142, 187, 0.9), rgba(255, 214, 231, 0.92));
+  color: white;
+  box-shadow: 0 12px 30px rgba(255, 108, 169, 0.18);
+}
+
+.sheep-ritual-step-copy {
+  display: grid;
+  gap: 0.7rem;
+  max-width: 660px;
+  margin: 0 auto;
+}
+
+.sheep-ritual-step-copy article {
+  padding: 0.9rem 1rem;
+  border-radius: 22px;
+  background: rgba(255,255,255,0.56);
+  color: #914a72;
+}
+
+.sheep-ritual-step-copy strong {
+  display: block;
+  margin-bottom: 0.3rem;
+}
+
+.sheep-ritual-step-copy p {
+  margin: 0;
+  line-height: 1.75;
+}
+
 .sheep-ritual-message {
   max-width: 620px;
   margin: 1rem auto 0;
@@ -5183,6 +5499,11 @@ body::after {
 @keyframes sheepFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
+}
+
+@keyframes memoryProjectorSweep {
+  0%, 100% { transform: translateX(-18%) rotate(0deg); opacity: 0.36; }
+  50% { transform: translateX(18%) rotate(4deg); opacity: 0.7; }
 }
 
 @keyframes sheepBurst {
@@ -5213,6 +5534,11 @@ body::after {
 
 @media (max-width: 760px) {
   .sheep-pasture-section {
+    grid-template-columns: 1fr;
+  }
+
+  .memory-film-strip,
+  .daily-sheep-gift-section {
     grid-template-columns: 1fr;
   }
 
@@ -5251,13 +5577,15 @@ body::after {
 .chapter-page-memory .fortune-section,
 .chapter-page-memory .love-card-section,
 .chapter-page-memory .memory-cinema-section,
+.chapter-page-memory .memory-film-section,
 .chapter-page-memory #chapter-memory {
   display: revert;
 }
 
 .chapter-page-gaokao #chapter-gaokao,
 .chapter-page-gaokao .gaokao-section,
-.chapter-page-gaokao .sheep-pasture-section {
+.chapter-page-gaokao .sheep-pasture-section,
+.chapter-page-gaokao .daily-sheep-gift-section {
   display: revert;
 }
 
