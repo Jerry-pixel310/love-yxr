@@ -78,6 +78,8 @@ test('shows sheep confession ritual on final chapter', async () => {
   expect(screen.getByText('把小羊宝宝抱进心里')).toBeTruthy()
   expect(screen.getByText('点亮第一圈光')).toBeTruthy()
   expect(screen.getByText('把小羊抱进心里')).toBeTruthy()
+  expect(screen.getByText('小羊专属纪念卡')).toBeTruthy()
+  expect(screen.getByText('可以截图保存这一张小小的偏爱证明')).toBeTruthy()
 })
 
 test('shows full interactive romance modules', async () => {

@@ -1843,6 +1843,64 @@ function SheepConfessionRitual() {
   )
 }
 
+function SheepKeepsakeCard() {
+  const blessings = [
+    '今天的小羊也被认真偏爱着。',
+    '愿小羊宝宝每天都有一点点好运靠近。',
+    '这张卡证明：杨星冉宝宝在我这里永远特别。',
+    '如果世界偶尔很吵，小羊可以躲进这张温柔里。',
+    '今天也想把最软的一块心意留给你。',
+    '小羊宝宝值得被很多很多温柔围住。',
+  ]
+  const [isLit, setIsLit] = useState(false)
+  const dayKey = new Date().toISOString().slice(0, 10).replaceAll('-', '')
+  const initialIndex = Number(dayKey) % blessings.length
+  const [blessingIndex, setBlessingIndex] = useState(initialIndex)
+  const dateText = new Date().toLocaleDateString('zh-CN', {
+    year: 'numeric',
+    month: 'long',
+    day: 'numeric',
+    weekday: 'long',
+  })
+
+  return (
+    <section className={`sheep-keepsake-section fade-in-scroll ${isLit ? 'is-lit' : ''}`}>
+      <div className="sheep-keepsake-card">
+        <div className="keepsake-stars" aria-hidden="true">
+          <span />
+          <span />
+          <span />
+          <span />
+        </div>
+        <span className="sheep-kicker">Save This Moment</span>
+        <h3 className="section-title">小羊专属纪念卡</h3>
+        <p className="keepsake-name">杨星冉宝宝</p>
+        <div className="keepsake-sheep-wrap">
+          <SheepFigure className="keepsake-sheep" />
+        </div>
+        <div className="keepsake-blessing">
+          <span>{dateText}</span>
+          <strong>{blessings[blessingIndex]}</strong>
+        </div>
+        <p className="keepsake-proof">可以截图保存这一张小小的偏爱证明</p>
+        <div className="keepsake-actions">
+          <button
+            className="btn btn-soft"
+            type="button"
+            onClick={() => setBlessingIndex((index) => (index + 1) % blessings.length)}
+          >
+            换一句今日祝福
+          </button>
+          <button className="btn btn-primary" type="button" onClick={() => setIsLit(true)}>
+            点亮纪念卡
+          </button>
+        </div>
+        <p className="keepsake-sign">From：一直认真喜欢你的人</p>
+      </div>
+    </section>
+  )
+}
+
 function MemoryFilmStrip() {
   const frames = [
     {
@@ -3516,6 +3574,8 @@ export default function App() {
         </section>
 
         <SheepConfessionRitual />
+
+        <SheepKeepsakeCard />
 
         {/* Spin wheel */}
         <section className="spinwheel-section fade-in-scroll">

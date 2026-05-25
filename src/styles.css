@@ -5496,6 +5496,143 @@ body::after {
   box-shadow: 0 0 0 1px rgba(255,255,255,0.7), 0 28px 90px rgba(255, 97, 157, 0.24);
 }
 
+.sheep-keepsake-section {
+  position: relative;
+  display: grid;
+  place-items: center;
+  margin: 3rem auto;
+  padding: clamp(1rem, 4vw, 2rem);
+}
+
+.sheep-keepsake-card {
+  position: relative;
+  overflow: hidden;
+  width: min(100%, 520px);
+  min-height: 680px;
+  padding: clamp(1.5rem, 6vw, 2.4rem);
+  border: 1px solid rgba(255,255,255,0.78);
+  border-radius: 38px;
+  background:
+    radial-gradient(circle at 20% 16%, rgba(255,255,255,0.9), transparent 22%),
+    radial-gradient(circle at 82% 20%, rgba(255, 219, 137, 0.34), transparent 24%),
+    linear-gradient(155deg, rgba(255, 250, 245, 0.96), rgba(255, 230, 242, 0.94) 56%, rgba(236, 244, 216, 0.9));
+  color: #8f4d73;
+  text-align: center;
+  box-shadow: 0 34px 90px rgba(166, 86, 129, 0.18);
+}
+
+.sheep-keepsake-card::before {
+  content: '';
+  position: absolute;
+  inset: 18px;
+  border: 1px solid rgba(189, 119, 152, 0.22);
+  border-radius: 30px;
+  pointer-events: none;
+}
+
+.sheep-keepsake-section.is-lit .sheep-keepsake-card {
+  box-shadow: 0 38px 110px rgba(255, 112, 170, 0.28), 0 0 0 1px rgba(255,255,255,0.9);
+}
+
+.keepsake-stars span {
+  position: absolute;
+  width: 12px;
+  height: 12px;
+  background: #ffd77b;
+  clip-path: polygon(50% 0%, 62% 34%, 100% 34%, 69% 56%, 82% 100%, 50% 72%, 18% 100%, 31% 56%, 0 34%, 38% 34%);
+  filter: drop-shadow(0 0 12px rgba(255, 207, 94, 0.78));
+  animation: sheepTwinkle 2.8s ease-in-out infinite;
+}
+
+.keepsake-stars span:nth-child(1) {
+  left: 12%;
+  top: 16%;
+}
+
+.keepsake-stars span:nth-child(2) {
+  right: 14%;
+  top: 22%;
+  animation-delay: 0.45s;
+}
+
+.keepsake-stars span:nth-child(3) {
+  left: 18%;
+  bottom: 20%;
+  animation-delay: 0.85s;
+}
+
+.keepsake-stars span:nth-child(4) {
+  right: 18%;
+  bottom: 16%;
+  animation-delay: 1.2s;
+}
+
+.keepsake-name {
+  margin: 0.2rem auto 1rem;
+  color: #af5b86;
+  font-family: var(--font-hand);
+  font-size: clamp(1.8rem, 8vw, 3rem);
+}
+
+.keepsake-sheep-wrap {
+  display: grid;
+  place-items: center;
+  width: 190px;
+  height: 160px;
+  margin: 1.1rem auto;
+  border-radius: 48% 52% 46% 54%;
+  background:
+    radial-gradient(circle at 50% 42%, rgba(255,255,255,0.92), transparent 42%),
+    linear-gradient(145deg, rgba(255, 230, 242, 0.76), rgba(255, 248, 219, 0.86));
+  box-shadow: inset 0 0 28px rgba(255,255,255,0.72), 0 18px 42px rgba(175, 92, 135, 0.14);
+}
+
+.keepsake-sheep {
+  transform: scale(0.96);
+}
+
+.keepsake-blessing {
+  position: relative;
+  z-index: 1;
+  margin: 1.2rem auto;
+  padding: 1rem;
+  border-radius: 26px;
+  background: rgba(255,255,255,0.56);
+}
+
+.keepsake-blessing span {
+  display: block;
+  margin-bottom: 0.55rem;
+  color: rgba(143, 77, 115, 0.62);
+  font-size: 0.86rem;
+}
+
+.keepsake-blessing strong {
+  display: block;
+  color: #914a72;
+  font-size: clamp(1.1rem, 4vw, 1.42rem);
+  line-height: 1.6;
+}
+
+.keepsake-proof {
+  margin: 0.8rem auto 1.2rem;
+  color: rgba(143, 77, 115, 0.72);
+}
+
+.keepsake-actions {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 0.7rem;
+}
+
+.keepsake-sign {
+  margin: 1.2rem 0 0;
+  color: rgba(143, 77, 115, 0.62);
+  font-family: var(--font-hand);
+  font-size: 1.1rem;
+}
+
 @keyframes sheepFloat {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-10px); }
@@ -5617,6 +5754,7 @@ body::after {
 .chapter-page-final #chapter-final,
 .chapter-page-final .final-section,
 .chapter-page-final .sheep-ritual-section,
+.chapter-page-final .sheep-keepsake-section,
 .chapter-page-final .spinwheel-section,
 .chapter-page-final .sweetness-section,
 .chapter-page-final .timeline-section,
