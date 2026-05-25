@@ -9356,4 +9356,254 @@ h3,
   border-color: rgba(255,255,255,0.16);
 }
 
+@media (max-width: 760px) {
+  .page {
+    overflow-x: hidden;
+  }
+
+  .letter-page,
+  .chapter-page {
+    padding-left: max(1rem, env(safe-area-inset-left));
+    padding-right: max(1rem, env(safe-area-inset-right));
+  }
+
+  .chapter-page-header {
+    padding-top: 5.2rem;
+    margin-bottom: 1.2rem;
+  }
+
+  .letter-body {
+    width: 100%;
+    max-width: 100%;
+  }
+
+  .chapter-nav {
+    left: 0.75rem;
+    right: 0.75rem;
+    top: 0.75rem;
+    max-width: calc(100vw - 1.5rem);
+    overflow-x: auto;
+    justify-content: flex-start;
+    padding: 0.45rem;
+    border-radius: 999px;
+    scrollbar-width: none;
+  }
+
+  .chapter-nav::-webkit-scrollbar {
+    display: none;
+  }
+
+  .chapter-nav-item {
+    flex: 0 0 auto;
+    min-width: 4.4rem;
+    min-height: 3.2rem;
+    padding: 0.45rem 0.62rem;
+    touch-action: manipulation;
+  }
+
+  .chapter-nav-item span {
+    font-size: 1.05rem;
+  }
+
+  .chapter-nav-item em {
+    font-size: 0.72rem;
+  }
+
+  .home-directory {
+    width: min(100%, 100vw - 2rem);
+    padding-top: 5.4rem;
+  }
+
+  .home-hero {
+    padding: 1.2rem 0.4rem;
+  }
+
+  .home-hero h1 {
+    font-size: clamp(2rem, 12vw, 3.2rem);
+    line-height: 1.05;
+  }
+
+  .home-chapter-card {
+    min-height: 9.4rem;
+    padding: 1.15rem;
+    text-align: left;
+    touch-action: manipulation;
+  }
+
+  .home-chapter-icon {
+    width: 3rem;
+    height: 3rem;
+    font-size: 1.55rem;
+  }
+
+  .home-guide {
+    margin-bottom: 6.5rem;
+    line-height: 1.7;
+  }
+
+  .btn,
+  button {
+    touch-action: manipulation;
+  }
+
+  .sheep-home-egg {
+    right: 0.65rem;
+    bottom: max(0.75rem, env(safe-area-inset-bottom));
+    transform-origin: right bottom;
+  }
+
+  .sheep-home-bubble {
+    right: 0;
+    bottom: 92px;
+    width: min(76vw, 230px);
+    border-radius: 18px 18px 18px 6px;
+  }
+
+  .memory-film-section,
+  .sheep-pasture-section,
+  .daily-sheep-gift-section,
+  .sheep-ritual-section,
+  .sheep-keepsake-section {
+    margin: 2rem auto;
+    padding: 1rem;
+    border-radius: 26px;
+  }
+
+  .memory-film-strip,
+  .daily-sheep-gift-section {
+    grid-template-columns: 1fr;
+  }
+
+  .memory-film-frame {
+    min-height: 190px;
+    padding: 1.15rem 0.7rem 0.9rem;
+  }
+
+  .memory-film-frame img {
+    height: 125px;
+  }
+
+  .memory-film-note {
+    padding: 0.9rem;
+  }
+
+  .sheep-pasture-stage {
+    min-height: 245px;
+  }
+
+  .sheep-moon {
+    width: 58px;
+    height: 58px;
+    right: 22px;
+    top: 22px;
+  }
+
+  .sheep-star-right {
+    right: 92px;
+  }
+
+  .daily-sheep-gift-box {
+    min-height: 225px;
+  }
+
+  .daily-gift-btn {
+    width: calc(100% - 2rem);
+    max-width: 260px;
+  }
+
+  .sheep-ritual-steps,
+  .keepsake-actions {
+    flex-direction: column;
+    align-items: stretch;
+  }
+
+  .sheep-ritual-step,
+  .keepsake-actions .btn {
+    width: 100%;
+  }
+
+  .sheep-keepsake-card {
+    min-height: auto;
+    padding: 1.25rem;
+    border-radius: 30px;
+  }
+
+  .sheep-keepsake-card::before {
+    inset: 10px;
+    border-radius: 24px;
+  }
+
+  .keepsake-sheep-wrap {
+    width: 160px;
+    height: 138px;
+  }
+
+  .keepsake-sheep {
+    transform: scale(0.82);
+  }
+
+  .confession-card,
+  .netlify-reply-card {
+    width: min(100%, 100vw - 2rem);
+  }
+
+  .netlify-reply-form textarea,
+  .gate-input {
+    font-size: 16px;
+  }
+}
+
+@media (max-width: 420px) {
+  .chapter-nav-item {
+    min-width: 3.9rem;
+  }
+
+  .chapter-nav-item em {
+    font-size: 0.66rem;
+  }
+
+  .home-hero p,
+  .home-guide,
+  .memory-film-header p,
+  .daily-sheep-gift-copy p,
+  .sheep-pasture-copy p {
+    font-size: 0.94rem;
+  }
+
+  .sheep-home-egg {
+    width: 94px;
+    height: 86px;
+  }
+
+  .sheep-home-figure {
+    transform: scale(0.5);
+  }
+
+  .sheep-home-bubble {
+    bottom: 80px;
+    font-size: 0.78rem;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .chapter-entry-effect,
+  .chapter-entry-glow,
+  .chapter-entry-burst span,
+  .chapter-entry-comets span,
+  .chapter-entry-card,
+  .sheep-home-egg,
+  .daily-gift-emoji,
+  .memory-film-section::before,
+  .keepsake-stars span,
+  .sheep-pasture-star,
+  .sheep-star-button,
+  .sheep-pasture-sheep,
+  .sheep-ritual-stage::before,
+  .sheep-ritual-figure {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
 
