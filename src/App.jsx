@@ -1,4 +1,4 @@
-﻿import { useState, useRef, useEffect, useCallback } from 'react'
+﻿import { useState, useRef, useEffect, useCallback, useMemo } from 'react'
 import { createPortal } from 'react-dom'
 import letterConfig from './data/letter.js'
 import ChapterNav from './components/letter/ChapterNav.jsx'
@@ -301,7 +301,7 @@ function CursorHearts() {
 /* ── Petal rain ── */
 const PETAL_COUNT = 22
 function PetalRain() {
-  const petals = Array.from({ length: PETAL_COUNT }, (_, i) => ({
+  const petals = useMemo(() => Array.from({ length: PETAL_COUNT }, (_, i) => ({
     id: i,
     left: Math.random() * 100,
     delay: Math.random() * 12,
@@ -309,7 +309,7 @@ function PetalRain() {
     size: 10 + Math.random() * 14,
     rotate: Math.random() * 360,
     drift: -30 + Math.random() * 60,
-  }))
+  })), [])
   return (
     <div className="petal-rain" aria-hidden="true">
       {petals.map(({ id, left, delay, duration, size, rotate, drift }) => (
@@ -513,19 +513,26 @@ function Countdown520() {
 
 /* ── Floating particles ── */
 function Particles() {
-  const items = Array.from({ length: 10 }, (_, i) => i)
+  const items = useMemo(() => Array.from({ length: 10 }, (_, i) => ({
+    id: i,
+    left: Math.random() * 100,
+    delay: Math.random() * 8,
+    duration: 6 + Math.random() * 6,
+    size: 8 + Math.random() * 10,
+    opacity: 0.25 + Math.random() * 0.35,
+  })), [])
   return (
     <div className="particles" aria-hidden="true">
-      {items.map((i) => (
+      {items.map(({ id, left, delay, duration, size, opacity }) => (
         <span
-          key={i}
-          className={`particle ${i % 3 === 0 ? 'heart' : 'dot'}`}
+          key={id}
+          className={`particle ${id % 3 === 0 ? 'heart' : 'dot'}`}
           style={{
-            left: `${Math.random() * 100}%`,
-            animationDelay: `${Math.random() * 8}s`,
-            animationDuration: `${6 + Math.random() * 6}s`,
-            fontSize: `${8 + Math.random() * 10}px`,
-            opacity: 0.25 + Math.random() * 0.35,
+            left: `${left}%`,
+            animationDelay: `${delay}s`,
+            animationDuration: `${duration}s`,
+            fontSize: `${size}px`,
+            opacity,
           }}
         />
       ))}

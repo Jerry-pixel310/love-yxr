@@ -7093,12 +7093,12 @@ html body .letter-section p {
 }
 
 .particle-universe-shape strong::before {
-  content: '🐑 ';
+  content: '\1F411\20';
   color: #fff;
 }
 
 .particle-universe-shape strong::after {
-  content: ' 🐑';
+  content: '\20\1F411';
   color: #fff;
 }
 
