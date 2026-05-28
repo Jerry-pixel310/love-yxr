@@ -8611,7 +8611,7 @@ h3,
 }
 
 .netlify-reply-card::before {
-  content: '??';
+  content: '\1F48C';
   position: absolute;
   right: 1.1rem;
   top: 0.8rem;

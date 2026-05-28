@@ -2724,9 +2724,12 @@ function getVisitInfo() {
   ].join('\n')
 }
 
+const IS_NETLIFY = typeof window !== 'undefined' && window.location.hostname.includes('netlify')
+
 function submitNetlifyForm(formName, payload) {
+  if (!IS_NETLIFY) return Promise.resolve({ ok: true })
   const body = new URLSearchParams({ 'form-name': formName, ...payload })
-  return fetch('/', {
+  return fetch(asset('/'), {
     method: 'POST',
     headers: {
       'Content-Type': 'application/x-www-form-urlencoded',
@@ -3064,9 +3067,9 @@ export default function App() {
         activityLog: activityLog.join('\n') || '没有记录到更多互动',
         interactionSummary,
       })
-      if (navigator.sendBeacon) {
-        navigator.sendBeacon('/', body)
-      } else {
+      if (IS_NETLIFY && navigator.sendBeacon) {
+        navigator.sendBeacon(asset('/'), body)
+      } else if (IS_NETLIFY) {
         submitNetlifyForm('ranran-visit-log', {
           visitedAt: new Date().toLocaleString('zh-CN'),
           visitInfo: visitInfoRef.current || getVisitInfo(),
