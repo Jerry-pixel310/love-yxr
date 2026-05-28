@@ -7,6 +7,16 @@ import MusicButton from './components/letter/MusicButton.jsx'
 import PhotoCard from './components/letter/PhotoCard.jsx'
 import { MultiLangHeart, LoveDanmaku, LoveQuotePopups, CarePopups, HeartPetalTrail } from './components/effects/InteractiveEffects.jsx'
 
+const BASE = import.meta.env.BASE_URL.replace(/\/$/, '')
+const asset = (path) => `${BASE}${path}`
+
+// 预处理 letterConfig 中所有静态资源路径
+letterConfig.musicPath = asset(letterConfig.musicPath)
+letterConfig.memoryPhoto.src = asset(letterConfig.memoryPhoto.src)
+letterConfig.memoryVideo.src = asset(letterConfig.memoryVideo.src)
+letterConfig.iceRoseVideo = asset(letterConfig.iceRoseVideo)
+letterConfig.photos = letterConfig.photos.map((p) => ({ ...p, src: asset(p.src) }))
+
 /* ── Heart Burst overlay ── */
 const HEART_COUNT = 128
 const HEART_COLORS = ['#ff2f7d', '#ff5fa2', '#ff9fc5', '#ffd166', '#ffffff', '#ff477e', '#ffb3c1', '#ff006e']
@@ -1911,7 +1921,7 @@ function MemoryFilmStrip() {
     },
     {
       title: '游戏里发光的小羊',
-      src: '/images/ranran-game-mvp.jpg',
+      src: asset('/images/ranran-game-mvp.jpg'),
       caption: 'MVP 就是小羊，这一局太厉害了。',
       note: '你认真发光的时候，我会在屏幕这边偷偷骄傲很久。',
     },
@@ -3462,7 +3472,7 @@ export default function App() {
               <p>{letterConfig.memoryPhoto.caption}</p>
             </article>
             <article className="memory-photo-card">
-              <img src="/images/ranran-game-mvp.jpg" alt="小羊宝宝的王者 MVP" loading="lazy" decoding="async" />
+              <img src={asset('/images/ranran-game-mvp.jpg')} alt="小羊宝宝的王者 MVP" loading="lazy" decoding="async" />
               <p>MVP 就是小羊，这一局太厉害了。</p>
             </article>
           </div>
