@@ -13,8 +13,6 @@ const asset = (path) => `${BASE}${path}`
 // 预处理 letterConfig 中所有静态资源路径
 letterConfig.musicPath = asset(letterConfig.musicPath)
 letterConfig.memoryPhoto.src = asset(letterConfig.memoryPhoto.src)
-letterConfig.memoryVideo.src = asset(letterConfig.memoryVideo.src)
-letterConfig.iceRoseVideo = asset(letterConfig.iceRoseVideo)
 letterConfig.photos = letterConfig.photos.map((p) => ({ ...p, src: asset(p.src) }))
 
 /* ── Heart Burst overlay ── */
@@ -3405,10 +3403,10 @@ export default function App() {
 
         {/* Time capsule */}
         <section className="time-capsule-section fade-in-scroll">
-          <h3 className="section-title">{letterConfig.timeCapsuleTitle}</h3>
+          <h3 className="section-title">{letterConfig.capsuleCardTitle}</h3>
           <div className="time-capsule-card">
             <span className="time-capsule-icon">🕰️</span>
-            <p>{timeCapsuleOpen ? letterConfig.timeCapsuleText : letterConfig.timeCapsuleHint}</p>
+            <p>{timeCapsuleOpen ? letterConfig.capsuleCardText : letterConfig.capsuleCardHint}</p>
             {!timeCapsuleOpen && (
               <button
                 className="btn btn-soft"

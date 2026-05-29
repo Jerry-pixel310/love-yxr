@@ -148,9 +148,9 @@
     },
   ],
 
-  timeCapsuleTitle: '给未来冉冉宝宝的一颗时间胶囊',
-  timeCapsuleHint: '点开以后，会收到一封来自今天的温柔。',
-  timeCapsuleText: '未来某一天，如果小羊宝宝又看到这里，希望你还会记得：在这个 520，有一个人很认真地把喜欢写成网页，把《稻香》放进信里，把很多温柔都藏起来，只等你慢慢发现。',
+  capsuleCardTitle: '给未来冉冉宝宝的一颗时间胶囊',
+  capsuleCardHint: '点开以后，会收到一封来自今天的温柔。',
+  capsuleCardText: '未来某一天，如果小羊宝宝又看到这里，希望你还会记得：在这个 520，有一个人很认真地把喜欢写成网页，把《稻香》放进信里，把很多温柔都藏起来，只等你慢慢发现。',
 
   starTitle: '点亮 9 颗想你的星星',
   stars: [
@@ -249,11 +249,6 @@
     src: '/images/ranran-memory.jpg',
     caption: '把这一刻偷偷收藏起来。',
   },
-  memoryVideo: {
-    src: '/videos/ranran-memory-websafe-v2.mp4',
-    caption: '这是一段只给小羊宝宝看的小电影。',
-  },
-
   starUniverseTitle: '杨星冉的小宇宙',
   starUniverseSubtitle: '听说名字里有星星的人，本来就应该被温柔照亮。',
   starUniverseProgressText: '已点亮',
@@ -612,9 +607,7 @@
 
   iceRoseTitle: '送杨星冉宝宝一朵冰玫瑰',
   iceRoseSubtitle: '把温柔冻成会发光的花，慢慢开在只属于你的夜里。',
-  iceRoseButtonText: '打开冰玫瑰全屏特效',
   iceRoseNote: '蓝色是想念，粉色是喜欢，碎光都是我藏起来的心动。',
-  iceRoseVideo: '/videos/ice-rose-reference-websafe-v2.mp4',
 
   gaokaoTitle: '给小羊宝宝的高考加油站',
   gaokaoSubtitle: '高三的这一年，你一直在努力。我相信你，也在这里陪你。',
