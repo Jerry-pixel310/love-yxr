@@ -82,6 +82,31 @@ test('shows sheep confession ritual on final chapter', async () => {
   expect(screen.getByText('可以截图保存这一张小小的偏爱证明')).toBeTruthy()
 })
 
+test('shows HeartBurst overlay when heart burst button clicked', async () => {
+  await openChapter('最后一章')
+  fireEvent.click(screen.getByText('💗 再送宝宝一颗心'))
+  await new Promise((r) => setTimeout(r, 200))
+  expect(document.querySelector('.heart-burst-overlay')).toBeTruthy()
+}, 12000)
+
+test('ShakeFortune shows fortune after click', async () => {
+  await openChapter('打开小机关')
+  const shakeBtn = screen.getAllByText('点击摇一摇')[0]
+  fireEvent.click(shakeBtn)
+  await new Promise((r) => setTimeout(r, 900))
+  expect(document.querySelector('.shake-phone.has-fortune')).toBeTruthy()
+}, 12000)
+
+test('navigates to effects page and back', async () => {
+  await enterWithPassphrase()
+  fireEvent.click(screen.getByText('进入特效世界'))
+  await new Promise((r) => setTimeout(r, 2500))
+  expect(screen.getByText("Ranran's romantic universe")).toBeTruthy()
+  fireEvent.click(screen.getByText('← 返回情书'))
+  await new Promise((r) => setTimeout(r, 300))
+  expect(screen.getByText('先读这封信')).toBeTruthy()
+}, 12000)
+
 test('shows full interactive romance modules', async () => {
   await openChapter('打开小机关')
   expect(screen.getByText('520 心动小问答')).toBeTruthy()
