@@ -42,7 +42,7 @@ function HeartBurst({ onClose }) {
     }
   }, [phase, onClose])
 
-  const hearts = Array.from({ length: HEART_COUNT }, (_, i) => {
+  const hearts = useMemo(() => Array.from({ length: HEART_COUNT }, (_, i) => {
     const angle = (Math.PI * 2 * i) / HEART_COUNT
     const ring = i % 5
     const size = 12 + ring * 7 + Math.random() * 22
@@ -54,13 +54,13 @@ function HeartBurst({ onClose }) {
     const burstX = Math.cos(angle) * (42 + ring * 13)
     const burstY = Math.sin(angle) * (34 + ring * 10)
     return { size, left, delay, duration, color, rotate, burstX, burstY, id: i }
-  })
+  }), [])
 
-  const beams = Array.from({ length: 18 }, (_, i) => ({
+  const beams = useMemo(() => Array.from({ length: 18 }, (_, i) => ({
     id: i,
     rotate: i * 20,
     delay: (i % 6) * 0.08,
-  }))
+  })), [])
 
   const vows = ['小羊高考加油', '杜昊翔一直在想你', '你会闪闪发光', '你一定会去理想的地方']
 

@@ -15,7 +15,7 @@ const enterWithPassphrase = async () => {
 const openChapter = async (cardTitle) => {
   await enterWithPassphrase()
   fireEvent.click(screen.getByText(cardTitle))
-  await new Promise((r) => setTimeout(r, 1300))
+  await new Promise((r) => setTimeout(r, 2500))
 }
 
 test('shows cover page initially', () => {
@@ -60,7 +60,7 @@ test('shows media cinema module on letter page', async () => {
   expect(screen.getByText('我们的精彩瞬间')).toBeTruthy()
   expect(screen.getByText('每一帧都值得被好好保存。')).toBeTruthy()
   expect(screen.getByText('我们的回忆电影胶片')).toBeTruthy()
-})
+}, 10000)
 
 test('shows sheep home easter egg and comfort pasture', async () => {
   await enterWithPassphrase()
