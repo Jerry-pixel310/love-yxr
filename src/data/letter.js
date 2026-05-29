@@ -627,6 +627,41 @@
   gaokaoMissText: '虽然不在你身边，但每一天都在认真为你加油。',
   gaokaoExpectText: '希望你带着安心和勇气走进考场，也带着亮晶晶的笑容奔向理想。',
 
+  milestonesTitle: '小羊与我的专属时光轴',
+  milestonesSubtitle: '时间的每一次跳动，都帮我记着关于你的重要时刻。',
+  milestones: [
+    {
+      id: 'meet',
+      title: '我们初次相识',
+      date: '2026-05-18',
+      type: 'countup',
+      emoji: '✨',
+      prefix: '我们已经认识了',
+      suffix: '天',
+      note: '从那一天起，我的世界多了一份特别的期待。',
+    },
+    {
+      id: 'gaokao',
+      title: '小羊高考胜利纪念',
+      date: '2025-06-09',
+      type: 'countup',
+      emoji: '🎓',
+      prefix: '高考胜利已经过去了',
+      suffix: '天',
+      note: '那年的坚持与勇气，都变成了现在闪闪发光的你。',
+    },
+    {
+      id: 'next520',
+      title: '下一个 520 约定',
+      date: '2027-05-20',
+      type: 'countdown',
+      emoji: '💖',
+      prefix: '距离下一个 520 还有',
+      suffix: '天',
+      note: '不管时间走多远，我都想一直在你身边，岁岁年年。',
+    }
+  ],
+
   heartPopupTitle: '把想你拼成一颗心',
   heartPopupSubtitle: '如果喜欢可以被看见，我想让它铺满整个屏幕。',
   heartPopupButtonText: '点亮满屏心动',

@@ -15,6 +15,12 @@ letterConfig.musicPath = asset(letterConfig.musicPath)
 letterConfig.memoryPhoto.src = asset(letterConfig.memoryPhoto.src)
 letterConfig.photos = letterConfig.photos.map((p) => ({ ...p, src: asset(p.src) }))
 
+const globalAudio = typeof Audio !== 'undefined' ? new Audio(letterConfig.musicPath) : null
+if (globalAudio) {
+  globalAudio.loop = true
+  globalAudio.preload = 'auto'
+}
+
 /* ── Heart Burst overlay ── */
 const HEART_COUNT = 128
 const HEART_COLORS = ['#ff2f7d', '#ff5fa2', '#ff9fc5', '#ffd166', '#ffffff', '#ff477e', '#ffb3c1', '#ff006e']
@@ -1600,17 +1606,7 @@ function TimeCapsule({ config }) {
 }
 
 function GaokaoCheer({ config }) {
-  const [daysLeft, setDaysLeft] = useState(null)
   const [currentCheer, setCurrentCheer] = useState(0)
-
-  useEffect(() => {
-    const target = new Date(config.gaokaoDate)
-    target.setHours(0, 0, 0, 0)
-    const today = new Date()
-    today.setHours(0, 0, 0, 0)
-    const diff = Math.ceil((target - today) / (1000 * 60 * 60 * 24))
-    setDaysLeft(diff)
-  }, [config.gaokaoDate])
 
   const nextCheer = () => {
     setCurrentCheer((prev) => (prev + 1) % config.gaokaoCheers.length)
@@ -1618,40 +1614,70 @@ function GaokaoCheer({ config }) {
 
   const cheer = config.gaokaoCheers[currentCheer]
 
-  let statusText = ''
-  if (daysLeft === 1) statusText = config.gaokaoDayBeforeText
-  else if (daysLeft === 0) statusText = config.gaokaoTodayText
-  else if (daysLeft > 0) statusText = `${config.gaokaoCountdownPrefix} ${daysLeft} ${config.gaokaoCountdownSuffix}`
-  else statusText = '高考已经结束，新的旅程开始了。'
+  // 计算时光轴天数
+  const getDaysValue = (dateStr, type) => {
+    const target = new Date(dateStr)
+    target.setHours(0, 0, 0, 0)
+    const today = new Date()
+    today.setHours(0, 0, 0, 0)
+    if (type === 'countdown') {
+      const diff = Math.ceil((target - today) / (1000 * 60 * 60 * 24))
+      return Math.max(0, diff)
+    } else {
+      const diff = Math.floor((today - target) / (1000 * 60 * 60 * 24))
+      return Math.max(0, diff)
+    }
+  }
 
   return (
-    <section className="gaokao-section fade-in-scroll">
-      <h3 className="section-title">{config.gaokaoTitle}</h3>
-      <p className="gaokao-subtitle">{config.gaokaoSubtitle}</p>
-
-      <div className="gaokao-countdown">
-        <div className="gaokao-countdown-number">{daysLeft !== null ? Math.max(0, daysLeft) : '--'}</div>
-        <div className="gaokao-countdown-label">{statusText}</div>
+    <section className="gaokao-section milestones-section fade-in-scroll">
+      {/* 全新里程碑时光轴 */}
+      <div className="milestones-header">
+        <h3 className="section-title">{config.milestonesTitle}</h3>
+        <p className="gaokao-subtitle">{config.milestonesSubtitle}</p>
       </div>
 
-      <div className="gaokao-card">
-        <div className="gaokao-cheer">
-          <span className="gaokao-emoji">{cheer.emoji}</span>
-          <p className="gaokao-cheer-text">{cheer.text}</p>
-        </div>
-        <button className="btn gaokao-next-btn" onClick={nextCheer} type="button">
-          换一句加油
-        </button>
+      <div className="milestones-grid">
+        {(config.milestones || []).map((ms) => {
+          const days = getDaysValue(ms.date, ms.type)
+          return (
+            <article key={ms.id} className={`milestone-card type-${ms.type}`}>
+              <div className="milestone-badge" aria-hidden="true">{ms.emoji}</div>
+              <h4 className="milestone-title">{ms.title}</h4>
+              <div className="milestone-counter">
+                <span className="milestone-prefix">{ms.prefix}</span>
+                <strong className="milestone-number">{days}</strong>
+                <span className="milestone-suffix">{ms.suffix}</span>
+              </div>
+              <p className="milestone-note">{ms.note}</p>
+            </article>
+          )
+        })}
       </div>
 
-      <div className="gaokao-messages">
-        <div className="gaokao-message">
-          <span className="gaokao-message-icon">💌</span>
-          <p>{config.gaokaoMissText}</p>
+      {/* 原高考加油挂载，完美保留功能与测试断言兼容 */}
+      <div className="gaokao-legacy-divider" aria-hidden="true" />
+      <div className="gaokao-legacy-station">
+        <h4 className="legacy-station-title">✨ 小羊宝宝的暖心鼓励站</h4>
+        <div className="gaokao-card">
+          <div className="gaokao-cheer">
+            <span className="gaokao-emoji">{cheer.emoji}</span>
+            <p className="gaokao-cheer-text">{cheer.text}</p>
+          </div>
+          <button className="btn gaokao-next-btn" onClick={nextCheer} type="button">
+            换一句加油
+          </button>
         </div>
-        <div className="gaokao-message">
-          <span className="gaokao-message-icon">🌟</span>
-          <p>{config.gaokaoExpectText}</p>
+
+        <div className="gaokao-messages">
+          <div className="gaokao-message">
+            <span className="gaokao-message-icon">💌</span>
+            <p>{config.gaokaoMissText}</p>
+          </div>
+          <div className="gaokao-message">
+            <span className="gaokao-message-icon">🌟</span>
+            <p>{config.gaokaoExpectText}</p>
+          </div>
         </div>
       </div>
     </section>
@@ -1710,12 +1736,62 @@ function SheepComfortPasture() {
     '小羊可以慢慢来，我一直在这里陪你。',
     '害怕的时候就看看星星，它们和我都站在你这边。',
   ]
+
+  const feedQuotes = [
+    '咩~ (小羊在草地上开心地打了个滚！)',
+    '草草甜甜的，像杜昊翔一样甜~ 🌱',
+    '（小羊把头埋进你手心里，使劲贴贴你）',
+    '咩~ 吃饱了就有勇气去面对世界啦！',
+    '小羊向你发射了一颗巨大的爱心 💖',
+    '（小羊嚼着草，眼睛亮晶晶地看着你）',
+    '杜昊翔，今天也想你，咩~',
+  ]
+
   const [messageIndex, setMessageIndex] = useState(0)
   const [activeMoment, setActiveMoment] = useState('小羊可以慢慢来，我一直在。')
+  const [latestReply, setLatestReply] = useState(() => localStorage.getItem('ranran_latest_reply'))
+
+  // Tamagotchi States
+  const [heartPoints, setHeartPoints] = useState(0)
+  const [sheepState, setSheepState] = useState('idle') // idle | bounce | spin | wiggle
+  const [fallingItems, setFallingHearts] = useState([]) // 喂食下落草叶粒子
+
+  useEffect(() => {
+    const handleUpdate = (e) => {
+      setLatestReply(e.detail)
+    }
+    window.addEventListener('ranran_reply_updated', handleUpdate)
+    return () => window.removeEventListener('ranran_reply_updated', handleUpdate)
+  }, [])
 
   const nextComfort = () => {
+    // 摸摸小羊
+    setSheepState('wiggle')
+    setTimeout(() => setSheepState('idle'), 800)
     setMessageIndex((index) => (index + 1) % comfortMessages.length)
     setActiveMoment(comfortMessages[(messageIndex + 1) % comfortMessages.length])
+  }
+
+  const handleFeed = () => {
+    // 喂小羊吃草
+    setSheepState('bounce')
+    setTimeout(() => setSheepState('idle'), 600)
+    setHeartPoints((pts) => pts + 1)
+
+    // 生成两个漂浮下落草叶粒子
+    const id = Date.now()
+    const newItems = [
+      { id: id + 1, left: 30 + Math.random() * 40, type: '🌱' },
+      { id: id + 2, left: 30 + Math.random() * 40, type: '💖' },
+    ]
+    setFallingHearts((current) => [...current, ...newItems])
+    setTimeout(() => {
+      setFallingHearts((current) => current.filter((item) => item.id !== id + 1 && item.id !== id + 2))
+    }, 1500)
+
+    // 随机回复
+    const quote = heartPoints >= 4 ? '🐑 小羊吃得饱饱的，想一辈子赖在杜昊翔的怀里，咩~' : feedQuotes[Math.floor(Math.random() * feedQuotes.length)]
+    setActiveMoment(quote)
   }
 
   return (
@@ -1725,35 +1801,70 @@ function SheepComfortPasture() {
         <span className="sheep-pasture-star star-two" />
         <span className="sheep-pasture-star star-three" />
       </div>
+
       <div className="sheep-pasture-copy">
         <span className="sheep-kicker">Little Sheep Pasture</span>
         <h3 className="section-title">小羊宝宝的安心牧场</h3>
         <p>这里不是催你一定要立刻变得很厉害。这里只是想告诉你，小羊可以慢慢来。累了就靠一靠，害怕了就听我说：你已经很棒了。</p>
       </div>
+
       <div className="sheep-pasture-stage">
+        {/* 1. 思念便利贴 / 悄悄话气泡 */}
+        <div className="pasture-sticky-note floating-sticky">
+          <span className="sticky-pin">📌</span>
+          <span className="sticky-title">冉冉宝宝的思念贴</span>
+          <p className="sticky-text">
+            {latestReply ? `“ ${latestReply} ”` : '“ 今天也有好好想你哦 🐏✨ ”'}
+          </p>
+        </div>
+
+        {/* 下落草叶/爱心动画 */}
+        {fallingItems.map((item) => (
+          <span key={item.id} className="falling-heart-grass" style={{ left: `${item.left}%` }}>
+            {item.type}
+          </span>
+        ))}
+
         <button className="sheep-moon" type="button" onClick={() => setActiveMoment('小羊今晚要好好睡觉，明天也会闪闪发光。')}>
           月亮晚安
         </button>
         <button className="sheep-star-button sheep-star-left" type="button" onClick={() => setActiveMoment('这颗星星替我给你加油。')}>
           ⭐
         </button>
-        <button className="sheep-star-button sheep-star-right" type="button" onClick={() => setActiveMoment('小羊一定会走到很亮很亮的地方。')}>
+        <button className="sheep-star-button sheep-star-right" type="button" onClick={() => {
+          setSheepState('spin')
+          setTimeout(() => setSheepState('idle'), 1000)
+          setActiveMoment('小羊一定会走到很亮很亮的地方。')
+        }}>
           ✨
         </button>
-        <button className="sheep-pasture-sheep" type="button" onClick={nextComfort} aria-label="摸摸小羊">
+
+        {/* 摸摸小羊 */}
+        <button className={`sheep-pasture-sheep anim-${sheepState}`} type="button" onClick={nextComfort} aria-label="摸摸小羊">
           <SheepFigure className="sheep-pasture-figure" />
         </button>
+
         <div className="sheep-pasture-grass" aria-hidden="true">
           <span />
           <span />
           <span />
         </div>
       </div>
+
       <div className="sheep-pasture-message">
-        <strong>{activeMoment}</strong>
-        <button className="btn btn-soft sheep-hug-btn" type="button" onClick={() => setActiveMoment('抱抱小羊宝宝，今天也被我认真喜欢着。')}>
-          抱抱小羊
-        </button>
+        <div className="sheep-pasture-bubble">
+          <div className="bubble-tail" />
+          <strong>{activeMoment}</strong>
+        </div>
+
+        <div className="pasture-controls">
+          <button className="btn btn-soft sheep-hug-btn" type="button" onClick={() => setActiveMoment('抱抱小羊宝宝，今天也被我认真喜欢着。')}>
+            抱抱小羊
+          </button>
+          <button className="btn btn-feed" type="button" onClick={handleFeed}>
+            🌱 喂小羊吃草 (已喂 {heartPoints} 次)
+          </button>
+        </div>
       </div>
     </section>
   )
@@ -2764,6 +2875,8 @@ function NetlifyReplyForm({ summary, visitInfo, activityLog }) {
       })
 
       if (!response.ok) throw new Error('submit failed')
+      localStorage.setItem('ranran_latest_reply', message)
+      window.dispatchEvent(new CustomEvent('ranran_reply_updated', { detail: message }))
       setStatus('sent')
       setMessage('')
     } catch {
@@ -2907,6 +3020,50 @@ function ChapterEntryEffect({ effect }) {
 
 export default function App() {
   const [page, setPage] = useState('cover') // cover | gate | transition | home | letter | memory | gaokao | play | effects | final
+  const [isPlaying, setIsPlaying] = useState(false)
+  const [isNightMode, setIsNightMode] = useState(() => {
+    const hr = new Date().getHours()
+    return hr >= 22 || hr < 5
+  })
+
+  const toggleNightMode = useCallback(() => {
+    setIsNightMode((night) => !night)
+  }, [])
+
+  useEffect(() => {
+    if (!globalAudio) return undefined
+    const onPlay = () => setIsPlaying(true)
+    const onPause = () => setIsPlaying(false)
+    globalAudio.addEventListener('play', onPlay)
+    globalAudio.addEventListener('pause', onPause)
+    // 如果已经在放，同步状态
+    if (!globalAudio.paused) {
+      setIsPlaying(true)
+    }
+    return () => {
+      globalAudio.removeEventListener('play', onPlay)
+      globalAudio.removeEventListener('pause', onPause)
+    }
+  }, [])
+
+  const toggleMusic = useCallback(async () => {
+    if (!globalAudio) return
+    if (isPlaying) {
+      globalAudio.pause()
+    } else {
+      try {
+        await globalAudio.play()
+      } catch (_) {}
+    }
+  }, [isPlaying])
+
+  const forcePlayMusic = useCallback(async () => {
+    if (!globalAudio) return
+    try {
+      await globalAudio.play()
+    } catch (_) {}
+  }, [])
+
   const [input, setInput] = useState('')
   const [error, setError] = useState('')
   const [showEasterEgg, setShowEasterEgg] = useState(false)
@@ -2991,6 +3148,7 @@ export default function App() {
   const handleOpenClick = () => {
     recordActivity('点击打开信封封面')
     setPage('gate')
+    forcePlayMusic()
   }
 
   const handleSubmit = (e) => {
@@ -3002,6 +3160,7 @@ export default function App() {
       setTimeout(() => setPage('home'), 2000)
       setConfessionDone(false)
       setConfessionOpen(false)
+      forcePlayMusic()
     } else {
       recordActivity(`尝试输入暗号失败：${input.trim() || '空'}`)
       setError(letterConfig.gateErrorText)
@@ -3087,17 +3246,17 @@ export default function App() {
   /* ── Effects showcase page ── */
   if (page === 'effects') {
     return (
-      <>
+      <div className={isNightMode ? 'theme-night' : ''} style={{ minHeight: '100vh', display: 'flex', flexDirection: 'column' }}>
         <EffectsShowcase config={letterConfig} onBack={() => goToPage('home')} />
         <ChapterEntryEffect effect={chapterTransition} />
-      </>
+      </div>
     )
   }
 
   /* ── Cover page ── */
   if (page === 'cover') {
     return (
-      <div className="page cover-page">
+      <div className={`page cover-page ${isNightMode ? 'theme-night' : ''}`}>
         <Particles />
         <div className="envelope-wrapper fade-in">
           <div className="envelope">
@@ -3120,7 +3279,7 @@ export default function App() {
   /* ── Gate (passphrase) page ── */
   if (page === 'gate') {
     return (
-      <div className="page gate-page">
+      <div className={`page gate-page ${isNightMode ? 'theme-night' : ''}`}>
         <Particles />
         <div className="gate-card fade-in">
           <div className="envelope-mini">💌</div>
@@ -3158,7 +3317,7 @@ export default function App() {
   /* ── Transition (envelope opening) ── */
   if (page === 'transition') {
     return (
-      <div className="page transition-page">
+      <div className={`page transition-page ${isNightMode ? 'theme-night' : ''}`}>
         <Particles />
         <div className="envelope-opening">
           <div className="envelope envelope-open">
@@ -3187,7 +3346,7 @@ export default function App() {
     ]
 
     return (
-      <div className="page letter-page home-page">
+      <div className={`page letter-page home-page ${isNightMode ? 'theme-night' : ''}`}>
         <Particles />
         <div className="letter-atmosphere" aria-hidden="true">
           <span className="atmosphere-glow glow-one" />
@@ -3195,13 +3354,16 @@ export default function App() {
           <span className="atmosphere-meteor meteor-one" />
           <span className="atmosphere-meteor meteor-two" />
         </div>
-        <MusicButton musicPath={letterConfig.musicPath} buttonText={letterConfig.musicButtonText} />
+        <MusicButton isPlaying={isPlaying} onToggle={toggleMusic} buttonText={letterConfig.musicButtonText} />
         <ChapterNav activeChapter={page} onNavigate={goToPage} />
         <main className="home-directory">
           <section className="home-hero fade-in">
             <span className="home-kicker">Ranran's Love Letter</span>
             <h1>每一页，都是写给你的心动</h1>
             <p>我把想给你的话，分成了几间小小的房间。你想先去哪里，就轻轻点开哪里。</p>
+            <button className="night-mode-toggle-pill" onClick={toggleNightMode} type="button">
+              {isNightMode ? '🌙 极光夜深模式已开启（听着《稻香》做个好梦吧）' : '☀️ 切换为极光温软夜晚'}
+            </button>
           </section>
           <section className="home-chapter-grid" aria-label="章节目录">
             {homeCards.map((card) => (
@@ -3226,7 +3388,7 @@ export default function App() {
 
   /* ── Letter page ── */
   return (
-    <div className={`page letter-page chapter-page chapter-page-${page}`}>
+    <div className={`page letter-page chapter-page chapter-page-${page} ${isNightMode ? 'theme-night' : ''}`}>
       <Particles />
       <div className="letter-atmosphere" aria-hidden="true">
         <span className="atmosphere-glow glow-one" />
@@ -3236,7 +3398,7 @@ export default function App() {
       </div>
 
       {/* Music */}
-      <MusicButton musicPath={letterConfig.musicPath} buttonText={letterConfig.musicButtonText} />
+      <MusicButton isPlaying={isPlaying} onToggle={toggleMusic} buttonText={letterConfig.musicButtonText} />
       <ChapterNav activeChapter={page} onNavigate={goToPage} />
 
       {/* Opening */}
