@@ -1,0 +1,23 @@
+{
+  "name": "给小羊宝宝的一封信",
+  "short_name": "小羊的信",
+  "description": "一封专门为杨星冉宝宝写的浪漫网页信",
+  "start_url": "/love-yxr/",
+  "scope": "/love-yxr/",
+  "display": "standalone",
+  "background_color": "#0d0720",
+  "theme_color": "#ff2f7d",
+  "lang": "zh-CN",
+  "icons": [
+    {
+      "src": "/love-yxr/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/love-yxr/icon-512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ]
+}
