@@ -9791,4 +9791,223 @@ h3,
 }
 
 
+/* ── 5.29 Interaction & Convenience Upgrades — PWA & Meteor & Swiping ── */
+
+/* PWA 桌面添加下载胶囊 */
+.pwa-install-pill {
+  display: inline-flex;
+  margin: 1.2rem auto 0;
+  background: linear-gradient(135deg, #ff2f7d, #ff6392);
+  border: none;
+  color: #fff;
+  padding: 0.62rem 1.4rem;
+  border-radius: 999px;
+  font-size: 0.86rem;
+  font-weight: 700;
+  cursor: pointer;
+  align-items: center;
+  gap: 0.5rem;
+  box-shadow: 0 8px 24px rgba(255, 47, 125, 0.35);
+  transition: all 0.3s cubic-bezier(0.165, 0.84, 0.44, 1);
+  font-family: var(--font-soft);
+  z-index: 10;
+}
+.pwa-install-pill:hover {
+  transform: translateY(-2px) scale(1.03);
+  box-shadow: 0 12px 30px rgba(255, 47, 125, 0.5);
+}
+.animate-bounce-gentle {
+  animation: bounceGentle 2.2s ease-in-out infinite;
+}
+@keyframes bounceGentle {
+  0%, 100% { transform: translateY(0); }
+  50% { transform: translateY(-8px); }
+}
+
+/* iOS 专属添加指导模态框 */
+.ios-install-backdrop {
+  position: fixed;
+  inset: 0;
+  background: rgba(4, 8, 20, 0.88);
+  backdrop-filter: blur(8px);
+  z-index: 100000;
+  display: grid;
+  place-items: center;
+  padding: 1.2rem;
+  animation: fadeIn 0.3s ease both;
+}
+.ios-install-card {
+  position: relative;
+  background: radial-gradient(circle at 50% 0%, #151d35 0%, #0c0f1e 100%);
+  border: 1px solid rgba(255, 255, 255, 0.08);
+  border-radius: 28px;
+  padding: 2.2rem 1.8rem;
+  width: min(100%, 380px);
+  text-align: center;
+  box-shadow: 0 30px 80px rgba(0,0,0,0.5), 0 0 50px rgba(255,47,125,0.15);
+  animation: scaleIn 0.36s cubic-bezier(0.175, 0.885, 0.32, 1.275) both;
+}
+.ios-install-close {
+  position: absolute;
+  top: 1rem;
+  right: 1rem;
+  background: none;
+  border: none;
+  color: rgba(255,255,255,0.4);
+  font-size: 1.8rem;
+  cursor: pointer;
+  transition: color 0.2s;
+}
+.ios-install-close:hover {
+  color: #fff;
+}
+.ios-install-lamb {
+  font-size: 3.5rem;
+  display: block;
+  margin-bottom: 0.6rem;
+  filter: drop-shadow(0 0 15px rgba(255, 47, 125, 0.3));
+}
+.ios-install-card h4 {
+  font-family: var(--font-soft);
+  color: #fff;
+  font-size: 1.3rem;
+  margin-bottom: 0.8rem;
+}
+.ios-install-card p {
+  font-size: 0.88rem;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.5;
+  margin-bottom: 1.5rem;
+}
+.ios-install-steps {
+  text-align: left;
+  padding-left: 1.2rem;
+  margin-bottom: 1.8rem;
+}
+.ios-install-steps li {
+  font-size: 0.86rem;
+  color: rgba(255,255,255,0.8);
+  line-height: 1.6;
+  margin-bottom: 0.8rem;
+}
+.ios-install-steps strong {
+  color: #ff5fa2;
+}
+.ios-install-btn {
+  width: 100%;
+  border-radius: 99px;
+  padding: 0.75rem !important;
+}
+
+/* 流星戳戳乐许愿池 */
+.interactive-meteors-container {
+  position: absolute;
+  inset: 0;
+  z-index: 4;
+  pointer-events: none;
+}
+.tappable-meteor {
+  pointer-events: auto !important;
+  cursor: pointer;
+  transition: transform 0.2s;
+}
+.tappable-meteor:hover {
+  filter: brightness(1.5) drop-shadow(0 0 12px #ff2f7d);
+}
+
+/* 四个交叉流星轨道与延时 */
+.tappable-meteor.m-one {
+  top: 15%;
+  left: 20%;
+  animation: meteorMoveOne 8s linear infinite;
+}
+.tappable-meteor.m-two {
+  top: 30%;
+  left: 65%;
+  animation: meteorMoveTwo 12s linear infinite 2s;
+}
+.tappable-meteor.m-three {
+  top: 5%;
+  left: 80%;
+  animation: meteorMoveThree 15s linear infinite 5s;
+}
+.tappable-meteor.m-four {
+  top: 45%;
+  left: 10%;
+  animation: meteorMoveFour 10s linear infinite 1s;
+}
+
+@keyframes meteorMoveOne {
+  0% { transform: translate(300px, -150px) rotate(-15deg) scale(0.6); opacity: 0; }
+  5% { opacity: 0.8; }
+  20% { transform: translate(-300px, 150px) rotate(-15deg) scale(1.2); opacity: 0; }
+  100% { transform: translate(-300px, 150px) rotate(-15deg) scale(1.2); opacity: 0; }
+}
+@keyframes meteorMoveTwo {
+  0% { transform: translate(400px, -200px) rotate(-20deg) scale(0.5); opacity: 0; }
+  5% { opacity: 0.7; }
+  18% { transform: translate(-400px, 200px) rotate(-20deg) scale(1.1); opacity: 0; }
+  100% { transform: translate(-400px, 200px) rotate(-20deg) scale(1.1); opacity: 0; }
+}
+@keyframes meteorMoveThree {
+  0% { transform: translate(250px, -250px) rotate(-35deg) scale(0.4); opacity: 0; }
+  5% { opacity: 0.6; }
+  15% { transform: translate(-250px, 250px) rotate(-35deg) scale(1.0); opacity: 0; }
+  100% { transform: translate(-250px, 250px) rotate(-35deg) scale(1.0); opacity: 0; }
+}
+@keyframes meteorMoveFour {
+  0% { transform: translate(350px, -100px) rotate(-10deg) scale(0.7); opacity: 0; }
+  5% { opacity: 0.9; }
+  22% { transform: translate(-350px, 100px) rotate(-10deg) scale(1.3); opacity: 0; }
+  100% { transform: translate(-350px, 100px) rotate(-10deg) scale(1.3); opacity: 0; }
+}
+
+/* 戳破小心心粒子爆炸 */
+.meteor-burst-spark {
+  position: fixed;
+  font-size: 1.5rem;
+  pointer-events: none;
+  z-index: 10000;
+  animation: meteorSparkle 0.82s cubic-bezier(0.25, 0.46, 0.45, 0.94) both;
+}
+@keyframes meteorSparkle {
+  0% { transform: translate(0, 0) scale(0.4); opacity: 0; }
+  15% { opacity: 1; }
+  100% { transform: translate(var(--dx), var(--dy)) scale(1.4); opacity: 0; }
+}
+
+/* 许愿 Toast 提示框 */
+.meteor-wish-toast {
+  position: fixed;
+  bottom: 5.5rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background: linear-gradient(135deg, rgba(255, 47, 125, 0.94), rgba(121, 40, 202, 0.94));
+  border: 1px solid rgba(255,255,255,0.18);
+  padding: 0.85rem 1.6rem;
+  border-radius: 99px;
+  box-shadow: 0 15px 45px rgba(255, 47, 125, 0.35), 0 0 20px rgba(0,242,254,0.15);
+  z-index: 10005;
+  pointer-events: none;
+  animation: wishToastIn 0.32s cubic-bezier(0.175, 0.885, 0.32, 1.15) both, wishToastOut 0.4s ease-in both 2.4s;
+  width: max-content;
+  max-width: min(90vw, 420px);
+  text-align: center;
+}
+.meteor-wish-toast strong {
+  font-family: var(--font-soft);
+  color: #fff;
+  font-size: 0.96rem;
+  text-shadow: 0 1px 4px rgba(0,0,0,0.15);
+}
+@keyframes wishToastIn {
+  0% { opacity: 0; transform: translate(-50%, 20px) scale(0.9); }
+  100% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+}
+@keyframes wishToastOut {
+  0% { opacity: 1; transform: translate(-50%, 0) scale(1); }
+  100% { opacity: 0; transform: translate(-50%, -20px) scale(0.9); }
+}
+
+
 

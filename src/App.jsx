@@ -21,6 +21,114 @@ if (globalAudio) {
   globalAudio.preload = 'auto'
 }
 
+/* ── Interactive Tappable Meteors ── */
+function InteractiveMeteors() {
+  const wishes = [
+    '✨ 愿望成真！小羊宝宝今天也超级幸运~',
+    '🌟 抓住流星！杜昊翔比昨天更喜欢你一点~',
+    '💖 许愿：杨星冉宝宝要永远被温柔宠爱围住！',
+    '🌸 叮！小羊宝宝获得了一整天的心动加成！',
+    '🐑 （小羊在草地上打个滚，并祝你天天开心）',
+    '⭐ 所有的星星都在偷偷告诉你：杨星冉最特别。'
+  ]
+
+  const [activeToast, setActiveToast] = useState(null)
+  const [toastTimer, setToastTimer] = useState(null)
+  const [sparks, setSparks] = useState([])
+
+  const handleMeteorClick = (e, wishText) => {
+    e.preventDefault()
+    e.stopPropagation()
+
+    // 确定点击坐标，支持触屏和鼠标
+    let x = 0, y = 0
+    if (e.touches && e.touches.length > 0) {
+      x = e.touches[0].clientX
+      y = e.touches[0].clientY
+    } else {
+      x = e.clientX
+      y = e.clientY
+    }
+
+    if (!x || !y) {
+      const rect = e.currentTarget.getBoundingClientRect()
+      x = rect.left + rect.width / 2
+      y = rect.top + rect.height / 2
+    }
+
+    // 触发心形星光粒子爆炸
+    const id = Date.now()
+    const count = 12
+    const newSparks = Array.from({ length: count }, (_, i) => {
+      const angle = (Math.PI * 2 * i) / count
+      const distance = 40 + Math.random() * 50
+      return {
+        id: id + i,
+        dx: Math.cos(angle) * distance,
+        dy: Math.sin(angle) * distance,
+        x,
+        y
+      }
+    })
+    setSparks((current) => [...current, ...newSparks])
+    setTimeout(() => {
+      setSparks((current) => current.filter((s) => !newSparks.some((ns) => ns.id === s.id)))
+    }, 1000)
+
+    // 弹出 Toast 文字
+    if (toastTimer) clearTimeout(toastTimer)
+    setActiveToast(wishText)
+    const timer = setTimeout(() => {
+      setActiveToast(null)
+    }, 2800)
+    setToastTimer(timer)
+  }
+
+  const meteorsData = [
+    { id: 'm1', className: 'm-one', wish: wishes[0] },
+    { id: 'm2', className: 'm-two', wish: wishes[1] },
+    { id: 'm3', className: 'm-three', wish: wishes[2] },
+    { id: 'm4', className: 'm-four', wish: wishes[3] },
+  ]
+
+  return (
+    <div className="interactive-meteors-container" aria-hidden="true">
+      {/* 渲染飞舞流星 */}
+      {meteorsData.map((m) => (
+        <span
+          key={m.id}
+          className={`atmosphere-meteor tappable-meteor ${m.className}`}
+          onClick={(e) => handleMeteorClick(e, m.wish)}
+          onTouchStart={(e) => handleMeteorClick(e, m.wish)}
+        />
+      ))}
+
+      {/* 戳破小心心粒子 */}
+      {sparks.map((s) => (
+        <span
+          key={s.id}
+          className="meteor-burst-spark"
+          style={{
+            left: s.x,
+            top: s.y,
+            '--dx': `${s.dx}px`,
+            '--dy': `${s.dy}px`
+          }}
+        >
+          💖
+        </span>
+      ))}
+
+      {/* 许愿 Toast */}
+      {activeToast && (
+        <div className="meteor-wish-toast">
+          <strong>{activeToast}</strong>
+        </div>
+      )}
+    </div>
+  )
+}
+
 /* ── Heart Burst overlay ── */
 const HEART_COUNT = 128
 const HEART_COLORS = ['#ff2f7d', '#ff5fa2', '#ff9fc5', '#ffd166', '#ffffff', '#ff477e', '#ffb3c1', '#ff006e']
@@ -3026,6 +3134,76 @@ export default function App() {
     return hr >= 22 || hr < 5
   })
 
+  // PWA & iOS install state
+  const [deferredPrompt, setDeferredPrompt] = useState(null)
+  const [showInstallPill, setShowInstallPill] = useState(false)
+  const [showIosTip, setShowIosTip] = useState(false)
+
+  useEffect(() => {
+    const handlePrompt = (e) => {
+      e.preventDefault()
+      setDeferredPrompt(e)
+      setShowInstallPill(true)
+    }
+    window.addEventListener('beforeinstallprompt', handlePrompt)
+
+    // 检测是否已经在独立 PWA 窗口启动
+    const isStandalone = (window.matchMedia && window.matchMedia('(display-mode: standalone)').matches) || window.navigator.standalone
+    const isIos = /iPad|iPhone|iPod/.test(navigator.userAgent) && !window.MSStream
+    if (isIos && !isStandalone) {
+      setShowInstallPill(true)
+    }
+
+    return () => window.removeEventListener('beforeinstallprompt', handlePrompt)
+  }, [])
+
+  const handleInstallClick = async () => {
+    if (deferredPrompt) {
+      deferredPrompt.prompt()
+      const { outcome } = await deferredPrompt.userChoice
+      if (outcome === 'accepted') {
+        setDeferredPrompt(null)
+        setShowInstallPill(false)
+      }
+    } else {
+      setShowIosTip(true)
+    }
+  }
+
+  // Horizontal Swipe Gestures to turn chapters
+  const touchStartX = useRef(0)
+  const touchStartY = useRef(0)
+
+  const handleTouchStart = (e) => {
+    touchStartX.current = e.touches[0].clientX
+    touchStartY.current = e.touches[0].clientY
+  }
+
+  const handleTouchEnd = (e, currentChapter) => {
+    const diffX = e.changedTouches[0].clientX - touchStartX.current
+    const diffY = e.changedTouches[0].clientY - touchStartY.current
+
+    // 水平滑动阈值：75px，垂直位移不超过 50px 防止滚动对角线误触
+    if (Math.abs(diffX) > 75 && Math.abs(diffY) < 50) {
+      const chapters = ['letter', 'memory', 'gaokao', 'play', 'final']
+      const currentIndex = chapters.indexOf(currentChapter)
+
+      if (diffX < 0) {
+        // 向左划：下一章
+        if (currentIndex !== -1 && currentIndex < chapters.length - 1) {
+          goToPage(chapters[currentIndex + 1])
+        }
+      } else {
+        // 向右划：前一章或回到主页
+        if (currentIndex > 0) {
+          goToPage(chapters[currentIndex - 1])
+        } else if (currentIndex === 0) {
+          goToPage('home')
+        }
+      }
+    }
+  }
+
   const toggleNightMode = useCallback(() => {
     setIsNightMode((night) => !night)
   }, [])
@@ -3351,8 +3529,7 @@ export default function App() {
         <div className="letter-atmosphere" aria-hidden="true">
           <span className="atmosphere-glow glow-one" />
           <span className="atmosphere-glow glow-two" />
-          <span className="atmosphere-meteor meteor-one" />
-          <span className="atmosphere-meteor meteor-two" />
+          <InteractiveMeteors />
         </div>
         <MusicButton isPlaying={isPlaying} onToggle={toggleMusic} buttonText={letterConfig.musicButtonText} />
         <ChapterNav activeChapter={page} onNavigate={goToPage} />
@@ -3364,6 +3541,13 @@ export default function App() {
             <button className="night-mode-toggle-pill" onClick={toggleNightMode} type="button">
               {isNightMode ? '🌙 极光夜深模式已开启（听着《稻香》做个好梦吧）' : '☀️ 切换为极光温软夜晚'}
             </button>
+
+            {/* PWA 桌面添加下载胶囊 */}
+            {showInstallPill && (
+              <button className="pwa-install-pill animate-bounce-gentle" onClick={handleInstallClick} type="button">
+                🐑 把小羊的信保存到手机桌面（随时离线阅读）
+              </button>
+            )}
           </section>
           <section className="home-chapter-grid" aria-label="章节目录">
             {homeCards.map((card) => (
@@ -3382,19 +3566,48 @@ export default function App() {
         <PetalRain />
         <SheepHomeEasterEgg />
         <ChapterEntryEffect effect={chapterTransition} />
+
+        {/* iOS 桌面添加弹窗教学引导 */}
+        {showIosTip && (
+          <div className="ios-install-backdrop" onClick={() => setShowIosTip(false)} role="dialog" aria-modal="true">
+            <div className="ios-install-card" onClick={(e) => e.stopPropagation()}>
+              <button className="ios-install-close" onClick={() => setShowIosTip(false)}>×</button>
+              <span className="ios-install-lamb">🐑</span>
+              <h4>添加“小羊的信”到手机桌面</h4>
+              <p>为了获得像原生 App 一样全屏、不卡顿且支持离线阅读的完美体验，你可以：</p>
+              <ol className="ios-install-steps">
+                <li>
+                  点击手机 Safari 浏览器底部的<strong>分享按钮</strong>（一个带箭头的正方形 📤）
+                </li>
+                <li>
+                  在弹出的菜单中下滑，选择<strong>“添加到主屏幕” (Add to Home Screen)</strong> ➕
+                </li>
+                <li>
+                  点击右上角<strong>“添加”</strong>，就可以随时在桌面点开我的信啦！
+                </li>
+              </ol>
+              <button className="btn btn-primary ios-install-btn" onClick={() => setShowIosTip(false)}>
+                我知道啦，去试试！
+              </button>
+            </div>
+          </div>
+        )}
       </div>
     )
   }
 
   /* ── Letter page ── */
   return (
-    <div className={`page letter-page chapter-page chapter-page-${page} ${isNightMode ? 'theme-night' : ''}`}>
+    <div 
+      className={`page letter-page chapter-page chapter-page-${page} ${isNightMode ? 'theme-night' : ''}`}
+      onTouchStart={handleTouchStart}
+      onTouchEnd={(e) => handleTouchEnd(e, page)}
+    >
       <Particles />
       <div className="letter-atmosphere" aria-hidden="true">
         <span className="atmosphere-glow glow-one" />
         <span className="atmosphere-glow glow-two" />
-        <span className="atmosphere-meteor meteor-one" />
-        <span className="atmosphere-meteor meteor-two" />
+        <InteractiveMeteors />
       </div>
 
       {/* Music */}
