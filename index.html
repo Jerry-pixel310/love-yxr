@@ -4,6 +4,9 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>给小羊宝宝的一封信</title>
+    <link rel="manifest" href="/love-yxr/manifest.json" />
+    <meta name="theme-color" content="#ff2f7d" />
+    <link rel="apple-touch-icon" href="/love-yxr/icon-192.png" />
     <script type="module" crossorigin src="/love-yxr/assets/index-DC4VUITL.js"></script>
     <link rel="stylesheet" crossorigin href="/love-yxr/assets/index-Joealg79.css">
   </head>
@@ -27,6 +30,13 @@
       <input name="bot-field" />
     </form>
     <div id="root"></div>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/love-yxr/sw.js')
+        })
+      }
+    </script>
   </body>
 </html>
 
