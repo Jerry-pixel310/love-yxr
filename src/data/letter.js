@@ -246,7 +246,7 @@
   memoryCinemaTitle: '我们的精彩瞬间',
   memoryCinemaSubtitle: '每一帧都值得被好好保存。',
   memoryPhoto: {
-    src: '/images/ranran-memory.jpg',
+    src: '/images/ranran-memory.webp',
     caption: '把这一刻偷偷收藏起来。',
   },
   starUniverseTitle: '杨星冉的小宇宙',

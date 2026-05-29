@@ -1923,13 +1923,13 @@ function MemoryFilmStrip() {
     },
     {
       title: '游戏里发光的小羊',
-      src: asset('/images/ranran-game-mvp.jpg'),
+      src: asset('/images/ranran-game-mvp.webp'),
       caption: 'MVP 就是小羊，这一局太厉害了。',
       note: '你认真发光的时候，我会在屏幕这边偷偷骄傲很久。',
     },
     {
       title: '想一直保存的瞬间',
-      src: asset('/images/ice-rose-reference-frame.jpg'),
+      src: asset('/images/ice-rose-reference-frame.webp'),
       caption: '有些画面，光是想起来就会变温柔。',
       note: '不是因为画面多完美，是因为里面有你，所以它才特别。',
     },
@@ -3477,7 +3477,7 @@ export default function App() {
               <p>{letterConfig.memoryPhoto.caption}</p>
             </article>
             <article className="memory-photo-card">
-              <img src={asset('/images/ranran-game-mvp.jpg')} alt="小羊宝宝的王者 MVP" loading="lazy" decoding="async" />
+              <img src={asset('/images/ranran-game-mvp.webp')} alt="小羊宝宝的王者 MVP" loading="lazy" decoding="async" />
               <p>MVP 就是小羊，这一局太厉害了。</p>
             </article>
           </div>
