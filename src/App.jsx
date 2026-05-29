@@ -1163,8 +1163,6 @@ function ShakeFortune({ config }) {
   }
 
   useEffect(() => {
-    let permission = false
-
     const onMotion = (e) => {
       const a = e.accelerationIncludingGravity
       if (!a) return
@@ -1182,15 +1180,14 @@ function ShakeFortune({ config }) {
           typeof DeviceMotionEvent.requestPermission === 'function') {
         try {
           const res = await DeviceMotionEvent.requestPermission()
-          if (res === 'granted') { window.addEventListener('devicemotion', onMotion); permission = true }
+          if (res === 'granted') window.addEventListener('devicemotion', onMotion)
         } catch (_) {}
       } else if (typeof DeviceMotionEvent !== 'undefined') {
         window.addEventListener('devicemotion', onMotion)
-        permission = true
       }
     }
     requestMotion()
-    return () => { if (permission) window.removeEventListener('devicemotion', onMotion) }
+    return () => window.removeEventListener('devicemotion', onMotion)
   }, [])
 
   const strengthLabel = { gentle: '轻轻摇', medium: '用力摇', strong: '使劲摇！' }
@@ -1934,7 +1931,7 @@ function MemoryFilmStrip() {
     },
     {
       title: '想一直保存的瞬间',
-      src: letterConfig.memoryPhoto.src,
+      src: asset('/images/ice-rose-reference-frame.jpg'),
       caption: '有些画面，光是想起来就会变温柔。',
       note: '不是因为画面多完美，是因为里面有你，所以它才特别。',
     },
