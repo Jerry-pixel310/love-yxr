@@ -449,11 +449,13 @@ function SpinWheel({ items }) {
   const [spinning, setSpinning] = useState(false)
   const [result, setResult] = useState(null)
   const [deg, setDeg] = useState(0)
+  const [pointerWobble, setPointerWobble] = useState(false)
 
   const spin = () => {
     if (spinning) return
     setSpinning(true)
     setResult(null)
+    setPointerWobble(true)
     const winIndex = Math.floor(Math.random() * items.length)
     const sliceDeg = 360 / items.length
     const targetDeg = deg + 1440 + (360 - winIndex * sliceDeg - sliceDeg / 2)
@@ -461,6 +463,7 @@ function SpinWheel({ items }) {
     setTimeout(() => {
       setResult(items[winIndex])
       setSpinning(false)
+      setPointerWobble(false)
     }, 3200)
   }
 
@@ -470,7 +473,7 @@ function SpinWheel({ items }) {
   return (
     <div className="spinwheel-wrap">
       <div className="spinwheel-container">
-        <div className="spinwheel-pointer">▼</div>
+        <div className={`spinwheel-pointer ${spinning ? 'is-spinning' : ''} ${pointerWobble ? 'is-wobbling' : ''}`}>▼</div>
         <svg
           className="spinwheel"
           viewBox="0 0 200 200"
@@ -527,6 +530,8 @@ function SpinWheel({ items }) {
 /* ── Sweetness quiz ── */
 function SweetnessQuiz({ questions, levels }) {
   const [answers, setAnswers] = useState({})
+  const [flippedCards, setFlippedCards] = useState({})
+
   const allDone = Object.keys(answers).length === questions.length
 
   const totalScore = Object.entries(answers).reduce((sum, [qi, oi]) => {
@@ -535,25 +540,54 @@ function SweetnessQuiz({ questions, levels }) {
 
   const level = levels.find((l) => totalScore >= l.min && totalScore <= l.max)
 
+  const handleOptionClick = (qi, oi) => {
+    if (answers[qi] !== undefined) return // 已作答，防重选
+    setAnswers((prev) => ({ ...prev, [qi]: oi }))
+    setFlippedCards((prev) => ({ ...prev, [qi]: true }))
+  }
+
   return (
     <div className="sweetness-wrap">
-      {questions.map((q, qi) => (
-        <div key={q.question} className="sweetness-question">
-          <p className="quiz-question">{qi + 1}. {q.question}</p>
-          <div className="quiz-options">
-            {q.options.map((opt, oi) => (
-              <button
-                key={opt}
-                type="button"
-                className={`quiz-option ${answers[qi] === oi ? 'is-selected' : ''}`}
-                onClick={() => setAnswers((prev) => ({ ...prev, [qi]: oi }))}
-              >
-                {opt}
-              </button>
-            ))}
+      {questions.map((q, qi) => {
+        const isFlipped = flippedCards[qi]
+        const selectedOption = answers[qi]
+        return (
+          <div key={q.question} className={`quiz-card-3d-wrap ${isFlipped ? 'is-flipped' : ''}`}>
+            <div className="quiz-card-3d-inner">
+              {/* 正面：题目与选项 */}
+              <div className="quiz-card-3d-front sweetness-question">
+                <p className="quiz-question">{qi + 1}. {q.question}</p>
+                <div className="quiz-options">
+                  {q.options.map((opt, oi) => (
+                    <button
+                      key={opt}
+                      type="button"
+                      className="quiz-option"
+                      onClick={() => handleOptionClick(qi, oi)}
+                    >
+                      {opt}
+                    </button>
+                  ))}
+                </div>
+              </div>
+
+              {/* 反面：答案与甜蜜反馈 */}
+              <div className="quiz-card-3d-back sweetness-question-back">
+                <span className="quiz-back-badge">✓ 已回答</span>
+                <p className="quiz-question">{qi + 1}. {q.question}</p>
+                <div className="quiz-selected-summary">
+                  <span>你的答案：</span>
+                  <strong>{q.options[selectedOption]}</strong>
+                </div>
+                <div className="quiz-feedback-box">
+                  <span className="feedback-heart">💖</span>
+                  <p>{q.feedback}</p>
+                </div>
+              </div>
+            </div>
           </div>
-        </div>
-      ))}
+        )
+      })}
       {allDone && level && (
         <div className="sweetness-result fade-in">
           <p className="sweetness-label">今日甜度：{level.label} 🧋</p>
@@ -1478,6 +1512,7 @@ function DragPuzzle({ config }) {
   }, [pieces])
 
   const [positions, setPositions] = useState(getInitialPositions)
+  const [snapParticles, setSnapParticles] = useState([]) // 金色拼图吸附成功爆破火花
   const [dragging, setDragging] = useState(null)
   const [complete, setComplete] = useState(false)
   const boardRef = useRef(null)
@@ -1518,6 +1553,24 @@ function DragPuzzle({ config }) {
       const next = { ...prev }
       if (dist < SNAP_DIST) {
         next[dragging] = { x: target.x, y: target.y, snapped: true }
+
+        // 磁吸成功，炸裂 10 个金砂小星星粒子
+        const pId = Date.now()
+        const newPart = Array.from({ length: 10 }, (_, pi) => {
+          const angle = (Math.PI * 2 * pi) / 10
+          return {
+            id: pId + pi,
+            x: target.x + CELL / 2 - 8,
+            y: target.y + CELL / 2 - 8,
+            dx: Math.cos(angle) * (20 + Math.random() * 24),
+            dy: Math.sin(angle) * (20 + Math.random() * 24),
+          }
+        })
+        setSnapParticles((current) => [...current, ...newPart])
+        setTimeout(() => {
+          setSnapParticles((current) => current.filter((p) => !newPart.some((np) => np.id === p.id)))
+        }, 800)
+
         const allSnapped = pieces.every((p) => p.id === dragging ? true : next[p.id]?.snapped)
         if (allSnapped) setTimeout(() => setComplete(true), 300)
       }
@@ -1528,6 +1581,7 @@ function DragPuzzle({ config }) {
 
   const reset = () => {
     setPositions(getInitialPositions())
+    setSnapParticles([])
     setComplete(false)
   }
 
@@ -1542,7 +1596,7 @@ function DragPuzzle({ config }) {
       <div className="drag-puzzle-wrap">
         <div
           ref={boardRef}
-          className="drag-puzzle-board"
+          className={`drag-puzzle-board ${complete ? 'is-complete' : ''}`}
           style={{ width: boardW, height: boardH + 160 }}
           onPointerMove={onPointerMove}
           onPointerUp={onPointerUp}
@@ -1582,6 +1636,22 @@ function DragPuzzle({ config }) {
               </div>
             )
           })}
+
+          {/* 吸附成功爆破火花 */}
+          {snapParticles.map((p) => (
+            <span
+              key={p.id}
+              className="puzzle-snap-particle"
+              style={{
+                left: p.x,
+                top: p.y,
+                '--p-dx': `${p.dx}px`,
+                '--p-dy': `${p.dy}px`
+              }}
+            >
+              ⭐
+            </span>
+          ))}
         </div>
 
         {complete && (
@@ -1988,8 +2058,46 @@ function DailySheepGift() {
     { emoji: '💌', title: '今日想你便签', text: '今天也想你，不是突然想起，是一直有一小块心思在你那里。' },
   ]
   const [isOpen, setIsOpen] = useState(false)
+  const [isScratched, setIsScratched] = useState(false)
+  const [scratchProgress, setScratchProgress] = useState(0)
+  const lastPos = useRef({ x: 0, y: 0 })
+
   const dayKey = new Date().toISOString().slice(0, 10).replaceAll('-', '')
   const gift = gifts[Number(dayKey) % gifts.length]
+
+  const handleScratchMove = (e) => {
+    if (!isOpen || isScratched) return
+    let clientX = 0, clientY = 0
+    if (e.touches && e.touches.length > 0) {
+      clientX = e.touches[0].clientX
+      clientY = e.touches[0].clientY
+    } else {
+      clientX = e.clientX
+      clientY = e.clientY
+    }
+
+    if (lastPos.current.x !== 0 && lastPos.current.y !== 0) {
+      const dist = Math.hypot(clientX - lastPos.current.x, clientY - lastPos.current.y)
+      setScratchProgress((p) => {
+        const next = p + dist
+        if (next > 450) {
+          setIsScratched(true)
+        }
+        return next
+      })
+    }
+    lastPos.current = { x: clientX, y: clientY }
+  }
+
+  const handleScratchEnd = () => {
+    lastPos.current = { x: 0, y: 0 }
+  }
+
+  const handleOpenClick = () => {
+    setIsOpen(true)
+    setScratchProgress(0)
+    setIsScratched(false)
+  }
 
   return (
     <section className={`daily-sheep-gift-section fade-in-scroll ${isOpen ? 'is-open' : ''}`}>
@@ -2003,17 +2111,39 @@ function DailySheepGift() {
           <>
             <span className="daily-gift-ribbon" />
             <span className="daily-gift-emoji">🎁</span>
-            <button className="btn btn-primary daily-gift-btn" type="button" onClick={() => setIsOpen(true)}>
+            <button className="btn btn-primary daily-gift-btn" type="button" onClick={handleOpenClick}>
               打开今日小羊礼物
             </button>
           </>
         ) : (
-          <article className="daily-gift-card fade-in">
-            <span className="daily-gift-result-emoji">{gift.emoji}</span>
-            <strong>{gift.title}</strong>
-            <p>{gift.text}</p>
-            <em>From：一直惦记小羊的人</em>
-          </article>
+          <div className="daily-scratch-container">
+            {/* 礼物卡：刮完露出 */}
+            <article className={`daily-gift-card ${isScratched ? 'is-revealed' : 'is-hidden'}`}>
+              <span className="daily-gift-result-emoji">{gift.emoji}</span>
+              <strong>{gift.title}</strong>
+              <p>{gift.text}</p>
+              <em>From：一直惦记小羊的人</em>
+            </article>
+
+            {/* 刮刮膜层 */}
+            {!isScratched && (
+              <div
+                className="daily-scratch-layer"
+                onMouseMove={handleScratchMove}
+                onTouchMove={handleScratchMove}
+                onMouseLeave={handleScratchEnd}
+                onTouchEnd={handleScratchEnd}
+                style={{ opacity: Math.max(0.1, 1 - scratchProgress / 450) }}
+              >
+                <div className="scratch-glitter" />
+                <span className="scratch-hand">🎨</span>
+                <p>动动手指/鼠标，把心意刮开……</p>
+                <div className="scratch-progress-bar-wrap">
+                  <div className="scratch-progress-bar" style={{ width: `${Math.min(100, (scratchProgress / 450) * 100)}%` }} />
+                </div>
+              </div>
+            )}
+          </div>
         )}
       </div>
     </section>
@@ -3660,16 +3790,24 @@ export default function App() {
             {letterConfig.secretEnvelopes.map((envelope, i) => {
               const isOpen = openedEnvelopeIndexes.includes(i)
               return (
-                <button
+                <div
                   key={envelope.title}
-                  type="button"
-                  className={`secret-envelope-card ${isOpen ? 'is-open' : ''}`}
+                  className={`envelope-3d-box ${isOpen ? 'is-open' : ''}`}
                   onClick={() => toggleMiniEnvelope(i)}
+                  role="button"
+                  tabIndex="0"
+                  aria-expanded={isOpen}
                 >
-                  <span className="secret-envelope-icon">{isOpen ? '💗' : '💌'}</span>
-                  <span className="secret-envelope-title">{envelope.title}</span>
-                  {isOpen && <span className="secret-envelope-text">{envelope.text}</span>}
-                </button>
+                  <div className="envelope-3d-flap">
+                    <span className="envelope-3d-seal">💖</span>
+                  </div>
+                  <div className="envelope-3d-pocket" />
+                  <div className="envelope-3d-paper">
+                    <span className="envelope-3d-title">{envelope.title}</span>
+                    <p className="envelope-3d-text">{envelope.text}</p>
+                  </div>
+                  {!isOpen && <span className="envelope-3d-closed-heart">💌</span>}
+                </div>
               )
             })}
           </div>
