@@ -32,8 +32,32 @@
     <script>
       if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
-          navigator.serviceWorker.register('/love-yxr/sw.js')
-        })
+          navigator.serviceWorker.register('/love-yxr/sw.js').then((reg) => {
+            reg.onupdatefound = () => {
+              const installingWorker = reg.installing;
+              if (installingWorker) {
+                installingWorker.onstatechange = () => {
+                  if (installingWorker.state === 'installed') {
+                    if (navigator.serviceWorker.controller) {
+                      // 发现新版本 Service Worker 在后台安装就绪，直接强载最新资源
+                      console.log('检测到网页有了更甜的更新，正在为您刷新载入...');
+                      window.location.reload();
+                    }
+                  }
+                };
+              }
+            };
+          });
+        });
+
+        // 监听 active 变更
+        let refreshing = false;
+        navigator.serviceWorker.addEventListener('controllerchange', () => {
+          if (!refreshing) {
+            window.location.reload();
+            refreshing = true;
+          }
+        });
       }
     </script>
   </body>
