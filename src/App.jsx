@@ -37,15 +37,16 @@ function InteractiveMeteors() {
   const [sparks, setSparks] = useState([])
 
   const handleMeteorClick = (e, wishText) => {
-    e.preventDefault()
-    e.stopPropagation()
+    if (e && e.stopPropagation) {
+      e.stopPropagation()
+    }
 
     // 确定点击坐标，支持触屏和鼠标
     let x = 0, y = 0
-    if (e.touches && e.touches.length > 0) {
+    if (e && e.touches && e.touches.length > 0) {
       x = e.touches[0].clientX
       y = e.touches[0].clientY
-    } else {
+    } else if (e) {
       x = e.clientX
       y = e.clientY
     }
@@ -3305,11 +3306,13 @@ export default function App() {
   const touchStartY = useRef(0)
 
   const handleTouchStart = (e) => {
+    if (!e.touches || e.touches.length === 0) return
     touchStartX.current = e.touches[0].clientX
     touchStartY.current = e.touches[0].clientY
   }
 
   const handleTouchEnd = (e, currentChapter) => {
+    if (!e.changedTouches || e.changedTouches.length === 0) return
     const diffX = e.changedTouches[0].clientX - touchStartX.current
     const diffY = e.changedTouches[0].clientY - touchStartY.current
 
